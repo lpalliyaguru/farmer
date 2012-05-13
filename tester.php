@@ -59,3 +59,24 @@ $form->renderForm();
 
 
 ?>
+<script type="text/javascript" src="libraries/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" >
+$(document).ready(function(){
+
+
+	$.post("ajax_index.php",{"obj_uri":"system.hello"},function(d){
+				alert(d);
+		});
+
+	
+});
+
+
+
+
+
+</script>
+
+
+
+

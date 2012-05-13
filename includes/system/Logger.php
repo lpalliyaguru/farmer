@@ -28,6 +28,21 @@ class Logger{
 			
 		}else return false;
 	}
+	public function ajaxLog($tag,$message){
+		$fh = fopen("logs/ajax_error_log.log", 'a'); 
+		
+		$time=date("Y-m-d h:i:s");
+		$log_string=$time."  ".$tag." : ".$message."\n";
+		if(fwrite($fh, $log_string)){
+			return true;
+			
+		} else return false;
+		
+		
+		
+		
+	}
+	
 	public function clearLog(){
 		$this->logs=null;
 	}
