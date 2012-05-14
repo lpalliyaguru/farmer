@@ -56,6 +56,7 @@ require_once 'includes/call.php';
 hImport("support.login.HAuthenticator");
 hImport("system.Logger");
 hImport("system.Frame");
+hImport("system.renderer.Renderer");
 /*
  * instantiating global objects 
  * 
@@ -70,12 +71,16 @@ if(getParam("login_attempt")){
 	print "<p align='center' class='error_message'>Incorrect Username or Password</p>";
 
 }
-
-	
 	
 if(auth()){
-
-		
+			
+		$ren=new Renderer();
+		$def_templ=$ren->getDefaultTemplate();
+		if($def_templ!=false){
+			$ren->activateTemplate($def_templ);
+		}else{
+			die("cannot load the default template");
+		}
 	
 	}else {
 		print "<div id='login-div'>";
@@ -96,8 +101,6 @@ $user->setUserType("general");
 $logAuth->saveUser($user);
 */
 ?>
-
-
 </div>
 
 <?php 

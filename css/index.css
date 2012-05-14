@@ -41,7 +41,7 @@ input.text {
 	width: 400px;
 }
 #logger-div{
-	position: relative;float: left;width:100%; height:60px;overflow: scroll;background: #fff;top:80%
+	position: absolute;float: left;width:100%; height:60px;overflow: scroll;background: #fff;top:95%
 	
 }
 .ptour_crtbtn {

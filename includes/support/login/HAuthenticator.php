@@ -127,12 +127,18 @@ class HAuthenticator{
 		$_SESSION['SESS_USERTYPE'] =$origin_user->getUserType();
 		$_SESSION['SESS_USERAVATAR'] =$origin_user->getAvatar();
 		session_write_close();
-		header("location: ../home.php");
+		header("location:index.php");
 		exit();
 		
 	}
 	
-	
+	public function wrongUser(){
+		
+		header("location:index.php?login_attempt=1");
+		exit();
+		
+		
+	}
 	
 	
 	

@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+/* general formattings */
+body{
+
+}
+a{
+
+}
+
+/* the content */
+div#default-wrapper{
+	position: relative;
+	width:80%;
+	margin:0 auto 0 auto;
+	background: #fff;
+	opacity:0.9; 
+	min-height:700px;
+
+}
+
+
