@@ -1,8 +1,8 @@
 <?php 
-//if(!isset($_SESSION)){
+/*
+ * starts the session 
+ */
 	session_start();
-	
-//}
 
 ?>
 
@@ -53,10 +53,12 @@ function changeBg(){
 
 
 require_once 'includes/call.php';
+
 hImport("support.login.HAuthenticator");
 hImport("system.Logger");
 hImport("system.Frame");
 hImport("system.renderer.Renderer");
+hImport("support.login.HAuthenticator");
 /*
  * instantiating global objects 
  * 
@@ -64,7 +66,7 @@ hImport("system.renderer.Renderer");
 $log=new Logger();
 $mainframe=new MainFrame();
 
-hImport("support.login.HAuthenticator");
+
 $logAuth=new HAuthenticator();
 if(getParam("login_attempt")){
 
@@ -73,37 +75,43 @@ if(getParam("login_attempt")){
 }
 	
 if(auth()){
-			
+		/*
+		 * getting the renderer to render the template 
+		 */	
 		$ren=new Renderer();
+		/*
+		 * gets the default template 
+		 */
 		$def_templ=$ren->getDefaultTemplate();
 		if($def_templ!=false){
+			/*
+			 * render the default template 
+			 */
 			$ren->activateTemplate($def_templ);
+			
 		}else{
+			/*
+			 * if no default templates gives the error message
+			 */
 			die("cannot load the default template");
 		}
 	
 	}else {
+		/*
+		 * if user hasn't logged in ,show the login form 
+		 */
 		print "<div id='login-div'>";
 		print $logAuth->getLoginForm();	
 		print "</div>";
 	}
 
-/* testing purpose of framework 
-
-$user=new HUser("admin1");
-
-$user->setAvatar("user1.png");
-$user->setPassword("1234");
-$user->setFname("manoj");
-$user->setLname("lasantha");
-$user->setOfficeCode("cmb");
-$user->setUserType("general");
-$logAuth->saveUser($user);
-*/
 ?>
 </div>
 
 <?php 
+/*
+ * display the logger window.this should be disabled after the deployment 
+ */
 if($log->getLoggerStatus()==true){
 	
 	print "<div id='logger-div'>";
