@@ -60,15 +60,19 @@ $form->renderForm();
 
 ?>
 <script type="text/javascript" src="libraries/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="libraries/js/jquery.cookie.js"></script>
+
 <script type="text/javascript" >
 $(document).ready(function(){
 
+	
+	$.cookie("example", "foo", { expires: 7 });
 
 	$.post("ajax_index.php",{"obj_uri":"system.hello"},function(d){
 				alert(d);
 		});
-
 	
+	alert($.cookie("example"));
 });
 
 

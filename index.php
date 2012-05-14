@@ -1,4 +1,10 @@
+<?php 
+//if(!isset($_SESSION)){
+	session_start();
+	
+//}
 
+?>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -8,6 +14,7 @@
 <title>Login Page | Information Management System</title>
 <link href="css/index.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="libraries/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="libraries/js/jquery.cookie.js"></script>
 
 <script type="text/javascript">
 
@@ -56,23 +63,27 @@ hImport("system.Frame");
 $log=new Logger();
 $mainframe=new MainFrame();
 
+hImport("support.login.HAuthenticator");
+$logAuth=new HAuthenticator();
 if(getParam("login_attempt")){
 
 	print "<p align='center' class='error_message'>Incorrect Username or Password</p>";
 
 }
 
-if(!auth()){
+	
+	
+if(auth()){
 
-?>
+		
+	
+	}else {
+		print "<div id='login-div'>";
+		print $logAuth->getLoginForm();	
+		print "</div>";
+	}
 
-
-<div id="login-div">
-<?php 
-$logAuth=new HAuthenticator();
-print $logAuth->getLoginForm();
-
-/* testing purpose of framework */
+/* testing purpose of framework 
 
 $user=new HUser("admin1");
 
@@ -83,12 +94,9 @@ $user->setLname("lasantha");
 $user->setOfficeCode("cmb");
 $user->setUserType("general");
 $logAuth->saveUser($user);
-
+*/
 ?>
 
-</div><?php 
-}
-?>
 
 </div>
 

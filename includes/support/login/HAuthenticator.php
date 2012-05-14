@@ -1,6 +1,7 @@
 <?php
 hImport("system.db.HDatabase");
 hImport("system.user.HUser");
+hImport("system.var.StringHelper");
 hImport("support.table.HTableBuilder");
 hImport("support.table.HTableObject");
 hImport("support.tableObject.tableObject");
@@ -17,7 +18,7 @@ class HAuthenticator{
 	public function getLoginForm(){
 		global $log;
 		
-			$formBlder=new HFormBuilder("index.php", "post");
+			$formBlder=new HFormBuilder("LoginManager.php", "post");
 			$form=$formBlder->getForm();
 			$form->setLayout(DEFAULT_LAYOUT);
 			$form->setClass("h-class-loginform");
@@ -29,7 +30,7 @@ class HAuthenticator{
 			$inputTO->addInput($username);
 			
 			$inputTO2=new HTableObject(INPUT);
-			$password=new Input("username", "password");
+			$password=new Input("password", "password");
 			$password->setID("login-password");
 			$inputTO2->addInput($password);
 			
@@ -79,7 +80,9 @@ class HAuthenticator{
 				$mainframe->redirect("user saved");
 				
 			}else{
-				
+				/*
+				 * still this is onlyu for log .latter the mainframe class should be implemented
+				 */
 				$mainframe->redirect("user cannot be saved");
 			}
 		}else {
@@ -95,6 +98,42 @@ class HAuthenticator{
 		
 		
 	}
+	
+	public function authUser($username,$password){
+		
+		$password=StringHelper::cleanString($password);
+		//clean the db object 
+		$this->db->resetResult();
+		$this->db->select("fm_user","password","userId='".$username."'");
+		$res=$this->db->getResult();
+		
+		if($res[0]['password']==md5($password)){
+			
+			return true;
+		}else return false;
+		
+	}
+	public function saveState($username){
+		
+	
+	
+		
+		$user=new HUser($username);
+		$origin_user=$user->getUserById($username);
+		
+		$_SESSION['SESS_MEMBER_ID'] =$username;
+		$_SESSION['SESS_FIRST_NAME'] = $origin_user->getFname();
+		$_SESSION['SESS_LAST_NAME'] =$origin_user->getLname();
+		$_SESSION['SESS_USERTYPE'] =$origin_user->getUserType();
+		$_SESSION['SESS_USERAVATAR'] =$origin_user->getAvatar();
+		session_write_close();
+		header("location: ../home.php");
+		exit();
+		
+	}
+	
+	
+	
 	
 	
 }

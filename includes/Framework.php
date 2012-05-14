@@ -11,7 +11,7 @@ function hImport($url){
 function auth(){
 	
 	if(isset($_SESSION['SESS_MEMBER_ID'])){
-		return TRUE;
+		return true;
 	}else return false;
 }
 
