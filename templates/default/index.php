@@ -9,7 +9,7 @@ setTitle("Home");
 
 
 ?>
-<div>
+<div id="default-header">
 
 
 

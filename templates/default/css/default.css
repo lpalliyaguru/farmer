@@ -18,4 +18,8 @@ div#default-wrapper{
 
 }
 
+div#default-header{
+	position: relative;width:100%
+}
+
 
