@@ -1,0 +1,14 @@
+<?php
+
+interface Variable{
+	
+	
+	
+	
+}
+
+
+
+
+
+?>

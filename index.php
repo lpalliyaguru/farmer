@@ -1,4 +1,10 @@
-
+<?php 
+/*
+ * starts the session 
+ */
+	session_start();
+define("HEXEC", 1);
+?>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -8,6 +14,7 @@
 <title>Login Page | Information Management System</title>
 <link href="css/index.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="libraries/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="libraries/js/jquery.cookie.js"></script>
 
 <script type="text/javascript">
 
@@ -46,9 +53,12 @@ function changeBg(){
 
 
 require_once 'includes/call.php';
+
 hImport("support.login.HAuthenticator");
 hImport("system.Logger");
 hImport("system.Frame");
+hImport("system.renderer.Renderer");
+hImport("support.login.HAuthenticator");
 /*
  * instantiating global objects 
  * 
@@ -56,43 +66,52 @@ hImport("system.Frame");
 $log=new Logger();
 $mainframe=new MainFrame();
 
+
+$logAuth=new HAuthenticator();
 if(getParam("login_attempt")){
 
 	print "<p align='center' class='error_message'>Incorrect Username or Password</p>";
 
 }
-
-if(!auth()){
+	
+if(auth()){
+		/*
+		 * getting the renderer to render the template 
+		 */	
+		$ren=new Renderer();
+		/*
+		 * gets the default template 
+		 */
+		$def_templ=$ren->getDefaultTemplate();
+		if($def_templ!=false){
+			/*
+			 * render the default template 
+			 */
+			$ren->activateTemplate($def_templ);
+			
+		}else{
+			/*
+			 * if no default templates gives the error message
+			 */
+			die("cannot load the default template");
+		}
+	
+	}else {
+		/*
+		 * if user hasn't logged in ,show the login form 
+		 */
+		print "<div id='login-div'>";
+		print $logAuth->getLoginForm();	
+		print "</div>";
+	}
 
 ?>
-
-
-<div id="login-div">
-<?php 
-$logAuth=new HAuthenticator();
-print $logAuth->getLoginForm();
-
-/* testing purpose of framework */
-
-$user=new HUser("admin1");
-
-$user->setAvatar("user1.png");
-$user->setPassword("1234");
-$user->setFname("manoj");
-$user->setLname("lasantha");
-$user->setOfficeCode("cmb");
-$user->setUserType("general");
-$logAuth->saveUser($user);
-
-?>
-
-</div><?php 
-}
-?>
-
 </div>
 
 <?php 
+/*
+ * display the logger window.this should be disabled after the deployment 
+ */
 if($log->getLoggerStatus()==true){
 	
 	print "<div id='logger-div'>";

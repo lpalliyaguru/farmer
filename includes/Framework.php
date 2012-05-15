@@ -1,29 +1,48 @@
 <?php 
 
-function hImport($url){
-	
-	$ex_url=explode(".", $url);
-	$URL=implode(DS, $ex_url);
-	$URL="includes".DS.$URL.".php";
-	require_once ($URL);
-	
-}
-function auth(){
-	
-	if(isset($_SESSION['SESS_MEMBER_ID'])){
-		return TRUE;
-	}else return false;
-}
+	function hImport($url){
+		
+		$ex_url=explode(".", $url);
+		$URL=implode(DS, $ex_url);
+		$URL="includes".DS.$URL.".php";
+		require_once ($URL);
+		
+	}
+	function auth(){
+		
+		if(isset($_SESSION['SESS_MEMBER_ID'])){
+			return true;
+		}else return false;
+	}
 
-function getParam($param){
-	/*  
-	 * to be well handled in later 
-	 */
-	 if(isset($_REQUEST[$param])){
-	 	return $_REQUEST[$param];
-	 }else return false;
-	
-}
+	function getParam($param){
+		/*  
+		 * to be well handled in later 
+		 */
+		 if(isset($_REQUEST[$param])){
+		 	return $_REQUEST[$param];
+		 }else return false;
+		
+	}
+	function importJs($url){
+		
+		$js_url="libraries/js/".$url.".js";
+		
+		
+		print "<script type='text/javascript' src='".$js_url."'><script>";
+		
+	}
+
+	function setTitle($title){
+		
+		print "<script type='text/javascript'>";
+		print "document.title='$title'";
+		
+		
+		print "</script>";
+		
+		
+	}
 
 
 ?>

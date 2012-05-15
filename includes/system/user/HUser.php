@@ -1,4 +1,6 @@
 <?php
+hImport("system.db.HDatabase");
+
 class HUser{
 	
 	private $username;
@@ -91,7 +93,28 @@ class HUser{
 		return $this->officeCode;
 	}		
 	
-	
+	public function getUserById($username){
+		
+		$db=new HDatabase();
+		/*
+		 * getting the user data from the db 
+		 */
+		$db->connect();
+		$db->select("fm_user","*","userId='".$username."'");
+		$res=$db->getResult();
+		/*
+		 * setting user attribs 
+		 */
+		$this->fname=$res[0]['fname'];
+		$this->lname=$res[0]['lname'];
+		$this->officeCode=$res[0]['officeCode'];
+		$this->type=$res[0]['userType'];
+		$this->avatar=$res[0]['avatar'];
+		/*
+		 * return the user object
+		 */
+		return $this;
+	}
 	
 	
 	
