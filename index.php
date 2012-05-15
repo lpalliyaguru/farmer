@@ -3,7 +3,7 @@
  * starts the session 
  */
 	session_start();
-
+define("HEXEC", 1);
 ?>
 
 

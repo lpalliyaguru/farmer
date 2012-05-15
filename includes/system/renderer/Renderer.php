@@ -35,13 +35,16 @@ class Renderer {
 	public function activateTemplate(Template $tmpl){
 		
 		$tmpl_path="templates/";
-			$css_path=$tmpl_path.$tmpl->getTmplName()."/css/".$tmpl->getTmplName().".css";
+		$css_path=$tmpl_path.$tmpl->getTmplName()."/css/".$tmpl->getTmplName().".css";
 		$tmpl_path.=$tmpl->getTmplName()."/index.php";
 	
 		include_once $tmpl_path;
+		setTitle("home");
 		print "<link rel='stylesheet' type='text/css' href='$css_path'/>";
 		
 	}
+	
+	
 }
 
 
