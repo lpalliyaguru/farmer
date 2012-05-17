@@ -19,7 +19,7 @@ div#default-wrapper{
 }
 
 div#default-header{
-	position: relative;width:100%
+	position: relative;width:99%;border:1px solid #000;height: 60px;margin:0px auto 0px auto;
 }
 
 

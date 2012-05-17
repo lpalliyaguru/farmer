@@ -33,6 +33,11 @@
 		
 	}
 
+	function importCSS($url){
+		
+		
+		
+	}
 	function setTitle($title){
 		
 		print "<script type='text/javascript'>";

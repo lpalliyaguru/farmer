@@ -30,6 +30,9 @@ class Template{
 		return $this->default;
 	}
 	
+	
+	
+	
 }
 
 ?>

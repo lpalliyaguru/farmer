@@ -7,7 +7,7 @@ define("DS", DIRECTORY_SEPARATOR);
 
 /*table objects */
 
-define("IMAGE", 'IMAGE');
+
 define("LINK", 'LINK');
 define("SELECT", 'SELECT');
 define("RADIO", 'RADIO');
