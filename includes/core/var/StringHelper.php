@@ -1,6 +1,6 @@
 <?php
 
-hImport("system.var.Variable");
+hImport("core.var.Variable");
 
 class StringHelper implements Variable{
 	

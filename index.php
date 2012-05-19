@@ -55,9 +55,9 @@ function changeBg(){
 require_once 'includes/call.php';
 
 hImport("support.login.HAuthenticator");
-hImport("system.Logger");
-hImport("system.Frame");
-hImport("system.renderer.Renderer");
+hImport("core.Logger");
+hImport("core.Frame");
+hImport("core.renderer.Renderer");
 hImport("support.login.HAuthenticator");
 /*
  * instantiating global objects 

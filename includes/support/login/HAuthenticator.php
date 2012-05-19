@@ -1,7 +1,7 @@
 <?php
-hImport("system.db.HDatabase");
-hImport("system.user.HUser");
-hImport("system.var.StringHelper");
+hImport("core.db.HDatabase");
+hImport("core.user.HUser");
+hImport("core.var.StringHelper");
 hImport("support.table.HTableBuilder");
 hImport("support.table.HTableObject");
 hImport("support.tableObject.tableObject");

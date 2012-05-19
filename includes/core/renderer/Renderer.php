@@ -1,7 +1,7 @@
 <?php
 
-hImport("system.db.HDatabase");
-hImport("system.renderer.Template");
+hImport("core.db.HDatabase");
+hImport("core.renderer.Template");
 
 class Renderer {
 	

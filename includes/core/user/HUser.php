@@ -1,5 +1,5 @@
 <?php
-hImport("system.db.HDatabase");
+hImport("core.db.HDatabase");
 
 class HUser{
 	
