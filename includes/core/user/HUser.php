@@ -17,7 +17,6 @@ class HUser{
 		
 		$this->username=$username;
 		
-		
 	}
 	/*
 	 * setting setters 
