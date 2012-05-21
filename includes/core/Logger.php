@@ -46,6 +46,13 @@ class Logger{
 	public function clearLog(){
 		$this->logs=null;
 	}
+	function seyIt($arg1,$arg2){
+		
+		return "$arg1 is '".$arg1."' $arg2 '".$arg2;
+		
+		
+	}
+	
 	
 }
 
