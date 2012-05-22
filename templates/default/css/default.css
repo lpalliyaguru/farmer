@@ -11,15 +11,31 @@ a{
 div#default-wrapper{
 	position: relative;
 	width:80%;
-	margin:0 auto 0 auto;
-	background: #fff;
-	opacity:0.9; 
-	min-height:700px;
+	margin:0 auto ;
+	background:url(../images/bg_transparent.png);
+
+	min-height:500px;box-shadow:0 0 7px #000;
 
 }
 
 div#default-header{
-	position: relative;width:99%;border:1px solid #000;height: 60px;margin:0px auto 0px auto;
+	position: relative;width:99%;border:0px solid #000;height: 60px;margin:0px auto 4px auto;box-shadow:0 0 5px #000;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;	
 }
-
+div#default-ribbon-menu{
+	position: relative;width:95%;float:right;right:5px;
+	border:0px solid #000;
+	height:40px;
+	margin:4px auto 0px auto;	
+	box-shadow:0 0 5px #000;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;		
+}
+div#default-content{
+	position:relative;
+	margin: 55px auto 0px auto;min-height: 500px;padding: 10px
+}
 

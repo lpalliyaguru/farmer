@@ -10,11 +10,12 @@
 
 $(document).ready(function(){
 
-	//$('#menu').animateMenu({animatePadding: 30, defaultPadding:10});
-	$.post("ajax_index.php",{"object":"support.login.HAuthenticator->","params":null},function(d){
-		//res=jQuery.parseJSON(d);
-		console.log(d.status);
-		console.log(d.message);
+	
+	$.post("ajax_index.php",{"object":"core.Hello->say","params":null},function(d){
+		
+		console.log("status:" +d.status);
+		console.log("message"+d.message);
+		console.log("body"+d.body);
 		if(d.status){
 			var n=d.body;
 		

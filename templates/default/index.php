@@ -4,7 +4,7 @@
 
 <div id="default-wrapper">
 <?php 
-importJs("jquery.cookie");
+
 setTitle("Home");
 
 
@@ -86,10 +86,46 @@ setTitle("Home");
 	
 </div>
 
+<div id="default-ribbon-menu">
+
+</div>
+
+
+<div id="default-content">
+<?php 
+
+
+	if(getParam("page")){
+		$param=getParam("page");
+		$p=explode("_", $param);
+		$type=$p[0];
+		$key=$p[1];
+		if($type=="" || $key==""){
+			//wrong page call
+			print "wrong call";
+		}else{
+			//page call is correct 
+			if($type=="mod"){
+				include_once 'modules/mod_'.$key."/".$key.".php";
+			}else if($type=="com"){
+				include_once 'components/com_'.$key."/".$key.".php";
+			}else {
+				print "wrong content call";
+			}
+			
+			
+		}
+		
+	}else{
+		
+		//render the front page
+	}
+
+
+?>
 
 
 
-
-
+</div>
 
 </div>
