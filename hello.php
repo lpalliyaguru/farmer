@@ -11,16 +11,21 @@
 $(document).ready(function(){
 
 	//$('#menu').animateMenu({animatePadding: 30, defaultPadding:10});
-	$.post("ajax_index.php",{"object":"core.Logger->seyIt","params":["param1","param2"]},function(d){
+	$.post("ajax_index.php",{"object":"support.login.HAuthenticator->","params":null},function(d){
 		//res=jQuery.parseJSON(d);
+		console.log(d.status);
 		console.log(d.message);
+		if(d.status){
+			var n=d.body;
+		
+		}
 		 });
 	
 });
 
 </script>
-<p id="fader"> I'm goon fade in</p>
 
-<p>newly Added</p>
+<div id="login">
 
 
+</div>

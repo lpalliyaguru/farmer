@@ -5,7 +5,13 @@
 		$ex_url=explode(".", $url);
 		$URL=implode(DS, $ex_url);
 		$URL="includes".DS.$URL.".php";
-		require_once ($URL);
+		if(file_exists($URL)){
+			
+			require_once ($URL);
+			return true;
+		}else{
+			return false;
+		}
 		
 	}
 	function auth(){
