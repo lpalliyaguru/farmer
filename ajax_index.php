@@ -10,29 +10,31 @@ hImport("core.Logger");
  * });
  * 
  */
-$log=new Logger();
-if(getParam('object')){
-	$objUrl=getParam("object");
-	$urlArray=explode("->", $objUrl);
-	$classUrl=$urlArray[0];
-	$parts=explode(".", $classUrl);
-	$class=array_pop($parts);
-	$func=$urlArray[1];
 
-	$params=getParam('params');
-	hImport($classUrl);
+if(auth()){
+	$log=new Logger();
+	if(getParam('object')){
+		$objUrl=getParam("object");
+		$urlArray=explode("->", $objUrl);
+		$classUrl=$urlArray[0];
+		$parts=explode(".", $classUrl);
+		$class=array_pop($parts);
+		$func=$urlArray[1];
 	
-	$obj=new $class;
+		$params=getParam('params');
+		hImport($classUrl);
 		
-	print call_user_func_array(array($obj, $func), $params);
-	//$obj->$func();
-	
-
-	
-	
-	
-	
-	
+		$obj=new $class;
+			
+		print call_user_func_array(array($obj, $func), $params);
+		//$obj->$func();
+		
+		
+	}
+}else{
+	header("Content-type:application/json");
+	$return=array("status"=>"false","message"=>"Restricted Access");
+	print json_encode($return);
 	
 }
 
