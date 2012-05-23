@@ -1,6 +1,11 @@
 <?php
 class MainFrame{
 	
+	private $activatedComponent=null;
+	private $activatedModule=null;
+	
+	
+	
 	public function MainFrame(){
 		
 		
@@ -12,6 +17,31 @@ class MainFrame{
 		$log->log("manoj", $message);
 		
 	}
+	
+	public function activateComponent($comp){
+		
+		$this->activatedComponent=$comp;
+				
+	}
+	public function activateModule($mod){
+		
+		$this->activatedComponent=$mod;
+				
+	}
+	public function getActivatedComponent(){
+		
+		$page=getParam("page");
+		return  $page;
+				
+	}
+	public function getActivatedModule(){
+		
+		return $this->activatedModule;
+		
+	}
+	
+	
+	
 	
 	
 	

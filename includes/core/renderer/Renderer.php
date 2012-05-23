@@ -2,6 +2,8 @@
 
 hImport("core.db.HDatabase");
 hImport("core.renderer.Template");
+hImport('core.renderer.Renderer');
+hImport('core.renderer.ToolBar');
 
 class Renderer {
 	
@@ -41,6 +43,26 @@ class Renderer {
 		include_once $tmpl_path;
 		setTitle("home");
 		print "<link rel='stylesheet' type='text/css' href='$css_path'/>";
+		
+	}
+	
+	public function loadToolBar(){
+		
+		global $mainframe;
+		$active=$mainframe->getActivatedComponent();
+		$classURL="components/".$active."/toolbar/toolbar.php";
+		
+		if(file_exists($classURL)){
+			require_once($classURL);
+			$toolbar=new ComToolBar();
+			
+			
+			return true;
+		}else {
+			return false;
+		}
+		
+		
 		
 	}
 	

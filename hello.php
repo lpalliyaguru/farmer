@@ -11,11 +11,12 @@
 $(document).ready(function(){
 
 	
-	$.post("ajax_index.php",{"object":"core.Hello->say","params":null},function(d){
+	$.post("ajax_index.php",{"object":"support.login.HAuthenticator->getLoginForm","params":null},function(d){
 		
-		console.log("status:" +d.status);
-		console.log("message"+d.message);
-		console.log("body"+d.body);
+		console.log("status: " +d.status);
+		console.log("message: "+d.message);
+		console.log("body : "+d.body);
+		$('#login').html(d.body)
 		if(d.status){
 			var n=d.body;
 		

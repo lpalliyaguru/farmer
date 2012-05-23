@@ -87,7 +87,16 @@ setTitle("Home");
 </div>
 
 <div id="default-ribbon-menu">
+<?php 
 
+hImport("core.renderer.Renderer");
+$renderer=new Renderer();
+$renderer->loadToolBar();
+
+
+
+
+?>
 </div>
 
 
@@ -105,10 +114,13 @@ setTitle("Home");
 			print "wrong call";
 		}else{
 			//page call is correct 
+			global $mainframe;
 			if($type=="mod"){
 				include_once 'modules/mod_'.$key."/".$key.".php";
+				$mainframe->activateModule($key);
 			}else if($type=="com"){
 				include_once 'components/com_'.$key."/".$key.".php";
+				$mainframe->activateComponent($key);
 			}else {
 				print "wrong content call";
 			}
