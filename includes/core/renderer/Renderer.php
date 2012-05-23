@@ -21,7 +21,7 @@ class Renderer {
 		try{
 			if(isset($res)){
 				$tmpl=new Template();
-				$tmpl->setTmplDefault($res[0]['default']);
+				$tmpl->setTmplDefault($res[0]['default_value']);
 				$tmpl->setTmplId($res[0]['id']);
 				$tmpl->setTmplName($res[0]['name']);
 				return $tmpl;
@@ -55,7 +55,8 @@ class Renderer {
 		if(file_exists($classURL)){
 			require_once($classURL);
 			$toolbar=new ComToolBar();
-			
+			$toolbar->setElements();
+			$toolbar->renderToolBar();
 			
 			return true;
 		}else {

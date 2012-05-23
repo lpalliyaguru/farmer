@@ -3,18 +3,40 @@
 class ToolBar{
 	
 	private $id;
-	private $elements=array();
-	
+	protected  $elements=array();
+	/*
+	 * $elements=array(array("name"=>'name',"type"=>TYPE,"link"=>LINK,'onclick'=>ONCLICK),
+	 * 					array(array("name"=>'name',"type"=>TYPE,"link"=>LINK,'onclick'=>ONCLICK))
+	 * 				);
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	public function ToolBar(){
 		
 	}
 	public function renderToolBar(){
 		$menu="";
-		$menu.="<ul>";
+		$menu.="<ul id='default-ribbon-menu'>";
 		
+		foreach ($this->elements as $temp){
+			$menu.="<li>";
+			$menu.="<a><img src='".$temp['type']."'/>";
+			$menu.="</a></li>";
+		}
+		$menu.="</ul>";
 		
+		print $menu;
 	}
-	
+	public function setElements($elems){
+		
+		$this->elements=$elems;
+	}
+	public function getElements(){
+		
+		return $this->elements;
+	}
 }
 
 

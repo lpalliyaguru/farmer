@@ -39,3 +39,23 @@ div#default-content{
 	margin: 55px auto 0px auto;min-height: 500px;padding: 10px
 }
 
+ul#default-ribbon-menu{
+	
+	list-style: none ; float:left;position: relative;
+}
+ul#default-ribbon-menu li{
+	
+	list-style: none ; float:left;position: relative;
+}
+
+ul#default-ribbon-menu li div.save{
+	
+
+}
+
+
+
+
+
+
+

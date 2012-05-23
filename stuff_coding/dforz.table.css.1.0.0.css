@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+table.default-table-class{
+	position: relative;
+	border-collapse: collapse;
+}
+table.default-table-class a{
+	position: relative;
+	
+}
+
+table.default-table-class tr{
+	position: relative;
+	
+}
+table.default-table-class td{
+	position: relative;padding:5px;height:25px
+	
+}
+table.default-table-class input{
+	position: relative;
+	
+}
+
+table.default-table-class select{
+	position: relative;
+	
+}
+
