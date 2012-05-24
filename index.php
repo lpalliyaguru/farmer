@@ -15,6 +15,8 @@ define("HEXEC", 1);
 <link href="css/index.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="libraries/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="libraries/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="libraries/js/jquery.effects.core.js"></script>
+
 
 <script type="text/javascript">
 

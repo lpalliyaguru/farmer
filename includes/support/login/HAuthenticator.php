@@ -115,8 +115,6 @@ class HAuthenticator{
 	}
 	public function saveState($username){
 		
-	
-	
 		
 		$user=new HUser($username);
 		$origin_user=$user->getUserById($username);

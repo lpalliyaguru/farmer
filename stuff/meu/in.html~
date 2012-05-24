@@ -22,7 +22,16 @@ $(document).ready(function(){
 			<li> 
 				<a href="#">Forum</a> 
 				<ul> 
+					<li><a href="#">Support</a>
+						<ul> 
 					<li><a href="#">Support</a></li> 
+						<ul>
+							<li><a href="#">Help</a></li> 
+							<li><a href="#">Examples</a></li>
+							<li><a href="#">Your work</a></li>
+						</ul> 					
+					</li> 
+					
 					<li><a href="#">Help</a></li> 
 					<li><a href="#">Examples</a></li>
 					<li><a href="#">Your work</a></li>
@@ -40,13 +49,13 @@ $(document).ready(function(){
 				<a href="#">Products</a> 
 				<div class="products">
 					<ul> 
-						<li><img src="images/236872.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Featured Box</h2><p><a href="#">More information about this product</a></p></li> 
-						<li><img src="images/242702.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Mod Rewriter</h2><p><a href="#">More information about this product</a></p></li> 
-						<li><img src="images/242177.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Byte Scrambler</h2><p><a href="#">More information about this product</a></p></li> 
-						<li><img src="images/226138.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Image Processor</h2><p><a href="#">More information about this product</a></p></li> 
-						<li><img src="images/216794.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Registry Class</h2><p><a href="#">More information about this product</a></p></li> 
-						<li><img src="images/211826.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Data Validation</h2><p><a href="#">More information about this product</a></p></li> 
-						<li><img src="images/203708.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Ajax Tables</h2><p><a href="#">More information about this product</a></p></li> 
+						<li><img src="236872.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Featured Box</h2><p><a href="#">More information about this product</a></p></li> 
+						<li><img src="242702.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Mod Rewriter</h2><p><a href="#">More information about this product</a></p></li> 
+						<li><img src="242177.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Byte Scrambler</h2><p><a href="#">More information about this product</a></p></li> 
+						<li><img src="226138.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Image Processor</h2><p><a href="#">More information about this product</a></p></li> 
+						<li><img src="216794.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Registry Class</h2><p><a href="#">More information about this product</a></p></li> 
+						<li><img src="211826.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Data Validation</h2><p><a href="#">More information about this product</a></p></li> 
+						<li><img src="203708.jpg" width="40" height="40" alt="Thumb" border="0" /><h2>Ajax Tables</h2><p><a href="#">More information about this product</a></p></li> 
 					</ul>
 					<div class="small">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</div>
 				</div>
