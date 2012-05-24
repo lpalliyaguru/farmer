@@ -30,15 +30,15 @@ $config=array(
  * defining images through the system
  */
 		
-define("APPLY", "images/toolbar/icon-32-apply.png");	
-define("BACK", 	"images/toolbar/icon-32-back.png");		
-define("CANCEL", "images/toolbar/icon-32-cancel.png");	
-define("CONFIG", "images/toolbar/icon-32-config.png");	
-define("DELETE", "images/toolbar/icon-32-delete.png");	
-define("HELP", "images/toolbar/icon-32-help.png");
-define("NEW", "images/toolbar/icon-32-new.png");
-define("PRINT", "images/toolbar/icon-32-print.png");
-define("SAVE", "images/toolbar/icon-32-save.png");
+define("APPLY", "APPLY");	
+define("BACK", 	"BACK");		
+define("CANCEL", "CANCEL");	
+define("CONFIG", "CONFIG");	
+define("DELETE", "DELETE");	
+define("HELP", "HELP");
+define("NEW", "NEW");
+define("PRINT", "PRINT");
+define("SAVE", "SAVE");
 
 
 
