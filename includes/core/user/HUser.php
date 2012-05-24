@@ -16,7 +16,24 @@ class HUser{
 	public function HUser($username){
 		
 		$this->username=$username;
-		
+		$db=new HDatabase();
+		/*
+		 * getting the user data from the db 
+		 */
+		$db->connect();
+		$db->select("fm_user","*","userId='".$this->username."'");
+		$res=$db->getResult();
+		/*
+		 * setting user attribs 
+		 */
+		$this->fname=$res[0]['fname'];
+		$this->lname=$res[0]['lname'];
+		$this->officeCode=$res[0]['officeCode'];
+		$this->type=$res[0]['userType'];
+		$this->avatar=$res[0]['avatar'];
+		/*
+		 * return the user object
+		 */
 		
 	}
 	/*
@@ -113,6 +130,9 @@ class HUser{
 		/*
 		 * return the user object
 		 */
+		return $this;
+	}
+	public function getUser(){
 		return $this;
 	}
 	

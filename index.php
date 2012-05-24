@@ -67,7 +67,7 @@ hImport("support.login.HAuthenticator");
  */
 $log=new Logger();
 $mainframe=new MainFrame();
-
+$user=new HUser($_SESSION['SESS_MEMBER_ID']);
 
 $logAuth=new HAuthenticator();
 if(getParam("login_attempt")){

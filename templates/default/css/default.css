@@ -19,7 +19,11 @@ div#default-wrapper{
 }
 
 div#default-header{
-	position: relative;width:98%;border:0px solid #000;height: 43px;margin:0px auto 4px auto;box-shadow:0 0 5px #000;
+	position: relative;width:98%;
+	border:0px solid #000;
+	height: 43px;
+	margin:0px auto 4px auto;
+	box-shadow:0 0 5px #000;
 	border-radius:5px;padding:4px;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;	
@@ -31,15 +35,70 @@ div#default-header div#default-header-profile{
 	box-shadow:0 0 5px #000;padding:4px;
 	border-radius:5px;
 	-moz-border-radius:5px;
-	-webkit-border-radius:5px;z-index: 10000;
+	-webkit-border-radius:5px;z-index: 10000;cursor: pointer;
 
+}
+
+div#default-header div#default-header-profile img{
+	position:relative;float:left;
+	height:33px ;width:40px ;
+	border:2px solid #ccc;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;box-shadow:0 0 5px #000;cursor: pointer;
+	
+}
+div#default-header div#default-header-profile #default-header-profile-more{
+	position: absolute;padding:4px;
+	height: 160px;
+	width:300px;
+	background: #ccc;
+	float: right;
+	top:50px;
+	right:0px;
+	z-index: 120;border:2px solid #ccc;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;box-shadow:0 0 5px #000;display: none 
+	
+
+}
+div#default-header div#default-header-profile #default-header-profile-more img{
+	position:relative;float:left;
+	height:100px ;width:100px ;
+	border:2px solid #ccc;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;box-shadow:0 0 5px #000;cursor: pointer;
+	
+}
+div#default-header div#default-header-profile #default-header-profile-more a.signout{
+		text-decoration: none; background: #4D90FE;border-radius:5px;position:relative;
+	-moz-border-radius:5px;font-size:14px;font-weight:bold; color:#fff;
+	-webkit-border-radius:5px;height: 20px ;padding: 0.2em 2em;top:110px ;float:right;right:4px;
+
+}
+div#default-header div#default-header-profile p.name{
+	
+	position:relative;
+	float: left; 
+	left:10px;
+	top:0px;
+	font-size:14px ; 
+	font-weight: bold;
+	margin: 0; 
+	color: #800000; 
+	text-shadow: 0px 1px 2px #999;
+}
+div#default-header div#default-header-profile p.type{
+	position:relative;float: left; left:-90px;top:3px;font-size:12px ; 
 }
 div#default-main-menu{
 	position: relative;background: #7D7D7D url(../images/gradient2.png)  ;height: 35px;
 	box-shadow:0 0 5px #000;
 	border-radius:5px;
 	-moz-border-radius:5px;
-	-webkit-border-radius:5px;width:99%;margin:0px auto 4px auto;z-index: 10000;
+	-webkit-border-radius:5px;width:99%;margin:0px auto 4px auto;z-index: 100;
 }
 div#default-ribbon-menu{
 	position: relative;width:95%;float:right;right:5px;

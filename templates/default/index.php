@@ -6,7 +6,13 @@
 <script type="text/javascript" src="templates/default/js/scripts.js"></script> 
 <script type="text/javascript" >
 $(document).ready(function(){
-
+		$('#default-header-profile').click(function(){
+			$("#default-header-profile-more").slideToggle('slow');
+			event.stopPropagation();
+			});
+		$('div:not(#default-header-profile)').click(function(){
+			$("#default-header-profile-more").slideUp('slow');
+			});
 	
 });
 
@@ -19,8 +25,19 @@ $(document).ready(function(){
 <div id="default-header">
 
 <div id="default-header-profile">
-<img src="">
+<?php global $user;
 
+?>
+
+<img src="images/avatars/<?php print $user->getAvatar();?>" id=""/>
+<p class="name"><?php print $user->getFname()." ".$user->getLname()?></p>
+<p class="type"><?php print $user->getUserType()?></p>
+
+<div id="default-header-profile-more">
+
+<img src="images/avatars/<?php print $user->getAvatar();?>" id=""/>
+<a class="signout" href="logout.php">Sign Out</a>
+</div>
 </div>
 
 </div>

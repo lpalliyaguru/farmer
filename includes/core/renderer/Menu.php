@@ -25,8 +25,10 @@ class Menu {
 	public function getTopMenuItems(){
 		$topMenus=array();
 		$menuItem=new MenuItem();
+		$acces=new AcccesType();
+		$general=$acces->getAcccessTypeByName("general")->getId();
 		$this->db->resetResult();
-		$this->db->select("fm_menu","id","parent='0' AND accesstype='".$this->accessType."'");
+		$this->db->select("fm_menu","id","parent='0' AND ( accesstype='".$this->accessType."' OR accesstype='$general')");
 		$res=$this->db->getResult();
 		
 		if(isset($res)){
