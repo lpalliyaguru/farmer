@@ -21,11 +21,15 @@ class MainFrame{
 	public function activateComponent($comp){
 		
 		$this->activatedComponent=$comp;
-				
+		$this->importAllJs("compo",$comp);
+		$this->importAllCss("compo",$comp);
+		
+		
 	}
 	public function activateModule($mod){
-		
-		$this->activatedComponent=$mod;
+		$this->importAllJs("modu",$mod);
+		$this->importAllCss("modu",$mod);
+		$this->activatedModule=$mod;
 				
 	}
 	public function getActivatedComponent(){
@@ -40,9 +44,73 @@ class MainFrame{
 		
 	}
 	
+	public function importAllJs($type,$dir){
+		$dir_path;
+			if($type=='compo'){
+				$dir_path="components/com_".$dir."/js";
+			}else if($type=='modu'){
+				$dir_path="modules/mod_".$dir."/js";
+			}
+			
+		if($handle=opendir($dir_path)){
+				while(false!==($entry=readdir($handle))){
+					/*
+					 * getting the extensions
+					 */
+					$e=explode(".", $entry);
+					$ext=array_pop($e);
+					
+					if($ext=='js'){
+						/* import the js file */
+						print "<script type='text/javascript' src='".$dir_path."/".$entry."'></script>";
+					}else{
+						/*
+						 * just skip the step
+						 */
+					}
+				}
+				
+			}else{
+				
+				return false;
+			}
+		
+		
+	}
 	
-	
-	
+public function importAllCss($type,$dir){
+		$dir_path;
+			if($type=='compo'){
+				$dir_path="components/com_".$dir."/css";
+			}else if($type=='modu'){
+				$dir_path="modules/mod_".$dir."/css";
+			}
+			
+		if($handle=opendir($dir_path)){
+				while(false!==($entry=readdir($handle))){
+					/*
+					 * getting the extensions
+					 */
+					$e=explode(".", $entry);
+					$ext=array_pop($e);
+					
+					if($ext=='css'){
+						/* import the js file */
+						print "<link rel='stylesheet'  type='text/css' href='".$dir_path."/".$entry."'/>";
+					}else{
+						/*
+						 * just skip the step
+						 */
+					}
+				}
+				
+			}else{
+				
+				return false;
+			}
+		
+		
+	}
 	
 	
 	

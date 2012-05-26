@@ -37,7 +37,7 @@ define("CONFIG", "CONFIG");
 define("DELETE", "DELETE");	
 define("HELP", "HELP");
 define("NEW", "NEW");
-define("PRINT", "PRINT");
+define("_PRINT", "PRINT");
 define("SAVE", "SAVE");
 
 

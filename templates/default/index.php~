@@ -10,7 +10,7 @@ $(document).ready(function(){
 			$("#default-header-profile-more").slideToggle('slow');
 				event.stopPropagation();
 			});
-		$('div:not(#default-header-profile)').click(function(){
+		$('div:not(#default-header-profile-more)').click(function(){
 			
 			$("#default-header-profile-more").slideUp('slow');
 			});
