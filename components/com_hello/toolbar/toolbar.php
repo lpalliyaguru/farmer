@@ -11,7 +11,7 @@ class ComToolBar extends ToolBar{
 		
 	}
 	public function setElements(){
-		$elems=array(array("name"=>'save',"type"=>SAVE,"link"=>"index.php?option=save",'onclick'=>"alert('save')"),
+		$elems=array(array("name"=>'save',"type"=>_PRINT,"link"=>"index.php?option=save",'onclick'=>"alert('save')"),
 	  					array("name"=>'cancel',"type"=>CANCEL,"link"=>"index.php?option=cancel",'onclick'=>"alert('cancel')")
 	  				);
 		

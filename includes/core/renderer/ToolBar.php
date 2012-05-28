@@ -22,8 +22,9 @@ class ToolBar{
 		
 		foreach ($this->elements as $temp){
 			$menu.="<li>";
-			$menu.="<a><div class='".$temp['type']."'><div>".$temp['name']."</a>";
-			$menu.="</a></li>";
+			$menu.="<a href='".$temp['link']."'><div class='".$temp['type']."'></div><p>".$temp['name'];
+		
+			$menu.="</p></a></li>";
 		}
 		$menu.="</ul>";
 		
