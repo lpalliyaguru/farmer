@@ -50,11 +50,13 @@ $log=new Logger();
 			 * sets the function name
 			 */
 			$func=$urlArray[1];
+				
 			/*
 			 * importing the package using the class url and checks class existance
 			 */
 			
 			if(hImport($classUrl)){
+				
 				$obj=new $class;
 				
 				/*
@@ -67,14 +69,19 @@ $log=new Logger();
 					if(getParam('params')!="null"){
 						/* calling user_func and set the return value*/
 						$params=getParam('params');
+					
 						$return_value= call_user_func_array(array($obj, $func), $params);
 					
 					}else{
 						/* null parameters ,call directly method */
 						$return_value=$obj->$func();
+						
 					}
-				
-					$return=array("status"=>"true","message"=>"accepted","body"=>$return_value);
+					//$log->ajaxLog("sdsd", json_encode($value)$return_value);
+					//print_r(objectArray($return_value));
+					
+					$return=array("status"=>"true","message"=>"accepted","body"=>$return_value->getJSONEncode());
+					//$return=(array)$return_value;
 					/*
 					 * setting the header to json output
 					 */
@@ -120,7 +127,25 @@ $log=new Logger();
 	}
 
 
+function objectArray( $object ) {
 
+    if ( is_array( $object ))
+        return $object ;
+        
+    if ( !is_object( $object ))
+        return false ;
+    print_r(get_class($object)) ;  
+    $serial = serialize( $object ) ;
+    $serial = preg_replace( '/O:\d+:".+?"/' ,'a' , $serial ) ;
+    if( preg_match_all( '/s:\d+:"\\0.+?\\0(.+?)"/' , $serial, $ms, PREG_SET_ORDER )) {
+        foreach( $ms as $m ) {
+            $serial = str_replace( $m[0], 's:'. strlen( $m[1] ) . ':"'.$m[1] . '"', $serial ) ;
+        }
+    }
+    
+    return @unserialize( $serial ) ;
+
+}
 
 
 ?>

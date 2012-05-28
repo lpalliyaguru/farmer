@@ -5,6 +5,7 @@
 		$ex_url=explode(".", $url);
 		$URL=implode(DS, $ex_url);
 		$URL="includes".DS.$URL.".php";
+		
 		if(file_exists($URL)){
 			
 			require_once ($URL);
