@@ -75,8 +75,11 @@ div#default-header div#default-header-profile #default-header-profile-more img{
 div#default-header div#default-header-profile #default-header-profile-more a.signout{
 		text-decoration: none; background: #4D90FE;border-radius:5px;position:relative;
 	-moz-border-radius:5px;font-size:14px;font-weight:bold; color:#fff;
-	-webkit-border-radius:5px;height: 20px ;padding: 0.2em 2em;top:110px ;float:right;right:4px;
+	-webkit-border-radius:5px;height: 20px ;padding: 0.2em 2em;top:90px ;float:right;right:4px;
 
+}
+div#default-header div#default-header-profile #default-header-profile-more p#changeBg{
+	padding: 4px; position:relative ;float:right;
 }
 div#default-header div#default-header-profile p.name{
 	
@@ -90,10 +93,29 @@ div#default-header div#default-header-profile p.name{
 	color: #800000; 
 	text-shadow: 0px 1px 2px #999;
 }
+
 div#default-header div#default-header-profile p.type{
 	position:relative;float: left; left:-80px;top:3px;font-size:12px ; 
 }
+/*
+change bg
+*/
+#default-change-bg{
+	position:absolute;height:300px; width:400px; right:5%;top:10%;z-index:130;background:url(../images/bg_transparent.png) repeat;
+	border:4px solid #ccc;border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;box-shadow:0 0 5px #000;display:none;
+}
 
+#default-change-bg ul {
+	list-style: none; float: left;
+}
+#default-change-bg ul li{
+	list-style-type: none; float: left;;margin:5px
+}
+#default-change-bg ul li img{
+	cursor: pointer;
+}
 /* 
 main menu 
 
