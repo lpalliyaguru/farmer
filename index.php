@@ -26,12 +26,16 @@ function focusMe(){
 	
 }
 $(document).ready(function(){
-		setInterval("changeBg()", 1000*5*60);
-		
+		bg=  $.cookie('bg');
+		if(bg!=null){
+			$('body').css('background',"url(images/backgrounds/"+bg+".jpg) fixed center no-repeat");
+			}else{
+				$('body').css('background',"url(images/backgrounds/1.jpg) fixed center no-repeat");
+				}
 
 	
 });
-
+/*
 function changeBg(){
 	num=parseInt(Math.random()*10);
 	if(num==0){
@@ -45,7 +49,7 @@ function changeBg(){
          $('body').fadeIn('slow');
 	 });
 }
-
+*/
 </script>
 
 </head>
