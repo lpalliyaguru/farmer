@@ -55,6 +55,20 @@ class Area{
 		
 	}
 	
+	public function getAreaNames(){
+		$this->db->resetResult();
+		$this->db->select("fm_area","areaId,areaName");
+		$res = $this->db->getResult();
+		if($res){
+			return $res;
+		}else{
+			return false;
+		}
+		
+		
+	}
+	
+	
 	public function getName()
 	{
 	    return $this->name;

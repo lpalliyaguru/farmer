@@ -52,6 +52,7 @@ class HTableBuilder{
 		
 	}
 	public function renderTable(){
+	
 		$tableStr="<table border='".$this->border."' cellpadding='".$this->cellpad."' cellspacing='".$this->cellspace."'>";
 		
 		for($i=0;$i<$this->rows;$i++){
@@ -66,6 +67,7 @@ class HTableBuilder{
 					}else if($type=="object"){
 						$obj=$this->celldata[$i][$j];
 						$objType=$obj->getType();
+					
 						/* setting the object to render mode */
 						switch ($objType){
 							case "IMAGE":
@@ -82,7 +84,9 @@ class HTableBuilder{
 							break;
 							case "SELECT":
 								$select=$obj->getSelect();
+							
 								$options=$select->getOptions();
+								
 								$tableStr.="<select name='".$select->getNAME()."' id='".$select->getID()."' class='".$select->getCLASS()."'>";
 								foreach ($options as $temp){
 									$tableStr.="<option value='".$temp['value']."'>";
@@ -95,7 +99,7 @@ class HTableBuilder{
 								$radio=$obj->getRadio();
 								$options=$radio->getOptions();
 								foreach ($options as $temp){
-									$tableStr.="<label><input type='radio' name='".$radio->getNAME()." value='".$temp['value']."'/>".$temp['text']."</lable>";
+									$tableStr.="<label><input type='radio' name='".$radio->getNAME()."' value='".$temp['value']."'/>".$temp['text']."</lable>";
 									
 									
 								}
@@ -112,6 +116,7 @@ class HTableBuilder{
 				
 				$tableStr.="</td>";	
 			}
+			$tableStr.="<td></td>";
 			$tableStr.="</tr>";
 		}
 		$tableStr.="</table>";
