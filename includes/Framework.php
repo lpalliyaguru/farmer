@@ -31,6 +31,41 @@
 		 }else return false;
 		
 	}
+	
+	function import($class){
+		
+		$com=getParam("page");
+		
+		if($com){
+			$p=explode("_", $com);
+			$type=$p[0];
+			$val=$p[1];
+			$base="";
+			if($type=='com'){
+				$base="components/";
+				
+			}else if($type=='mod'){
+				$base="modules/";
+				
+			}
+			if(is_dir($base.$com."/html")){
+				if(is_file($base.$com."/html/".$class.".php")){
+					require_once $base.$com."/html/".$class.".php";
+					
+				}else {
+					
+					return false;
+				}
+			}else {
+				
+				return false;
+			}
+			
+		}return false;
+		
+		
+	}
+	
 	function importJs($url){
 		
 		$js_url="libraries/js/".$url.".js";
