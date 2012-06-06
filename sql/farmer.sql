@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 24, 2012 at 11:59 PM
+-- Generation Time: May 31, 2012 at 02:29 PM
 -- Server version: 5.1.62
 -- PHP Version: 5.3.6-13ubuntu3.7
 
@@ -111,7 +111,8 @@ INSERT INTO `fm_center` (`centerId`, `areaId`, `centerName`, `supervisorId`) VAL
 ('02', '0002', 'Kirulapona', '002'),
 ('03', '0001', 'Katubedda', '003'),
 ('04', '0001', 'Nilaweli', '004'),
-('5', '1234', 'nugegoda', '2');
+('5', '1234', 'nugegoda', '2'),
+('22', '0001', 'Center 2', 'lasantha');
 
 -- --------------------------------------------------------
 
@@ -158,13 +159,54 @@ CREATE TABLE IF NOT EXISTS `fm_cropCategory` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fm_employee`
+--
+
+CREATE TABLE IF NOT EXISTS `fm_employee` (
+  `empId` int(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  PRIMARY KEY (`empId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+
+--
+-- Dumping data for table `fm_employee`
+--
+
+INSERT INTO `fm_employee` (`empId`, `name`, `address`) VALUES
+(11, 'manoj', 'colombo'),
+(23, 'janith', 'kandy');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fm_execPerson`
+--
+
+CREATE TABLE IF NOT EXISTS `fm_execPerson` (
+  `empId` int(4) NOT NULL,
+  `execId` varchar(12) NOT NULL,
+  PRIMARY KEY (`empId`,`execId`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fm_execPerson`
+--
+
+INSERT INTO `fm_execPerson` (`empId`, `execId`) VALUES
+(11, '23');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `fm_farmer`
 --
 
 CREATE TABLE IF NOT EXISTS `fm_farmer` (
-  `farmerId` varchar(20) NOT NULL,
+  `farmerId` int(6) NOT NULL,
   `name` varchar(100) NOT NULL,
   `surName` varchar(100) NOT NULL,
+  `seasonId` varchar(6) NOT NULL,
   `gender` varchar(40) NOT NULL,
   `nic` varchar(20) NOT NULL,
   `nationality` varchar(40) NOT NULL,
@@ -177,17 +219,41 @@ CREATE TABLE IF NOT EXISTS `fm_farmer` (
   `bankcode` varchar(20) NOT NULL,
   `acctNo` varchar(40) NOT NULL,
   `acctHolderName` varchar(100) NOT NULL,
-  `addedBy` varchar(20) NOT NULL
+  `addedBy` varchar(20) NOT NULL,
+  PRIMARY KEY (`seasonId`,`nic`,`centerId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fm_farmer`
 --
 
-INSERT INTO `fm_farmer` (`farmerId`, `name`, `surName`, `gender`, `nic`, `nationality`, `address`, `tpNo`, `areaId`, `centerId`, `acherage`, `prodCategory`, `bankcode`, `acctNo`, `acctHolderName`, `addedBy`) VALUES
-('12356', 'harshana', 'weerasinghe', 'male', '882569855V', 'sinhalese', 'kaburupitiya,matara', 22222, '0001', '01', '16', 'Small', '2344-02', 'harshana prabath', 'Medium', 'Medium'),
-('100', 'Sarath', 'samaraweera', 'male', '12345678', 'christian', 'kathnoruwa', 456, '0001', '01', '23', 'Small', '2344-15', '232323', 'sarath', 'admin'),
-('459', 'jayantha', 'bandara', 'male', '223344444', 'tamil', 'gagamuwa, kathnoruwa', 0, '0001', '01', '33', 'Large', '2231-16', '4445454', 'jayantha bandara', 'admin');
+INSERT INTO `fm_farmer` (`farmerId`, `name`, `surName`, `seasonId`, `gender`, `nic`, `nationality`, `address`, `tpNo`, `areaId`, `centerId`, `acherage`, `prodCategory`, `bankcode`, `acctNo`, `acctHolderName`, `addedBy`) VALUES
+(12356, 'harshana', 'weerasinghe', '12', 'male', '882569855', 'sinhalese', 'kaburupitiya,matara', 22222, '0001', '01', '16', 'Small', '2344-02', 'harshana prabath', 'Medium', 'Medium'),
+(100, 'lasantha PGM', 'samaraweera', '12', 'male', '12345678', 'christian', 'kathnoruwa', 456, '0001', '01', '23', 'Small', '2344-15', '232323', 'sarath', 'admin'),
+(459, 'jayantha', 'bandara', '12', 'male', '223344444', 'tamil', 'gagamuwa, kathnoruwa', 0, '0001', '01', '33', 'Large', '2231-16', '4445454', 'jayantha bandara', 'admin'),
+(100, 'Sarath', 'samaraweera', '34', 'Sarath', '1233', 'christian', 'kathnoruwa', 456, '0001', '45', '23', 'Small', '2344-15', '232323', 'sarath', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fm_farmerBelongs`
+--
+
+CREATE TABLE IF NOT EXISTS `fm_farmerBelongs` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `nic` varchar(20) NOT NULL,
+  `seasonId` varchar(10) NOT NULL,
+  `centerId` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`,`nic`,`seasonId`,`centerId`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `fm_farmerBelongs`
+--
+
+INSERT INTO `fm_farmerBelongs` (`id`, `nic`, `seasonId`, `centerId`) VALUES
+(1, '12345678', '12', '01'),
+(2, '23', '3434', '343');
 
 -- --------------------------------------------------------
 
@@ -338,7 +404,7 @@ CREATE TABLE IF NOT EXISTS `fm_menu` (
   `parent` int(2) NOT NULL,
   `accesstype` int(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `fm_menu`
@@ -352,7 +418,8 @@ INSERT INTO `fm_menu` (`id`, `name`, `link`, `parent`, `accesstype`) VALUES
 (5, 'Hello Module', 'index.php?page=mod_hello', 6, 2),
 (6, 'sub menu 1.1', '#', 2, 2),
 (7, 'sub menu 1.2', '#', 2, 2),
-(8, 'menu 1', '#', 0, 2);
+(8, 'menu 1', '#', 0, 2),
+(9, 'menu  2', '#', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -374,6 +441,38 @@ INSERT INTO `fm_previledges` (`id`, `name`) VALUES
 (1, 'superadmin'),
 (2, 'admin'),
 (3, 'general');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fm_season`
+--
+
+CREATE TABLE IF NOT EXISTS `fm_season` (
+  `id` int(3) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fm_supPerson`
+--
+
+CREATE TABLE IF NOT EXISTS `fm_supPerson` (
+  `empId` int(4) NOT NULL,
+  `supId` varchar(200) NOT NULL,
+  PRIMARY KEY (`empId`,`supId`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fm_supPerson`
+--
+
+INSERT INTO `fm_supPerson` (`empId`, `supId`) VALUES
+(23, '34');
 
 -- --------------------------------------------------------
 

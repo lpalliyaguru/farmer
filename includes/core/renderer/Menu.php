@@ -27,6 +27,7 @@ class Menu {
 		$menuItem=new MenuItem();
 		$acces=new AcccesType();
 		$general=$acces->getAcccessTypeByName("general")->getId();
+		
 		$this->db->resetResult();
 		$this->db->select("fm_menu","id","parent='0' AND ( accesstype='".$this->accessType."' OR accesstype='$general')");
 		$res=$this->db->getResult();
@@ -80,9 +81,10 @@ class Menu {
 	public function getChilds($pid){
 		$childs=array();
 		$menuItem=new MenuItem();
-		
+		$acces=new AcccesType();
+		$general=$acces->getAcccessTypeByName("general")->getId();
 		$this->db->resetResult();
-		$this->db->select("fm_menu","*","parent='$pid' AND accesstype='".$this->accessType."'");
+		$this->db->select("fm_menu","*","parent='$pid' AND ( accesstype='".$this->accessType."' OR accesstype='$general')");
 		$res=$this->db->getResult();
 		if(isset($res)){
 			foreach ($res as $temp){

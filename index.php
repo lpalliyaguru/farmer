@@ -13,9 +13,12 @@ define("HEXEC", 1);
 <link rel='ICON' href='images/favicon.png' />
 <title>Login Page | Information Management System</title>
 <link href="css/index.css" rel="stylesheet" type="text/css"/>
+<link href="libraries/jqueryUI/css/redmond/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="libraries/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="libraries/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="libraries/js/jquery.effects.core.js"></script>
+<script type="text/javascript" src="libraries/jqueryUI/js/jquery-ui-1.8.21.custom.min.js"></script>
+
 
 
 <script type="text/javascript">

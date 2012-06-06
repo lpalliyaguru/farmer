@@ -51,29 +51,36 @@ class MainFrame{
 			}else if($type=='modu'){
 				$dir_path="modules/mod_".$dir."/js";
 			}
+		if(is_dir($dir_path)){
 			
-		if($handle=opendir($dir_path)){
-				while(false!==($entry=readdir($handle))){
-					/*
-					 * getting the extensions
-					 */
-					$e=explode(".", $entry);
-					$ext=array_pop($e);
-					
-					if($ext=='js'){
-						/* import the js file */
-						print "<script type='text/javascript' src='".$dir_path."/".$entry."'></script>";
-					}else{
+			if($handle=opendir($dir_path)){
+					while(false!==($entry=readdir($handle))){
 						/*
-						 * just skip the step
+						 * getting the extensions
 						 */
+						$e=explode(".", $entry);
+						$ext=array_pop($e);
+						
+						if($ext=='js'){
+							/* import the js file */
+							print "<script type='text/javascript' src='".$dir_path."/".$entry."'></script>";
+						}else{
+							/*
+							 * just skip the step
+							 */
+						}
 					}
+					
+				}else{
+					
+					return false;
 				}
-				
-			}else{
-				
-				return false;
-			}
+		}	else {
+			
+			return false;
+			
+		}
+		
 		
 		
 	}

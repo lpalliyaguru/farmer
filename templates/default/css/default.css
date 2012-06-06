@@ -148,6 +148,21 @@ div#default-content{
 	position:relative;
 	margin: 55px auto 0px auto;min-height: 500px;padding: 10px
 }
+div#default-content-left{
+	position:relative;float: left;width:205px;min-height: 500px;color: #ccc;margin:3px;
+	box-shadow:0 0 5px #000;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;padding:4px;	
+}
+
+div#default-content-right{
+	position:relative;float: left;width:732px;min-height: 500px;
+	box-shadow:0 0 5px #000;
+	border-radius:5px;
+	-moz-border-radius:5px;margin:3px;
+	-webkit-border-radius:5px;padding:4px;
+}
 
 ul#default-ribbon-menu{
 	margin:0px!important;
