@@ -19,7 +19,11 @@ $(document).ready(function(){
 		$('#changeBg').click(function(){
 				$('#default-change-bg').slideDown('slow');
 			});
-	
+	//set the calendar
+
+		$('#default-content-calendar').datepicker();
+
+		
 });
 
 function changeBackground(name){
@@ -102,6 +106,16 @@ $renderer->loadToolBar();
 
 
 <div id="default-content">
+<div id="default-content-left">
+<div id="default-content-calendar">
+
+</div>
+
+
+</div>
+<div id="default-content-right">
+
+
 <?php 
 
 
@@ -137,7 +151,7 @@ $renderer->loadToolBar();
 
 ?>
 
-
+</div>
 
 </div>
 

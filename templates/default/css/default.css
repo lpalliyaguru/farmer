@@ -148,6 +148,13 @@ div#default-content{
 	position:relative;
 	margin: 55px auto 0px auto;min-height: 500px;padding: 10px
 }
+div#default-content-left{
+	position:relative;float: left;width:220px;min-height: 500px;color: #ccc;
+}
+
+div#default-content-right{
+	
+}
 
 ul#default-ribbon-menu{
 	margin:0px!important;
