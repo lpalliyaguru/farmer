@@ -3,9 +3,8 @@
 	setTitle("Home");
 ?>
 <link rel="stylesheet" type="text/css" href="templates/default/css/menu_new.css"/>
-<link rel="stylesheet" type="text/css" href="components/com_farmer/css/farmer.css"/>
 <script type="text/javascript" src="templates/default/js/scripts.js"></script> 
-<script type="text/javascript" src="components/com_farmer/js/farmer.js"></script>
+
 <script type="text/javascript" >
 $(document).ready(function(){
 		$('#default-header-profile').click(function(){

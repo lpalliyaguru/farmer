@@ -77,7 +77,6 @@ class Farmer {
 			$farmer->setNationality($res[0]['nationality']);
 			$farmer->setAddress($res[0]['address']);
 			$farmer->setTp($res[0]['tpNo']);
-			$farmer->setTp($res[0]['tpNo']);
 			$farmer->setAreaId($res[0]['areaId']);
 			$farmer->setCenter($res[0]['centerId']);
 			$farmer->setAcherage($res[0]['acherage']);
