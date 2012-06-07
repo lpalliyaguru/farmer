@@ -64,7 +64,30 @@ class ExcecutivePerson extends Employee{
 	public function ExcecutivePerson(){
 		parent::Employee();
 	}
-	
+	public function getExecPersons(){
+		$this->db->resetResult();
+		$persons=array();
+		$this->db->select("fm_execPerson","*");
+		$res=$this->db->getResult();
+		if($res){
+			foreach ($res as $temp){
+				$person=new ExcecutivePerson();
+				$person->setEmpId($temp["empId"]);
+				if($this->getEmployeeById($temp["empId"])){
+					$e=$this->getEmployeeById($temp["empId"]);
+					$person->setExecId($temp["execId"] );
+					$person->setAddress($e->getAddress());
+					$person->setName($e->getName());
+					array_push($persons, $person);
+				}
+				
+				
+				
+			}
+			return $persons;
+			
+		}else return false;
+	}
 	public function getExecPersonById($id){
 		
 		
@@ -116,6 +139,28 @@ class SupervisorPerson extends Employee{
 	public function SupervisorPerson(){
 		parent::Employee();
 	}
+	public function getSupPersons(){
+		$this->db->resetResult();
+		$this->db->select("fm_supPerson","*");
+		$sups=array();
+		$res=$this->db->getResult();
+		if($res){
+			foreach ($res as $temp){
+				$person=new SupervisorPerson();
+				$person->setEmpId($temp["empId"]);
+				$e=$this->getEmployeeById($temp["empId"]);
+				$person->setSupId($temp["supId"]);
+				$person->setAddress($e->getAddress());
+				$person->setName($e->getName());
+				array_push($sups, $person);
+			}
+			return $sups;
+			
+		}else return false;
+		
+		
+	}
+	
 	public function getSupPersonById($id){
 		
 		
