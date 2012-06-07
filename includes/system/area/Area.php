@@ -9,6 +9,26 @@ class Area{
 		$this->db=new HDatabase();
 		$this->db->connect();
 	}
+	
+	public function getAll(){
+		$this->db->resetResult();
+		$this->db->select("fm_area","*");
+		$res=$this->db->getResult();
+		$areas=array();
+		if($res){
+			foreach ($res as $temp){
+				$a=new Area();
+				$a->setId($temp['areaId']);
+				$a->setExecutive($temp['executiveId']);
+				$a->setName($temp['areaName']);
+				array_push($areas,$a);
+			}
+			
+			return $areas;
+		}else{
+			return false;
+		}
+	}
 	public function getAreaById($id){
 		$this->db->resetResult();
 		$this->db->select("fm_area","*","areaId='".$id."'");
