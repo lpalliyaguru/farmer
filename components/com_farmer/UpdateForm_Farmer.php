@@ -15,8 +15,9 @@ class UpdateForm_Farmer{
 		$farmerRegForm->setOnsubmit("saveFarmerDetails()");
 		$farmerRegForm->setClass("h-class-farmerloginform");
 
+		if($farmerData){
 		$inputName = new HTableObject(INPUT);
-		$farmername = new Input("farmername","text");
+		$farmername = new Input("farmername","text",$farmerData->getName());
 		$farmername->setID("farmer-name");
 		$inputName->addInput($farmername);
 
@@ -150,6 +151,7 @@ class UpdateForm_Farmer{
 		$farmerHidden->setDefaultValue("save");
 		$inputHidden ->addInput($farmerHidden);
 				
+		}
 		$submit = new HTableObject(INPUT);
 		$submitBtn = new Input("", "submit","Submit");
 		$submitBtn->setID("farmer-regsubmit");
