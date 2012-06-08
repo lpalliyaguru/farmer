@@ -8,6 +8,7 @@ hImport("system.farmer.Farmer");
 
 require_once 'components/com_farmer/RegForm_Farmer.php';
 require_once 'components/com_farmer/UpdateForm_Farmer.php';
+require_once 'components/com_farmer/GetFarmer.php';
 
 
 if(getParam("postAction")){
@@ -39,11 +40,9 @@ if(getParam("postAction")){
 		print $farmerReg->farmerRegistrator();
 		
 	}else if($_GET['getAction'] == "editFarmer"){
-		$farmerUpdate = new UpdateForm_Farmer();
-		print  $farmerUpdate->farmerUpdater($_GET['farmerId']);
-		
-		
-		
+		$farmers = new GetFarmer();
+		print  $farmers->getFarmers();
+			
 	}
 
 
