@@ -9,7 +9,6 @@ form#farmerReg{
 	padding: 30px;height:600px;	font-size: 14px
 }
 
-
 form#farmerReg table {
 	
 	left: 0px;
@@ -26,4 +25,24 @@ form#farmerReg table {
 }
 #farmerReg table td select{
 	padding: 5px
+}
+#farmer_names{
+	position : relative;
+	left : 20px;
+	width : 500px;
+}
+#farmer_names td{
+	font-size : 14px;
+}
+.class-farmer_names-editBut{
+	width : 100px;
+	height : 25px;
+	margin : 5px;
+
+}
+
+.class-farmer_names-delBut{
+	width : 100px;
+	height : 25px;
+
 }

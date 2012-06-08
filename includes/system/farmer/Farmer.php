@@ -181,6 +181,17 @@ class Farmer {
 		
 	}
 	
+	public function getAll(){
+		
+		$this->db->resetResult();
+		$this->db->select("fm_farmer","*");
+		$res=$this->db->getResult();
+		
+		return  $res;
+		
+		
+	}
+	
 	
 	
 	/*
