@@ -13,15 +13,13 @@ class GetFarmer{
 		foreach ($farmerNames as $f){
 			print "<tr>";
 			print "<td class='class-farmer_names-nameRow'>".$f['name']." ".$f['surName']."</td>";
-			print "<td><input type='button' id='id-farmer_names-editBut".$i."' class='class-farmer_names-editBut' value='Edit' /></td>";
-			print "<td><a href='localhost/farmer/index.php?page=com_farmer&getAction=editFarmer&' id='id-farmer_names-delBut".$i."' class='class-farmer_names-delBut' value='Delete' /></td>";
+			print "<td><a href='index.php?page=com_farmer&getAction=editForm&nic=".$f['nic']."' id='id-farmer_names-editBut".$i."'  ><div class='class-farmer_names-editBut'>Edit</div></a></td>";
+			print "<td><a href='index.php?page=com_farmer&getAction=deleteForm&nic=".$f['nic']."' id='id-farmer_names-delBut".$i."'  ><div class='class-farmer_names-delBut'>Delete</div></a></td>";
 			print "</tr>";
 			$i++;
 		}
 		
-		echo "</table>";
-		
-		
+		echo "</table>";	
 		
 	}
 	

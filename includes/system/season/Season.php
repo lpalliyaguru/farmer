@@ -42,6 +42,17 @@ class Season{
 		
 	}
 
+	public function getSeasons(){
+		$this->db->resetResult();
+		$this->db->select('fm_season','*'); 
+		$seasons = $this->db->getResult();
+		
+		if($seasons){
+			return $seasons;			
+		}else return false;
+		
+	}
+	
 	public function getName()
 	{
 	    return $this->name;
