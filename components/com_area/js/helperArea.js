@@ -1,4 +1,4 @@
-/**
+/*
  * 
  */
 function validateAreaform(){
@@ -15,6 +15,15 @@ function saveAreaForm(){
 		return false;
 	}
 	
+	
+}
+
+function confirmAreaDelete(){
+	
+	if(confirm("Are you sure ?")){
+		return true;
+		
+	}else return false;
 	
 }
 

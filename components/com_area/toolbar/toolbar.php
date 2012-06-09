@@ -11,7 +11,8 @@ class ComToolBar extends ToolBar{
 		
 	}
 	public function setElements(){
-		$elems=array(array("name"=>'save',"type"=>SAVE,"link"=>"#",'onclick'=>"saveAreaForm()"),
+		$elems=array(	array("name"=>'Add Area',"type"=>_NEW,"link"=>"?page=com_area&getAction=add",'onclick'=>""),
+						array("name"=>'save',"type"=>SAVE,"link"=>"#",'onclick'=>"saveAreaForm()"),
 	  					array("name"=>'cancel',"type"=>CANCEL,"link"=>"?page=com_area&getAction=view",'onclick'=>"")
 	  				);
 		

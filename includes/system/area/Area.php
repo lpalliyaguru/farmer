@@ -1,5 +1,5 @@
 <?php
-
+hImport("system.area.Center");
 class Area{
 	private $name;
 	private $id;
@@ -68,7 +68,13 @@ class Area{
 	public function deleteArea($id){
 		
 		$this->db->resetResult();
+		$c=new Center();
+		$centers=$c->getCentersByArea($id);
+		
 		if($this->db->delete("fm_area","areaId='".$id."'")){
+			foreach ($centers as $temp){
+				$c->deleteCenter($temp->getId());
+			}
 			return true;
 		}else return false;
 		
