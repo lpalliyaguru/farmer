@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 09, 2012 at 12:39 PM
+-- Generation Time: Jun 10, 2012 at 05:47 PM
 -- Server version: 5.1.62
 -- PHP Version: 5.3.6-13ubuntu3.7
 
@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `fm_bank` (
 --
 
 INSERT INTO `fm_bank` (`bankCode`, `bankName`) VALUES
+('sfsdfs', 'sdfsss'),
 ('dfd', 'dfdfd'),
 ('dss', 'sdfsfs'),
 ('dssdfd', 'dfd');
@@ -248,15 +249,38 @@ INSERT INTO `fm_farmerBelongs` (`id`, `nic`, `seasonId`, `centerId`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fm_farmerCost`
+--
+
+CREATE TABLE IF NOT EXISTS `fm_farmerCost` (
+  `id` int(11) NOT NULL,
+  `farmerBlId` varchar(100) NOT NULL,
+  `itemCode` varchar(100) NOT NULL,
+  `costAmount` decimal(10,2) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`id`,`farmerBlId`,`itemCode`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `fm_farmerItem`
 --
 
 CREATE TABLE IF NOT EXISTS `fm_farmerItem` (
   `itemCode` varchar(20) NOT NULL,
-  `farmerId` varchar(20) NOT NULL,
+  `farmerBelongId` varchar(20) NOT NULL,
+  `quantity` decimal(8,2) NOT NULL,
   `date` varchar(40) NOT NULL,
-  PRIMARY KEY (`itemCode`,`farmerId`)
+  PRIMARY KEY (`itemCode`,`farmerBelongId`,`date`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fm_farmerItem`
+--
+
+INSERT INTO `fm_farmerItem` (`itemCode`, `farmerBelongId`, `quantity`, `date`) VALUES
+('122', '2', '23.00', '2012-12-23');
 
 -- --------------------------------------------------------
 
@@ -367,8 +391,10 @@ INSERT INTO `fm_gradeForCrop` (`cropId`, `farmerId`, `gradeCode`, `quantity`, `a
 CREATE TABLE IF NOT EXISTS `fm_item` (
   `itemCode` varchar(20) NOT NULL,
   `itemName` varchar(50) NOT NULL,
-  `unitPrice` decimal(20,2) NOT NULL,
+  `costPrice` decimal(20,2) NOT NULL,
+  `sellingPrice` decimal(20,2) NOT NULL,
   `unit` varchar(20) NOT NULL,
+  `remarks` varchar(200) NOT NULL,
   PRIMARY KEY (`itemCode`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -376,10 +402,8 @@ CREATE TABLE IF NOT EXISTS `fm_item` (
 -- Dumping data for table `fm_item`
 --
 
-INSERT INTO `fm_item` (`itemCode`, `itemName`, `unitPrice`, `unit`) VALUES
-('1234', 'fertilizer', '1200.00', 'Kg'),
-('1565', 'seed-157', '126.00', 'g'),
-('1658', 'LakPohora', '1520.50', 'Kg');
+INSERT INTO `fm_item` (`itemCode`, `itemName`, `costPrice`, `sellingPrice`, `unit`, `remarks`) VALUES
+('2333', 'Item 2', '230.00', '220.00', 'kg', 'wewewew');
 
 -- --------------------------------------------------------
 
@@ -394,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `fm_menu` (
   `parent` int(2) NOT NULL,
   `accesstype` int(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `fm_menu`
@@ -410,7 +434,15 @@ INSERT INTO `fm_menu` (`id`, `name`, `link`, `parent`, `accesstype`) VALUES
 (15, 'Bank', 'index.php?page=com_bank&getAction=view', 12, 3),
 (16, 'Add Bank', 'index.php?page=com_bank&getAction=add', 15, 3),
 (17, 'Add Branch', 'index.php?page=com_bank&getAction=addBranch', 15, 3),
-(18, 'View Bank Branches', 'index.php?page=com_bank&getAction=viewBranch	', 15, 3);
+(18, 'View Bank Branches', 'index.php?page=com_bank&getAction=viewBranch	', 15, 3),
+(19, 'Staff', 'index.php?page=com_staff', 0, 1),
+(20, 'Add user', 'index.php?page=com_staff&getAction=adduser', 21, 1),
+(21, 'Users', 'index.php?page=com_staff&getAction=view', 19, 1),
+(22, 'Add executive', 'index.php?page=com_staff&getAction=viewExec', 19, 3),
+(23, 'Manage', 'index.php?page=com_manage', 0, 3),
+(24, 'Item', 'index.php?page=com_item&getAction=view', 23, 3),
+(25, 'Add Item', '?page=com_item&getAction=add', 24, 3),
+(26, 'Issue Item', 'index.php?page=com_item&getAction=issueitem', 24, 3);
 
 -- --------------------------------------------------------
 
@@ -440,11 +472,18 @@ INSERT INTO `fm_previledges` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `fm_season` (
-  `id` int(3) NOT NULL,
+  `id` int(3) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `description` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `fm_season`
+--
+
+INSERT INTO `fm_season` (`id`, `name`, `description`) VALUES
+(1, 'yala 2012', 'yala season');
 
 -- --------------------------------------------------------
 
@@ -499,7 +538,7 @@ CREATE TABLE IF NOT EXISTS `fm_user` (
   `fname` varchar(50) NOT NULL,
   `lname` varchar(50) NOT NULL,
   `officeCode` varchar(20) NOT NULL,
-  `avatar` varchar(50) NOT NULL,
+  `avatar` varchar(200) NOT NULL,
   PRIMARY KEY (`userId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -508,10 +547,9 @@ CREATE TABLE IF NOT EXISTS `fm_user` (
 --
 
 INSERT INTO `fm_user` (`userId`, `userType`, `password`, `fname`, `lname`, `officeCode`, `avatar`) VALUES
-('admin', 'superadmin', '81dc9bdb52d04dc20036dbd8313ed055', 'janith', 'kalhara', 'biyagama', 'avatar2.png'),
-('manoj', 'general', '81dc9bdb52d04dc20036dbd8313ed055', 'manoj', 'lasantha', 'biyagama', 'dragon-tattoos.gif'),
-('staff', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'bhanuka', 'ekanayake', '00fe', 'avatar3.jpg'),
-('admin1', 'general', '81dc9bdb52d04dc20036dbd8313ed055', 'manoj', 'lasantha', 'cmb', 'user1.png');
+('admin', 'superadmin', '81dc9bdb52d04dc20036dbd8313ed055', 'janith', 'kalhara3', '', 'admin.jpg'),
+('sali', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'dhanushka', 'saliya', '', 'sali.gif'),
+('dfds', 'superadmin', 'd9729feb74992cc3482b350163a1a010', 'sdfs', 'sdfs', '', 'dfds.');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
