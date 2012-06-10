@@ -1,5 +1,5 @@
 <?php
-
+hImport("system.area.Center");
 class Area{
 	private $name;
 	private $id;
@@ -8,6 +8,26 @@ class Area{
 	public function Area(){
 		$this->db=new HDatabase();
 		$this->db->connect();
+	}
+	
+	public function getAll(){
+		$this->db->resetResult();
+		$this->db->select("fm_area","*");
+		$res=$this->db->getResult();
+		$areas=array();
+		if($res){
+			foreach ($res as $temp){
+				$a=new Area();
+				$a->setId($temp['areaId']);
+				$a->setExecutive($temp['executiveId']);
+				$a->setName($temp['areaName']);
+				array_push($areas,$a);
+			}
+			
+			return $areas;
+		}else{
+			return false;
+		}
 	}
 	public function getAreaById($id){
 		$this->db->resetResult();
@@ -48,7 +68,13 @@ class Area{
 	public function deleteArea($id){
 		
 		$this->db->resetResult();
+		$c=new Center();
+		$centers=$c->getCentersByArea($id);
+		
 		if($this->db->delete("fm_area","areaId='".$id."'")){
+			foreach ($centers as $temp){
+				$c->deleteCenter($temp->getId());
+			}
 			return true;
 		}else return false;
 		

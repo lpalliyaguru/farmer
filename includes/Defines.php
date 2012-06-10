@@ -36,10 +36,10 @@ define("CANCEL", "CANCEL");
 define("CONFIG", "CONFIG");	
 define("DELETE", "DELETE");	
 define("HELP", "HELP");
-define("NEW", "NEW");
+define("_NEW", "NEW");
 define("_PRINT", "PRINT");
 define("SAVE", "SAVE");
-
+define("VIEW", "VIEW");
 
 
 ?>

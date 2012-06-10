@@ -11,6 +11,27 @@ class Center{
 		$this->db->connect();
 	
 	}
+	public function getAll(){
+		$this->db->resetResult();
+		$this->db->select("fm_center","*");
+		$res=$this->db->getResult();
+		$centers=array();
+		if($res){
+			foreach ($res as $temp){
+				$c=new Center();
+				$c->setId($temp['centerId']);
+				$c->setSupervisor($temp['supervisorId']);
+				$c->setName($temp['centerName']);
+				$c->setAreaId($temp['areaId']);
+				array_push($centers,$c);
+			}
+			
+			return $centers;
+			
+		}else{
+			return false;
+		}
+	}
 	public function getCenterById($id){
 	
 		$this->db->resetResult();

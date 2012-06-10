@@ -88,7 +88,9 @@ class HTableBuilder{
 								$options=$select->getOptions();
 								
 								$tableStr.="<select name='".$select->getNAME()."' id='".$select->getID()."' class='".$select->getCLASS()."'>";
+								//$def=$select->get;
 								foreach ($options as $temp){
+									
 									$tableStr.="<option value='".$temp['value']."'>";
 									$tableStr.=$temp['option'];
 									$tableStr.="</option>";

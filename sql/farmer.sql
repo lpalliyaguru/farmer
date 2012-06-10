@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 31, 2012 at 02:29 PM
+-- Generation Time: Jun 09, 2012 at 12:39 PM
 -- Server version: 5.1.62
 -- PHP Version: 5.3.6-13ubuntu3.7
 
@@ -38,11 +38,7 @@ CREATE TABLE IF NOT EXISTS `fm_area` (
 --
 
 INSERT INTO `fm_area` (`areaId`, `areaName`, `executiveId`) VALUES
-('0001', 'Kathnoruwa', '001'),
-('0002', 'Siyabalape', '002'),
-('1234', 'cmb', '1234'),
-('1254', 'nugegoda', '1358'),
-('78', 'asdf', 'zxcv');
+('dfdsf', 'dsfdsf', '23');
 
 -- --------------------------------------------------------
 
@@ -61,8 +57,9 @@ CREATE TABLE IF NOT EXISTS `fm_bank` (
 --
 
 INSERT INTO `fm_bank` (`bankCode`, `bankName`) VALUES
-('2344', 'PeoplesBank'),
-('2231', 'Bank Of Ceylon');
+('dfd', 'dfdfd'),
+('dss', 'sdfsfs'),
+('dssdfd', 'dfd');
 
 -- --------------------------------------------------------
 
@@ -82,11 +79,7 @@ CREATE TABLE IF NOT EXISTS `fm_bankBranch` (
 --
 
 INSERT INTO `fm_bankBranch` (`branchCode`, `branchName`, `bankCode`) VALUES
-('02', 'Hikkaduwa', '2344'),
-('16', 'Ambalangoda', '2231'),
-('25', 'karapitiya', '2234'),
-('42', 'Nugegoda', '2231'),
-('15', 'Balapitiya', '2344');
+('2', 'b 3', 'dfd');
 
 -- --------------------------------------------------------
 
@@ -107,12 +100,7 @@ CREATE TABLE IF NOT EXISTS `fm_center` (
 --
 
 INSERT INTO `fm_center` (`centerId`, `areaId`, `centerName`, `supervisorId`) VALUES
-('01', '0001', 'Galgamuwa', '001'),
-('02', '0002', 'Kirulapona', '002'),
-('03', '0001', 'Katubedda', '003'),
-('04', '0001', 'Nilaweli', '004'),
-('5', '1234', 'nugegoda', '2'),
-('22', '0001', 'Center 2', 'lasantha');
+('dfs', 'dfdsf', 'center3', '34');
 
 -- --------------------------------------------------------
 
@@ -167,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `fm_employee` (
   `name` varchar(100) NOT NULL,
   `address` varchar(200) NOT NULL,
   PRIMARY KEY (`empId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `fm_employee`
@@ -175,7 +163,8 @@ CREATE TABLE IF NOT EXISTS `fm_employee` (
 
 INSERT INTO `fm_employee` (`empId`, `name`, `address`) VALUES
 (11, 'manoj', 'colombo'),
-(23, 'janith', 'kandy');
+(23, 'janith', 'kandy'),
+(25, 'sali', 'nugegoda');
 
 -- --------------------------------------------------------
 
@@ -194,7 +183,8 @@ CREATE TABLE IF NOT EXISTS `fm_execPerson` (
 --
 
 INSERT INTO `fm_execPerson` (`empId`, `execId`) VALUES
-(11, '23');
+(11, '23'),
+(25, '55');
 
 -- --------------------------------------------------------
 
@@ -404,22 +394,23 @@ CREATE TABLE IF NOT EXISTS `fm_menu` (
   `parent` int(2) NOT NULL,
   `accesstype` int(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `fm_menu`
 --
 
 INSERT INTO `fm_menu` (`id`, `name`, `link`, `parent`, `accesstype`) VALUES
-(1, 'Home', 'index.php', 0, 1),
-(2, 'Forum', 'index.php?page=com_forum', 0, 3),
-(3, 'help', 'index.php?page=com_help', 1, 1),
-(4, 'Hello component', 'index.php?page=com_hello', 0, 1),
-(5, 'Hello Module', 'index.php?page=mod_hello', 6, 2),
-(6, 'sub menu 1.1', '#', 2, 2),
-(7, 'sub menu 1.2', '#', 2, 2),
-(8, 'menu 1', '#', 0, 2),
-(9, 'menu  2', '#', 4, 1);
+(1, 'Home', 'index.php', 0, 3),
+(14, 'Add Center', 'index.php?page=com_center&getAction=add', 13, 3),
+(13, 'Centers', 'index.php?page=com_center&getAction=view', 12, 3),
+(12, 'Locations', '?page=com_area', 0, 3),
+(11, 'Add Area', 'index.php?page=com_area&getAction=add', 10, 3),
+(10, 'Area', 'index.php?page=com_area&getAction=view', 12, 3),
+(15, 'Bank', 'index.php?page=com_bank&getAction=view', 12, 3),
+(16, 'Add Bank', 'index.php?page=com_bank&getAction=add', 15, 3),
+(17, 'Add Branch', 'index.php?page=com_bank&getAction=addBranch', 15, 3),
+(18, 'View Bank Branches', 'index.php?page=com_bank&getAction=viewBranch	', 15, 3);
 
 -- --------------------------------------------------------
 

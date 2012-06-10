@@ -11,10 +11,13 @@ class MainFrame{
 		
 	}
 	
-	public function redirect($message,$url=""){
-		
-		global $log;
-		$log->log("manoj", $message);
+	public function redirect($url,$message,$type){
+		$post="headerpost=".$message;
+		//if($type=='SUCCESS'){
+			
+			header("Location:$url");
+			header($post);
+		//}
 		
 	}
 	

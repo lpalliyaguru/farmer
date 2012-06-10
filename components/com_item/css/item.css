@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+
+table#id-table1-itemissue-upper{
+	width:100%
+}
+
+table#id-table1-itemissue-lower{
+	width:100%
+}
+table#id-table1-itemissue-lower td {
+	
+}
+table#id-table1-itemissue-lower td input{
+	width:100px;
+}
+
+/*
+bottom div
+	*/
+table#id-itemissue-bottom{
+	width:100%
+}
+table#id-itemissue-bottom span{
+	float: right;position: relative;
+}
+
+table#id-itemissue-bottom input{
+	width:100px	;float: right;position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,7 @@
 <?php
 hImport("system.farmer.Farmer");
 class FarmerBelongs{
+	private $id;
 	private $nic;
 	private $season;
 	private $center;
@@ -22,6 +23,7 @@ class FarmerBelongs{
 		if($res){
 			$fb=new FarmerBelongs();
 			if($f->getFarmerByNIC($nic)){
+				$fb->setId($res[0]['id']);
 				$fb->setFarmer($f->getFarmerByNIC($nic));
 				$fb->setSeason($season);
 				$fb->setCenter($center);
@@ -34,7 +36,21 @@ class FarmerBelongs{
 	
 		
 	}
-	public function saveFarmerToSeason($nic,$season,$center){
+	
+	public function getFarmerBelongById($id){
+		$this->db->resetResult();
+		$this->db->select("fm_farmerBelongs","*","id='$id'");
+		if($res=$this->db->getResult()){
+			$fb=new FarmerBelongs();
+			$fb->setId($id);
+			$fb->setNic($res[0]['nic']);
+			$fb->setCenter($res[0]['centerId']);
+			$fb->setSeason($res[0]['seasonId']);
+			return $fb;
+		}else return false;
+		
+	}
+	public function saveFarmerToSeason($nic,$season,$center,$id=""){
 		$f=new Farmer();
 		/*
 		 * checking farmer is existing 
@@ -42,7 +58,7 @@ class FarmerBelongs{
 		if($f->isFarmer($nic)){
 			
 				$this->db->resetResult();
-				if($this->db->insert("fm_farmerBelongs", array($nic,$season,$center),"nic,seasonId,centerId")){
+				if($this->db->insert("fm_farmerBelongs", array($id,$nic,$season,$center),"id,nic,seasonId,centerId")){
 					return true;
 					
 				}else return false;
@@ -114,6 +130,16 @@ class FarmerBelongs{
 	public function getFarmer()
 	{
 	    return $this->farmer ;
+	}
+
+	public function getId()
+	{
+	    return $this->id;
+	}
+
+	public function setId($id)
+	{
+	    $this->id = $id;
 	}
 }
 

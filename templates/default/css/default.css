@@ -7,6 +7,30 @@ a{
 
 }
 
+/*
+special classes
+*/
+p.class-alert{
+	padding:20px 10px 15px 40px;;font-size: 14px; color: #007800;
+	border:1px solid #007800;border-radius:5px;padding:4px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;	height:35px;
+}
+p.class-alert span{
+	width:35px;height:35px;position:relative;float:left;
+	background: url(../images/alert.png) no-repeat;
+}
+p.class-error{
+	padding:20px 10px 15px 40px;;font-size: 14px;border:1px solid #DC0000;color: #DC0000;border-radius:5px;padding:4px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;height:35px;
+}
+p.class-error span{
+	width:35px;height:35px;position:relative;float:left;
+	background: url(../images/error.png) no-repeat
+
+}
+
 /* the content */
 div#default-wrapper{
 	position: relative;
@@ -157,11 +181,11 @@ div#default-content-left{
 }
 
 div#default-content-right{
-	position:relative;float: left;width:732px;min-height: 500px;
+	position:relative;float: left;width:725px;min-height: 500px;
 	box-shadow:0 0 5px #000;
 	border-radius:5px;
 	-moz-border-radius:5px;margin:3px;
-	-webkit-border-radius:5px;padding:4px;
+	-webkit-border-radius:5px;padding:8px;
 }
 
 ul#default-ribbon-menu{
@@ -223,7 +247,10 @@ ul#default-ribbon-menu li div.SAVE{
 	
 	}	
 		
+ul#default-ribbon-menu li div.VIEW{
+		background:url(../../../images/toolbar/icon-32-view.png);
 	
+	}	
 	
 	
 
