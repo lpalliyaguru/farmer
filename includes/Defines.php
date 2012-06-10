@@ -39,7 +39,7 @@ define("HELP", "HELP");
 define("_NEW", "NEW");
 define("_PRINT", "PRINT");
 define("SAVE", "SAVE");
-
+define("VIEW", "VIEW");
 
 
 ?>

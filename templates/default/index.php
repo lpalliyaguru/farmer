@@ -131,11 +131,13 @@ $renderer->loadToolBar();
 			//page call is correct 
 			global $mainframe;
 			if($type=="mod"){
-				include_once 'modules/mod_'.$key."/".$key.".php";
 				$mainframe->activateModule($key);
+				include_once 'modules/mod_'.$key."/".$key.".php";
+				
 			}else if($type=="com"){
-				include_once 'components/com_'.$key."/".$key.".php";
 				$mainframe->activateComponent($key);
+				include_once 'components/com_'.$key."/".$key.".php";
+				
 			}else {
 				print "wrong content call";
 			}

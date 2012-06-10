@@ -13,7 +13,7 @@ class HUser{
 	/*
 	 * initializing the constructor
 	 */
-	public function HUser($username){
+	public function HUser($username=""){
 		
 		$this->username=$username;
 		$db=new HDatabase();
@@ -47,7 +47,7 @@ class HUser{
 	}
 	public function setPassword($password){
 		
-		$this->password=md5($password);
+		$this->password=$password;
 	}
 	
 	public function setFname($fname){
@@ -110,15 +110,30 @@ class HUser{
 		return $this->officeCode;
 	}		
 	
-	public function getUserById($username){
+	public function getAll(){
 		
 		$db=new HDatabase();
 		/*
 		 * getting the user data from the db 
 		 */
+		$users=array();
 		$db->connect();
-		$db->select("fm_user","*","userId='".$username."'");
-		$res=$db->getResult();
+		$db->select("fm_user","*");
+		if($res=$db->getResult()){
+			
+			foreach ($res as $temp){
+				$user=new HUser();
+				$user->setUsername($temp["userId"]);
+				$user->setUserType($temp["userType"]);
+				$user->setFname($temp["fname"]);
+				$user->setLname($temp["lname"]);
+				$user->setOfficeCode($temp["officeCode"]);
+				$user->setAvatar($temp["avatar"]);
+				array_push($users, $user);
+			}
+			return $users;
+		}
+		
 		/*
 		 * setting user attribs 
 		 */
@@ -131,6 +146,77 @@ class HUser{
 		 * return the user object
 		 */
 		return $this;
+	}
+	
+	public function getUserById($username){
+		
+		$db=new HDatabase();
+		/*
+		 * getting the user data from the db 
+		 */
+		$db->connect();
+		$db->select("fm_user","*","userId='".$username."'");
+		$res=$db->getResult();
+		/*
+		 * setting user attribs 
+		 */
+		$this->username=$res[0]['userId'];
+		$this->fname=$res[0]['fname'];
+		$this->lname=$res[0]['lname'];
+		$this->officeCode=$res[0]['officeCode'];
+		$this->type=$res[0]['userType'];
+		$this->avatar=$res[0]['avatar'];
+		/*
+		 * return the user object
+		 */
+		return $this;
+	}
+	/*
+	 * this function is not checked yet
+	 */
+	public function saveUser(HUser $user){
+		
+		$db=new HDatabase();
+		$db->connect();
+		$values=array(	$user->getUsername(),
+						$user->getUserType(),
+						$user->getPassword(),
+						$user->getFname(),
+						$user->getLname(),
+						$user->getOfficeCode(),
+						$user->getAvatar()
+						);
+		
+		//$rows="userId,userType,password,fname,lname,officeCode,avatar";
+		if($db->insert("fm_user", $values)){
+			return true;
+		}else return false;
+		
+	}
+	
+	public function deleteUser($id){
+		$db=new HDatabase();
+		$db->connect();
+		if($db->delete("fm_user","userId='$id'")){
+			
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	
+	public function  getUserpreviledges(){
+		$db=new HDatabase();
+		$db->connect();
+		$db->select("fm_previledges","*");
+		$res=$db->getResult();
+		if($res){
+			return $res;
+			
+		}else{
+			return false;
+		}
 	}
 	public function getUser(){
 		return $this;
