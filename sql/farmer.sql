@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 13, 2012 at 06:20 PM
+-- Generation Time: Jun 13, 2012 at 10:48 PM
 -- Server version: 5.1.63
 -- PHP Version: 5.3.6-13ubuntu3.7
 
@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS `fm_area` (
 
 INSERT INTO `fm_area` (`areaId`, `areaName`, `executiveId`) VALUES
 ('dfdsf', 'dsfdsf', '23'),
-('area1', 'new area', '23');
+('area1', 'new area', '23'),
+('area3', 'area3 name', '23');
 
 -- --------------------------------------------------------
 
