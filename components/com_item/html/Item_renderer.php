@@ -172,7 +172,8 @@ class Item_renderer{
 			</tr>
 
 		</table>
-		<table border='1' style='' id='id-table1-itemissue-lower'>
+		<hr>
+		<table border='1' style='' id='id-table1-itemissue-lower' cellpadding="0" cellspacing="0">
 
 			<tr>
 				<td>Item Code</td>
@@ -187,7 +188,7 @@ class Item_renderer{
 				print "<tr>";
 				for($j=0;$j<6;$j++){
 
-					print "<td><input type='text' id='id-itemissue-$i-$j' name='name-itemissue-$i-$j'/></td>";
+					print "<td align ='center'><input type='text'  id='id-itemissue-$i-$j' name='name-itemissue-$i-$j'/></td>";
 
 
 				}

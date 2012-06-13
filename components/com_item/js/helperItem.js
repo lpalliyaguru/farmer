@@ -1,6 +1,11 @@
 /**
  * 
  */
+$(document).ready(function(){
+	$('#id-itemissue-1-date').datepicker({dateFormat: 'yy-mm-dd'});
+});
+
+
 
 function validateitemform() {
 	flag=true;
@@ -66,10 +71,20 @@ function addRowtoTable(id){
 function validateItemIssueForm(){
 	flag=true;
 	//checking top table
+	$('#id-table1-itemissue-upper input').each(function(){
+		
+		if($(this).val()==""){
+			flag=false;
+			
+		}else{
+			flag=true;
+		}
+	});
 	
-	
-	
-	return false;
+	if(!flag){
+		alert("Please fill the data correctly!");
+	}
+	return flag;
 	
 	
 }
