@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `fm_area` (
 
 INSERT INTO `fm_area` (`areaId`, `areaName`, `executiveId`) VALUES
 ('dfdsf', 'dsfdsf', '23'),
-('area1', 'new area', '23');
+('area1', 'new area', '23'),('area2', 'new area2', '23');
 
 -- --------------------------------------------------------
 
