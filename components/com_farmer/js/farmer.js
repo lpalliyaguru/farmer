@@ -1,4 +1,18 @@
 $('document').ready(function(){
+	$('#farmer-bank').change(function(){
+		var bank = $('#farmer-bank').val();
+		
+		$.post("ajax_index.php",{"object": "system.area.BankBranch->getBankByCode()","params":[bank]},function(data){
+			
+			var res = jQuery.parseJSON(data);
+			
+			alert(res);
+			
+		});
+		
+		
+	});
+	
 	
 });
 
@@ -22,11 +36,10 @@ var farmerBranch = $('#farmer-branch').val();
 var farmerAccno = $('#farmer-acc').val();
 var farmerAccHolder = $('#farmer-acchol').val();
 
-returnVal =formValidator(farmerName,'#farmer-name');
-returnVal =formValidator(farmerSurname,'#farmer-surname');
-returnVal =formValidator(farmerNo,'#farmer-no');
-returnVal =nicValidator(farmerNic,"#farmer-nic");
-
+returnVal = returnVal && formValidator(farmerName,'#farmer-name');
+returnVal = returnVal && formValidator(farmerSurname,'#farmer-surname');
+returnVal = returnVal && formValidator(farmerNo,'#farmer-no');
+returnVal = returnVal && nicValidator(farmerNic,"#farmer-nic");
 
 
 return returnVal;
@@ -36,6 +49,9 @@ function formValidator( validData,id){
 	if(validData == ""){
 		$(id).parent().append("<span>* required</span>");
 		return false;
+	}else{
+		
+		return true;
 	}	
 }
 
@@ -43,9 +59,9 @@ function nicValidator(validData,id){
 	if(validData == ""){
 		$(id).parent().append("<span>* required</span>");
 		return false;
-	}else{
+	}else{		
 		
-		
+		return true;
 	}	
 }
 

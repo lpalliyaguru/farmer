@@ -67,7 +67,7 @@ function changeBackground(name){
 	
 	$acces=new AcccesType();
 	$accessType=$acces->getAcccessTypeByName($_SESSION['SESS_USERTYPE']);
-
+	
 	$menu=new Menu($accessType->getId());
 	$topmenu=$menu->getTopMenuItems();
 	$m=$menu->genrerateMenu($topmenu);

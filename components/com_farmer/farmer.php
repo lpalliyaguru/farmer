@@ -54,7 +54,7 @@ if(getParam("postAction")){
 		$farmer->setAcctHolder($_POST['farmerAccHolder']);
 		$farmer->setAddedBy($_SESSION['SESS_MEMBER_ID']);
 		
-		$farmer->updateFarmer($farmer);
+	//	$farmer->updateFarmer($farmer);
 	}
 	if($action == "saveform"){
 		$farmerBl = new FarmerBelongs();		
