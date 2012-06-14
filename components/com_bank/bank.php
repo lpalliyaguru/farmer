@@ -1,6 +1,7 @@
 <?php
 
 hImport("system.area.Bank");
+hImport("system.area.BankBranch");
 import("HTML_renderer");
 /*
  * checking the GET calls 
