@@ -1,11 +1,11 @@
-/**
- * 
- */
+
 $(document).ready(function(){
+	/*this is date picker*/
 	$('#id-itemissue-1-date').datepicker({dateFormat: 'yy-mm-dd'});
+	
+	
+	
 });
-
-
 
 function validateitemform() {
 	flag=true;

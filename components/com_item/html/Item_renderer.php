@@ -141,7 +141,74 @@ class Item_renderer{
 	
 	
 	function issueItem(){
+		$area=new Area();
+		$farmer=new Farmer();
+		$areas=$area->getAll();
+		/*
+		 * setting areas array
+		 */
+		$j_areas=array();
+		$i=0;
+		foreach ($areas as $temp){
+			$j_areas[$i]['label']=$temp->getName();
+			$j_areas[$i]['value']=$temp->getId();
+			$i++;
+		}
+		/*
+		 * 
+		 * setting farmer javascript array
+		 */
+		
+		$farmers=$farmer->getAll();
+		$j_farmers=array();
+		$i=0;
+	
+		foreach ($farmers as $temp){
+			$j_farmers[$i]['label']=$temp->getNic();
+			$j_farmers[$i]['value']=$temp->getNic();
+			$j_farmers[$i]['id']=$temp->getFullName();
+			$i++;
+		}
+	
 		?>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			/*this is date picker*/
+			
+			/*autocomplete*/
+			var availableTags = <?php print json_encode($j_areas)?>
+
+			         		$( "#id-itemissue-1-area" ).autocomplete({
+			         			source: availableTags,
+			         			select: function(event,ui){
+			         				console.log(event);
+			         				$( "#id-itemissue-1-area" ).val(ui.item.label);
+			         				$( "#id-hidden-itemissue-1-area" ).val(ui.item.value);
+			         				return false;
+			         			}
+			         			
+			         			
+			         		});
+							/* for farmer id autocomplete
+							*/
+			         		$( "#id-itemissue-1-farmerid" ).autocomplete({
+			         			source: <?php print json_encode($j_farmers)?>,
+			         			select: function(event,ui){
+			         				console.log(event);
+			         				$( "#id-itemissue-1-farmerid" ).val(ui.item.label);
+			         				$( "#id-hidden-itemissue-1-farmerid" ).val(ui.item.value);
+			         				$( "#id-itemissue-1-farmername" ).val(ui.item.id);
+			         				return false;
+			         			}
+			         			
+			         			
+			         		});
+			         		
+			
+		});
+</script>
+		
+		
 <h3>Item issuing window</h3>
 <div>
 	<form action="?page=com_item" method="post"	onsubmit="return validateItemIssueForm()" id="form-itemIssue" >
@@ -149,7 +216,9 @@ class Item_renderer{
 			<tr>
 				<td>Area ID</td>
 				<td><input type='text' id='id-itemissue-1-area'
-					name='name-itemissue-1-area' /></td>
+					name='name-itemissue-1-area' />
+					<input type='hidden' id='id-hidden-itemissue-1-area'
+					name='name-hidden-itemissue-1-area' value=""/></td>
 				<td>Receipt No</td>
 				<td><input type='text' id='id-itemissue-1-receipt'
 					name='name-itemissue-1-receipt' /></td>
@@ -157,7 +226,9 @@ class Item_renderer{
 			<tr>
 				<td>Farmer ID</td>
 				<td><input type='text' id='id-itemissue-1-farmerid'
-					name='name-itemissue-1-farmerid' /></td>
+					name='name-itemissue-1-farmerid' />
+					<input type="hidden" id='id-hidden-itemissue-1-farmerid'
+					name='name-hidden-itemissue-1-farmerid' /></td>
 				<td>Date</td>
 				<td><input type='text' id='id-itemissue-1-date'
 					name='name-itemissue-1-date' /></td>
