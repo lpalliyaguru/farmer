@@ -9,7 +9,7 @@ class Item_renderer{
 		print "<h3>View All Items</h3>";
 		if($items){
 			print "<table border='1'>";
-			print "<tr><th>Item Code </th><th>Item Name</th><th>Cost Price </th><th>Selling Price</th><th>Unit</th><th>Remarks</th></tr>";
+			print "<tr><th align='center'>Item Code </th><th align='center'>Item Name</th><th align='center'>Cost Price </th><th align='center'>Selling Price</th><th align='center'>Unit</th><th align='center'>Remarks</th></tr>";
 			foreach ($items as $i){
 				print "<tr>";
 				print "<td>".$i->getItemCode()."</td><td>".$i->getItemName()."</td>
@@ -181,7 +181,7 @@ class Item_renderer{
 			         		$( "#id-itemissue-1-area" ).autocomplete({
 			         			source: availableTags,
 			         			select: function(event,ui){
-			         				console.log(event);
+			         			
 			         				$( "#id-itemissue-1-area" ).val(ui.item.label);
 			         				$( "#id-hidden-itemissue-1-area" ).val(ui.item.value);
 			         				return false;
@@ -194,7 +194,7 @@ class Item_renderer{
 			         		$( "#id-itemissue-1-farmerid" ).autocomplete({
 			         			source: <?php print json_encode($j_farmers)?>,
 			         			select: function(event,ui){
-			         				console.log(event);
+			         				
 			         				$( "#id-itemissue-1-farmerid" ).val(ui.item.label);
 			         				$( "#id-hidden-itemissue-1-farmerid" ).val(ui.item.value);
 			         				$( "#id-itemissue-1-farmername" ).val(ui.item.id);
@@ -247,12 +247,12 @@ class Item_renderer{
 		<table border='1' style='' id='id-table1-itemissue-lower' cellpadding="0" cellspacing="0">
 
 			<tr>
-				<td>Item Code</td>
-				<td>Description</td>
-				<td>Unit</td>
-				<td>Quantity</td>
-				<td>Rate</td>
-				<td>Value</td>
+				<td align='center'>Item Code</td>
+				<td align='center'>Description</td>
+				<td align='center'>Unit</td>
+				<td align='center'>Quantity</td>
+				<td align='center'>Rate</td>
+				<td align='center'>Value</td>
 			</tr>
 			<?php
 			for($i=0;$i<5;$i++){

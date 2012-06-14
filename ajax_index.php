@@ -10,7 +10,7 @@ require_once 'includes/call.php';
 /*
  * importing class logger
  */
-hImport("core.Logger");
+hImport("core.db.HDatabase");
 
 
 /*
@@ -26,7 +26,7 @@ hImport("core.Logger");
 /*
  * checking auth
  */
-$log=new Logger();
+
 	if(auth()){
 		/* checking the parameter type object */
 		if(getParam('object')){
@@ -80,7 +80,7 @@ $log=new Logger();
 					//$log->ajaxLog("sdsd", json_encode($value)$return_value);
 					//print_r(objectArray($return_value));
 					
-					$return=array("status"=>"true","message"=>"accepted","body"=>$return_value->getJSONEncode());
+					$return=array("status"=>"true","message"=>"accepted","body"=>$return_value);
 					//$return=(array)$return_value;
 					/*
 					 * setting the header to json output

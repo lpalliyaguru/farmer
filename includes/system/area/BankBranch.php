@@ -23,7 +23,6 @@ class BankBranch{
 					$b->setBranchCode($temp['branchCode']);
 					$b->setBranchName($temp['branchName']);
 					$b->setBankCode($temp['bankCode']);
-					
 					array_push($bankbranches,$b);
 				}
 				
@@ -58,6 +57,25 @@ class BankBranch{
 			
 	}
 	
+	public function j_getBrancehsByBank($id){
+		$branches=$this->getBrancehsByBank($id);
+		
+		$array=array();
+		if($branches){
+			$i=0;
+			foreach ($branches as $temp){
+				$array[$i]['branchCode']=$temp->getBranchCode();
+				$array[$i]['branchName']=$temp->getBranchName();
+				$array[$i]['bankCode']=$temp->getBankCode();
+				$i++;
+			}
+			return $array;
+			
+		}else return false;
+		
+		
+		
+	}
 	public function getBankBranchById($id){
 	
 		$this->db->resetResult();
