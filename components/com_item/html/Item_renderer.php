@@ -85,7 +85,8 @@ class Item_renderer{
 
 		?>
 <h3>Add Items details</h3>
-<form action="?page=com_item" method="post"	onsubmit="return validateitemform()" id="form-updateitem">
+<form action="?page=com_item" method="post"
+	onsubmit="return validateitemform()" id="form-updateitem">
 	<table border="1">
 		<tr>
 			<td>Item Code</td>
@@ -134,12 +135,12 @@ class Item_renderer{
 
 			<?php
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	function issueItem(){
 		$area=new Area();
 		$farmer=new Farmer();
@@ -155,23 +156,23 @@ class Item_renderer{
 			$i++;
 		}
 		/*
-		 * 
+		 *
 		 * setting farmer javascript array
 		 */
-		
+
 		$farmers=$farmer->getAll();
 		$j_farmers=array();
 		$i=0;
-	
+
 		foreach ($farmers as $temp){
 			$j_farmers[$i]['label']=$temp->getNic();
 			$j_farmers[$i]['value']=$temp->getNic();
 			$j_farmers[$i]['id']=$temp->getFullName();
 			$i++;
 		}
-	
+
 		?>
-		<script type="text/javascript">
+<script type="text/javascript">
 		$(document).ready(function(){
 			/*this is date picker*/
 			
@@ -207,18 +208,19 @@ class Item_renderer{
 			
 		});
 </script>
-		
-		
+
+
 <h3>Item issuing window</h3>
 <div>
-	<form action="?page=com_item" method="post"	onsubmit="return validateItemIssueForm()" id="form-itemIssue" >
+	<form action="?page=com_item" method="post"
+		onsubmit="return validateItemIssueForm()" id="form-itemIssue">
 		<table border='1' style='' id='id-table1-itemissue-upper'>
 			<tr>
 				<td>Area ID</td>
 				<td><input type='text' id='id-itemissue-1-area'
-					name='name-itemissue-1-area' />
-					<input type='hidden' id='id-hidden-itemissue-1-area'
-					name='name-hidden-itemissue-1-area' value=""/></td>
+					name='name-itemissue-1-area' /> <input type='hidden'
+					id='id-hidden-itemissue-1-area' name='name-hidden-itemissue-1-area'
+					value="" /></td>
 				<td>Receipt No</td>
 				<td><input type='text' id='id-itemissue-1-receipt'
 					name='name-itemissue-1-receipt' /></td>
@@ -226,8 +228,8 @@ class Item_renderer{
 			<tr>
 				<td>Farmer ID</td>
 				<td><input type='text' id='id-itemissue-1-farmerid'
-					name='name-itemissue-1-farmerid' />
-					<input type="hidden" id='id-hidden-itemissue-1-farmerid'
+					name='name-itemissue-1-farmerid' /> <input type="hidden"
+					id='id-hidden-itemissue-1-farmerid'
 					name='name-hidden-itemissue-1-farmerid' /></td>
 				<td>Date</td>
 				<td><input type='text' id='id-itemissue-1-date'
@@ -244,7 +246,8 @@ class Item_renderer{
 
 		</table>
 		<hr>
-		<table border='1' style='' id='id-table1-itemissue-lower' cellpadding="0" cellspacing="0">
+		<table border='1' style='' id='id-table1-itemissue-lower'
+			cellpadding="0" cellspacing="0">
 
 			<tr>
 				<td align='center'>Item Code</td>
@@ -275,14 +278,16 @@ class Item_renderer{
 		<table id='id-itemissue-bottom'>
 			<tr>
 				<td colspan="4">&nbsp;</td>
-				<td><span>Total</span></td><td>
-				<input type='text' id='id-itemissue-total' /></td>
+				<td><span>Total</span></td>
+				<td><input type='text' id='id-itemissue-total' /></td>
 			</tr>
 		</table>
 
-		<input type="submit"> <input type="reset"> <input type="hidden"
-			name="row-count" id="row-count" value=""> <input type="button"
-			onclick="addRowtoTable('id-table1-itemissue-lower')" value="Add row">
+			<input type="submit"> 
+			<input type="reset">
+			<input type="hidden"  name="postAction"  value="saveitemissue">
+			<input type="hidden"  name="row-count" id="row-count" value="">
+			<input type="button"  onclick="addRowtoTable('id-table1-itemissue-lower')" value="Add row">
 	</form>
 </div>
 
