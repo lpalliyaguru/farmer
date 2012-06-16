@@ -121,14 +121,32 @@ function saveFarmerforSeasonDetails(){
 	if(season == -1){
 		$('#err-farmer-season').remove();
 		$('#farmer-season').parent().append("<span id='err-farmer-season'>* required</span>");
+		returnValue =  false;
 	}else $('#err-farmer-season').remove();
 	
 	if(center == -1){
 		$('#err-farmer-centername').remove();
 		$('#farmer-centername').parent().append("<span id='err-farmer-centername'>* required</span>");
+		returnValue =  false;
 	}else $('#err-farmer-centername').remove();
 	
 	return returnValue;	
+	
+}
+function saveFarmerForm(){
+	
+	if($('#farmerReg')){		
+		$('#farmerReg').submit();		
+	}
+	if($('#farmerUpdate')){
+		$('#farmerUpdate').submit();
+	}
+	if($('#farmerRegForSeason')){
+		$('#farmerRegForSeason').submit();
+	}
+	if($('#farmerEditSeason')){
+		$('#farmerEditSeason').submit();		
+	}	
 	
 }
 
