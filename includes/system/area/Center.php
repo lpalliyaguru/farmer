@@ -67,6 +67,26 @@ class Center{
 		
 	}
 	
+	public function j_getCentersByArea($id){
+	
+		$centers=$this->getCentersByArea($id);
+		$j_centers=array();
+		$i=0;
+		global $log;
+		
+		if($centers){
+			foreach ($centers as $temp){
+				$j_centers[$i]['value']	=$temp->getId();
+				$j_centers[$i]['label']	=$temp->getName();
+			
+			$i++;
+			}
+			return $j_centers;
+		}else return false;
+		
+		
+	}
+	
 	public function saveCenter(Center $c){
 		$a=new Area();
 		$this->db->resetResult();

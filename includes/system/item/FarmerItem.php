@@ -5,6 +5,7 @@ class FarmerItem{
 	private $farmerBelId;
 	private $quantity;
 	private $date;
+	private $amount;
 	private $db;
 	
 	public function FarmerItem(){
@@ -25,6 +26,7 @@ class FarmerItem{
 				$item->setFarmerBelId($temp['farmerBelongId']);
 				$item->setQuantity($temp['quantity']);
 				$item->setDate($temp['date']);
+				$item->setAmount($temp['amount']);
 				array_push($fitems, $item);
 				unset($item);
 			}
@@ -46,6 +48,7 @@ class FarmerItem{
 				$item->setFarmerBelId($res[0]['farmerBelongId']);
 				$item->setQuantity($res[0]['quantity']);
 				$item->setDate($res[0]['date']);
+				$item->setAmount($res[0]['date']);
 				return $item;
 			
 		}else return false;
@@ -92,6 +95,16 @@ class FarmerItem{
 	public function setDate($date)
 	{
 	    $this->date = $date;
+	}
+
+	public function getAmount()
+	{
+	    return $this->amount;
+	}
+
+	public function setAmount($amount)
+	{
+	    $this->amount = $amount;
 	}
 }
 

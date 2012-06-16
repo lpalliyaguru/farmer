@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 table#id-table1-itemissue-upper{
-	width:100%
+	width:100%;
 }
 
 table#id-table1-itemissue-lower{
@@ -18,7 +18,7 @@ table#id-table1-itemissue-lower td input{
 bottom div
 	*/
 table#id-itemissue-bottom{
-	width:100%
+	width:100%;
 }
 table#id-itemissue-bottom span{
 	float: right;position: relative;

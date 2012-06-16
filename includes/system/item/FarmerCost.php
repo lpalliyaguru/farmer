@@ -18,9 +18,6 @@ class FarmerCost{
 	 */
 	
 	
-	
-	
-	
 	public function __destruct(){
 		$this->db->disconnect();
 		unset($this->db);
