@@ -38,6 +38,15 @@ form#farmerReg table {
 	text-decoration: none;
 	
 }
+form#farmerUpdate{
+	position: relative;
+	left : 100px;
+}
+form#farmerUpdate table{
+	position : relative;
+	width : 600px;	
+}
+
 .class-farmer_names-editBut{
 	width: 100px;
 	height: 20px;

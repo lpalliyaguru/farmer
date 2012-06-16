@@ -1,8 +1,8 @@
-<?php
+<script>
 
-hImport("system.item.FarmerItem");
+$.post("ajax_index.php",{"object":"system.area.BankBranch->j_getBrancehsByBank","params":["dfd "]},function(d){
+			arr=d['body'];
+			console.log(arr);
+});
 
-$fi=new FarmerItem();
-print_r($fi->getFarmerItemById("dfd", "2"));
-
-?>
+</script>

@@ -9,7 +9,7 @@ class Item_renderer{
 		print "<h3>View All Items</h3>";
 		if($items){
 			print "<table border='1'>";
-			print "<tr><th>Item Code </th><th>Item Name</th><th>Cost Price </th><th>Selling Price</th><th>Unit</th><th>Remarks</th></tr>";
+			print "<tr><th align='center'>Item Code </th><th align='center'>Item Name</th><th align='center'>Cost Price </th><th align='center'>Selling Price</th><th align='center'>Unit</th><th align='center'>Remarks</th></tr>";
 			foreach ($items as $i){
 				print "<tr>";
 				print "<td>".$i->getItemCode()."</td><td>".$i->getItemName()."</td>
@@ -141,7 +141,74 @@ class Item_renderer{
 	
 	
 	function issueItem(){
+		$area=new Area();
+		$farmer=new Farmer();
+		$areas=$area->getAll();
+		/*
+		 * setting areas array
+		 */
+		$j_areas=array();
+		$i=0;
+		foreach ($areas as $temp){
+			$j_areas[$i]['label']=$temp->getName();
+			$j_areas[$i]['value']=$temp->getId();
+			$i++;
+		}
+		/*
+		 * 
+		 * setting farmer javascript array
+		 */
+		
+		$farmers=$farmer->getAll();
+		$j_farmers=array();
+		$i=0;
+	
+		foreach ($farmers as $temp){
+			$j_farmers[$i]['label']=$temp->getNic();
+			$j_farmers[$i]['value']=$temp->getNic();
+			$j_farmers[$i]['id']=$temp->getFullName();
+			$i++;
+		}
+	
 		?>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			/*this is date picker*/
+			
+			/*autocomplete*/
+			var availableTags = <?php print json_encode($j_areas)?>
+
+			         		$( "#id-itemissue-1-area" ).autocomplete({
+			         			source: availableTags,
+			         			select: function(event,ui){
+			         			
+			         				$( "#id-itemissue-1-area" ).val(ui.item.label);
+			         				$( "#id-hidden-itemissue-1-area" ).val(ui.item.value);
+			         				return false;
+			         			}
+			         			
+			         			
+			         		});
+							/* for farmer id autocomplete
+							*/
+			         		$( "#id-itemissue-1-farmerid" ).autocomplete({
+			         			source: <?php print json_encode($j_farmers)?>,
+			         			select: function(event,ui){
+			         				
+			         				$( "#id-itemissue-1-farmerid" ).val(ui.item.label);
+			         				$( "#id-hidden-itemissue-1-farmerid" ).val(ui.item.value);
+			         				$( "#id-itemissue-1-farmername" ).val(ui.item.id);
+			         				return false;
+			         			}
+			         			
+			         			
+			         		});
+			         		
+			
+		});
+</script>
+		
+		
 <h3>Item issuing window</h3>
 <div>
 	<form action="?page=com_item" method="post"	onsubmit="return validateItemIssueForm()" id="form-itemIssue" >
@@ -149,7 +216,9 @@ class Item_renderer{
 			<tr>
 				<td>Area ID</td>
 				<td><input type='text' id='id-itemissue-1-area'
-					name='name-itemissue-1-area' /></td>
+					name='name-itemissue-1-area' />
+					<input type='hidden' id='id-hidden-itemissue-1-area'
+					name='name-hidden-itemissue-1-area' value=""/></td>
 				<td>Receipt No</td>
 				<td><input type='text' id='id-itemissue-1-receipt'
 					name='name-itemissue-1-receipt' /></td>
@@ -157,7 +226,9 @@ class Item_renderer{
 			<tr>
 				<td>Farmer ID</td>
 				<td><input type='text' id='id-itemissue-1-farmerid'
-					name='name-itemissue-1-farmerid' /></td>
+					name='name-itemissue-1-farmerid' />
+					<input type="hidden" id='id-hidden-itemissue-1-farmerid'
+					name='name-hidden-itemissue-1-farmerid' /></td>
 				<td>Date</td>
 				<td><input type='text' id='id-itemissue-1-date'
 					name='name-itemissue-1-date' /></td>
@@ -172,22 +243,23 @@ class Item_renderer{
 			</tr>
 
 		</table>
-		<table border='1' style='' id='id-table1-itemissue-lower'>
+		<hr>
+		<table border='1' style='' id='id-table1-itemissue-lower' cellpadding="0" cellspacing="0">
 
 			<tr>
-				<td>Item Code</td>
-				<td>Description</td>
-				<td>Unit</td>
-				<td>Quantity</td>
-				<td>Rate</td>
-				<td>Value</td>
+				<td align='center'>Item Code</td>
+				<td align='center'>Description</td>
+				<td align='center'>Unit</td>
+				<td align='center'>Quantity</td>
+				<td align='center'>Rate</td>
+				<td align='center'>Value</td>
 			</tr>
 			<?php
 			for($i=0;$i<5;$i++){
 				print "<tr>";
 				for($j=0;$j<6;$j++){
 
-					print "<td><input type='text' id='id-itemissue-$i-$j' name='name-itemissue-$i-$j'/></td>";
+					print "<td align ='center'><input type='text'  id='id-itemissue-$i-$j' name='name-itemissue-$i-$j'/></td>";
 
 
 				}

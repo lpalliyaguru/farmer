@@ -62,18 +62,18 @@ class FarmerRegForSeasonForm{
 			}
 
 		}
-
-
+		
 		$farmerAreaname->setOptions($arr);
 		$selectAreaname->addSelect($farmerAreaname);
 
 		$selectCenterName = new HTableObject(SELECT);
 		$farmerCentername = new Select("farmerCenter", "select");
 		$farmerCentername->setID("farmer-centername");
-
-		$arr2  = array();
+		
+		$arr2 = array();
 		$arr2[0]['value'] = -1;
 		$arr2[0]['option'] = 'Select a Center';
+		
 		$farmerCentername->setOptions($arr2);
 		$selectCenterName->addSelect($farmerCentername);
 
@@ -82,7 +82,6 @@ class FarmerRegForSeasonForm{
 		$farmerHidden ->setID("postAction");
 		$farmerHidden->setDefaultValue("saveform");
 		$inputHidden ->addInput($farmerHidden);
-
 
 		$addFarmer = new HTableObject(LINK);
 		$farmerAdd = new Link();

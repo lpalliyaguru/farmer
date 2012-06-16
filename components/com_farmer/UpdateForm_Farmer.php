@@ -32,41 +32,7 @@ class UpdateForm_Farmer{
 			$farmerno->setID("farmer-no");
 			$farmerno->setDefaultValue($farmerData->getEntityId());
 			$inputFarmerno->addInput($farmerno);
-
-		/*	$selectAreaname = new HTableObject(SELECT);
-			$farmerAreaname = new Select("farmerArea", "select");
-			$farmerAreaname->setID("farmer-areaname");
-
-			$area = new Area();
-			$areaNames = $area->getAreaNames();
 				
-			$arr = array();
-			$arr[0]['value'] = -1;
-			$arr[0]['option'] = 'Select an area';
-
-			if($areaNames){
-				$i = 1;
-				foreach ($areaNames as $areas){
-
-					$arr[$i]['value'] = $areas['areaId'];
-					$arr[$i]['option'] = $areas['areaName'];
-					$i++;
-				}
-			}
-
-			$farmerAreaname->setOptions($arr);
-			$selectAreaname->addSelect($farmerAreaname);
-
-			 $selectCenterName = new HTableObject(SELECT);
-			 $farmerCentername = new Select("farmerCenter", "select");
-			 $farmerCentername->setID("farmer-centername");
-
-			 $arr2[0]['value'] = -1;
-			 $arr2[0]['option'] = 'Select a center';
-			 $farmerCentername->setOptions($arr2);
-			 $selectCenterName->addSelect($farmerCentername);
-			 */
-			
 			$inputAddress = new HTableObject(INPUT);
 			$farmerAddress = new Input("farmerAdd", "text");
 			$farmerAddress->setID("farmer-address");
@@ -82,7 +48,7 @@ class UpdateForm_Farmer{
 			$radioGen = new HTableObject(RADIO);
 			$farmerGen = new Radio("farmerGen", "radio");
 			$farmerGen->setID("farmer-gen");
-
+			$farmerGen->setDefaultValue($farmerData->getGender());
 			$radio=array(array("value"=>"1","text"=>"Male"),array("value"=>"2","text"=>"Female"));
 			$farmerGen->setOptions($radio);
 			$radioGen->addRadio($farmerGen);
@@ -108,7 +74,7 @@ class UpdateForm_Farmer{
 			$inputProCat = new HTableObject(SELECT);
 			$farmerProCat = new Select("farmerProCat", "select");
 			$farmerProCat->setID("farmer-procat");
-				
+							
 			$arrCat = array();
 			$category = new Category();
 			$categories = $category->getCategories();
@@ -188,8 +154,6 @@ class UpdateForm_Farmer{
 		array('label'=>'Farmer Name','object'=>$inputName),
 		array('label'=>'Farmer Surname','object'=>$inputSurname),
 		array('label'=>'Farmer No','object'=>$inputFarmerno),
-		//array('label'=>'Area Name','object'=>$selectAreaname),
-		//array('label'=>'Center Name','object'=>$selectCenterName),
 		array('label'=>'Farmer Address','object'=>$inputAddress),
 		array('label'=>'Telephone No','object'=>$inputTelNo),
 		array('label'=>'Gender','object'=>$radioGen),

@@ -9,7 +9,6 @@ class FarmerEditSeasonForm{
 		$farmerRegSeasonForm->setOnsubmit("saveFarmerforSeasonDetails()");
 		$farmerRegSeasonForm->setClass("h-class-farmerregform");
 
-
 		$inputNic = new HTableObject(INPUT);
 		$farmerNic = new Input("farmerRegNic", "text");
 		$farmerNic->setID("farmer-nic");
@@ -58,9 +57,7 @@ class FarmerEditSeasonForm{
 				$arr[$i]['option'] = $areas['areaName'];
 				$i++;
 			}
-
 		}
-
 
 		$farmerAreaname->setOptions($arr);
 		$selectAreaname->addSelect($farmerAreaname);
@@ -68,11 +65,6 @@ class FarmerEditSeasonForm{
 		$selectCenterName = new HTableObject(SELECT);
 		$farmerCentername = new Select("farmerCenter", "select");
 		$farmerCentername->setID("farmer-centername");
-
-		$arr2  = array();
-		$arr2[0]['value'] = -1;
-		$arr2[0]['option'] = 'Select a Center';
-		$farmerCentername->setOptions($arr2);
 		$selectCenterName->addSelect($farmerCentername);
 
 		$inputHidden = new HTableObject(INPUT);
@@ -103,9 +95,8 @@ class FarmerEditSeasonForm{
 		);
 
 		$farmerRegSeasonForm->addFields($fields);
-
-		return $farmerRegSeasonForm->renderForm();
 		
+		return $farmerRegSeasonForm->renderForm();		
 		
 	}
 	

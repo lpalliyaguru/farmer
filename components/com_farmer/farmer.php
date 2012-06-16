@@ -35,7 +35,11 @@ if(getParam("postAction")){
 		$farmer->setAcctHolder($_POST['farmerAccHolder']);
 		$farmer->setAddedBy($_SESSION['SESS_MEMBER_ID']);
 
-		$farmer->saveFarmer($farmer);
+		if($farmer->saveFarmer($farmer)){
+			print "<p class='class-alert'><span></span>Farmer saved successfully!</p>";
+		}else{
+			print "<p class='class-error'><span></span>There was an error saving farmer data.Please try again.</p>";
+		}
 	}
 	if($action == "update"){
 		$farmer = new Farmer();
@@ -54,16 +58,26 @@ if(getParam("postAction")){
 		$farmer->setAcctHolder($_POST['farmerAccHolder']);
 		$farmer->setAddedBy($_SESSION['SESS_MEMBER_ID']);
 		
-	//	$farmer->updateFarmer($farmer);
+		if($farmer->updateFarmer($farmer)){
+			print "<p class='class-alert'><span></span>Farmer updated successfully!</p>";
+		}else{
+			print "<p class='class-error'><span></span>There was an error updating farmer data.Please try again.</p>";
+		}
+		
 	}
 	if($action == "saveform"){
-		$farmerBl = new FarmerBelongs();		
-		$farmerBl->saveFarmerToSeason($_POST['farmerRegNic'], $_POST['farmerRegSeason'], $_POST['farmerCenter']);
+		$farmerBl = new FarmerBelongs();
+				
+		if($farmerBl->saveFarmerToSeason($_POST['farmerRegNic'], $_POST['farmerRegSeason'], $_POST['farmerCenter'])){
+			print "<p class='class-alert'><span></span>Farmer Added for Season successfully!</p>";
+		}else {
+			print "<p class='class-error'><span></span>There was an error adding farmer data for season.Please try again.</p>";
+		}
 				
 	}
 	
 	
-}else{
+}else if(getParam("getAction")){
 
 	if($_GET['getAction'] == "addFarmer"){
 		$farmerReg = new RegForm_Farmer();
@@ -83,7 +97,11 @@ if(getParam("postAction")){
 		$nic = $_GET['nic'];
 		
 		$farmer = new Farmer();
-		$farmer->deleteFarmer($nic);
+		if($farmer->deleteFarmer($nic)){
+			print "<p class='class-alert'><span></span>Farmer deleted successfully!</p>";
+		}else{
+			print "<p class='class-error'><span></span>There was an error while deleting farmer data.Please try again.</p>";
+		}
 		
 	}else if($_GET['getAction'] == "addFarmerforSeason"){
 		$farmerAdd = new FarmerRegForSeasonForm();
@@ -93,9 +111,20 @@ if(getParam("postAction")){
 		$farmerAdd = new FarmerEditSeasonForm();
 		print $farmerAdd->getEditForm();		
 		
+	}else if($_GET['getAction'] == "getFarmersforSeason"){
+		
+		
 	}
-
-
 }
+
+else{
+	echo '<div id="submitAreamsg" class="ui-state-highlight ui-corner-all">
+			<span class="ui-icon ui-icon-info"
+				style="float: left; margin-right: .3em; margin-top: 1px"></span>
+			Data submitted successfully.
+		</div>';
+	
+}
+
 
 ?>

@@ -2,6 +2,8 @@
 import("Item_renderer");
 
 hImport("system.item.Item");
+hImport("system.area.Area");
+hImport("system.farmer.Farmer");
 /*
  * get the getAction value
  */

@@ -101,7 +101,15 @@ class HTableBuilder{
 								$radio=$obj->getRadio();
 								$options=$radio->getOptions();
 								foreach ($options as $temp){
-									$tableStr.="<label><input type='radio' name='".$radio->getNAME()."' value='".$temp['value']."'/>".$temp['text']."</lable>";
+									//print 'ara'.$radio->getDefaultValue();
+									if($radio->getDefaultValue()==$temp['value']){
+										
+										$tableStr.="<label><input type='radio' name='".$radio->getNAME()."' value='".$temp['value']."' checked/>".$temp['text']."</lable>";	
+									
+									}else{
+										$tableStr.="<label><input type='radio' name='".$radio->getNAME()."' value='".$temp['value']."'/>".$temp['text']."</lable>";
+									}
+									
 									
 									
 								}

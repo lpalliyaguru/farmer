@@ -6,7 +6,48 @@ body{
 a{
 
 }
+input[type="text"]{
+	border:1px solid #ccc;padding: 4px
+}
+input[type="password"]{
+	border:1px solid #ccc;padding: 4px
+}
+input[type="submit"]{
+	border:1px solid #ccc;padding: 4px 20px ;
+	height:30px;
+	background:  #1D4088;
+	color:#fff;
+	cursor: pointer;
+	border-radius:15px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;	
+}
+input[type="reset"]{
+	border:1px solid #ccc;padding: 4px 20px ;
+	height:30px;
+	background:  #1D4088;
+	color:#fff;
+	cursor: pointer;
+	border-radius:15px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;	
+}
+input[type="button"]{
+	border:1px solid #ccc;padding: 4px 20px ;height:30px;background:  #1D4088;color:#fff;cursor: pointer;
+	border-radius:15px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;	
+}
+submit{
+	padding:4px;height:30px;
 
+}
+table{
+	border-collapse: collapse;
+}
+table td{
+	vertical-align: center;
+}
 /*
 special classes
 */

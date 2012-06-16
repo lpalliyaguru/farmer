@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 10, 2012 at 05:47 PM
--- Server version: 5.1.62
+-- Generation Time: Jun 13, 2012 at 06:20 PM
+-- Server version: 5.1.63
 -- PHP Version: 5.3.6-13ubuntu3.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS `fm_area` (
 --
 
 INSERT INTO `fm_area` (`areaId`, `areaName`, `executiveId`) VALUES
-('dfdsf', 'dsfdsf', '23');
+('dfdsf', 'dsfdsf', '23'),
+('new area', 'Area 3', '23'),('new area2', 'Area 4', '23');
 
 -- --------------------------------------------------------
 
@@ -528,6 +529,26 @@ INSERT INTO `fm_templates` (`id`, `name`, `default_value`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fm_units`
+--
+
+CREATE TABLE IF NOT EXISTS `fm_units` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `fm_units`
+--
+
+INSERT INTO `fm_units` (`id`, `value`) VALUES
+(1, 'Kg'),
+(2, 'g');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `fm_user`
 --
 
@@ -549,7 +570,8 @@ CREATE TABLE IF NOT EXISTS `fm_user` (
 INSERT INTO `fm_user` (`userId`, `userType`, `password`, `fname`, `lname`, `officeCode`, `avatar`) VALUES
 ('admin', 'superadmin', '81dc9bdb52d04dc20036dbd8313ed055', 'janith', 'kalhara3', '', 'admin.jpg'),
 ('sali', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'dhanushka', 'saliya', '', 'sali.gif'),
-('dfds', 'superadmin', 'd9729feb74992cc3482b350163a1a010', 'sdfs', 'sdfs', '', 'dfds.');
+('dfds', 'superadmin', 'd9729feb74992cc3482b350163a1a010', 'sdfs', 'sdfs', '', 'dfds.'),
+('new ', 'admin', 'adbf5a778175ee757c34d0eba4e932bc', 'asd', 'asd', '', 'new .jpg');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -27,6 +27,37 @@ class Farmer {
 
 	}
 	
+	public function getAll(){
+		$this->db->resetResult();
+		$this->db->select("fm_farmer","*");
+		$res=$this->db->getResult();
+		$farmers=array();
+			if($res){
+				foreach ($res as $temp){
+					$farmer=new Farmer();
+					$farmer->setEntityId($temp['farmerId']);	
+					$farmer->setNic($temp['nic']);
+					$farmer->setName($temp['name']);
+					$farmer->setSurname($temp['surName']);
+					$farmer->setGender($temp['gender']);
+					$farmer->setNationality($temp['nationality']);
+					$farmer->setAddress($temp['address']);
+					$farmer->setTp($temp['tpNo']);
+					$farmer->setAreaId($temp['areaId']);
+					$farmer->setAcherage($temp['acherage']);
+					$farmer->setCategory($temp['prodCategory']);
+					$farmer->setBankCode($temp['bankcode']);
+					$farmer->setAccountNo($temp['acctNo']);
+					$farmer->setAcctHolder($temp['acctHolderName']);	
+					$farmer->setAddedBy($temp['addedBy']);
+				
+					array_push($farmers, $farmer);
+				}
+				return $farmers;
+		}else return false;
+		
+	}
+	
 	public function getFarmerByNIC($nic){
 		
 		$this->db->resetResult();
@@ -39,8 +70,8 @@ class Farmer {
 			$farmer->setNic($res[0]['nic']);
 			$farmer->setName($res[0]['name']);
 			$farmer->setSurname($res[0]['surName']);
-			$farmer->setGender($res[0]['name']);
-			//$farmer->setSeasonId($res[0]['seasonId']);
+			$farmer->setGender($res[0]['gender']);
+			//$farmer->setSeasonId($re0s[0]['seasonId']);
 			$farmer->setNationality($res[0]['nationality']);
 			$farmer->setAddress($res[0]['address']);
 			$farmer->setTp($res[0]['tpNo']);
@@ -181,17 +212,7 @@ class Farmer {
 		
 	}
 	
-	public function getAll(){
-		
-		$this->db->resetResult();
-		$this->db->select("fm_farmer","*");
-		$res=$this->db->getResult();
-		
-		return  $res;
-		
-		
-	}
-	
+
 	
 	
 	/*
@@ -216,7 +237,10 @@ class Farmer {
 	{
 	    $this->nic = $nic;
 	}
-
+	public function getFullName()
+	{
+	    return $this->name." ".$this->surname;
+	}
 	public function getName()
 	{
 	    return $this->name;
