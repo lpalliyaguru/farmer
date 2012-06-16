@@ -2,7 +2,11 @@
 
 class FarmerEditSeasonForm{
 	
-	public function getEditForm(){
+	public function getEditForm($id){
+		
+		$farmerBelong = new FarmerBelongs();
+		$farmerBl = $farmerBelong->getFarmerBelongById($id);
+		
 		$baseForm = new HFormBuilder("?page=com_farmer", "post","Farmer Registration for Season(Edit)","farmerEditSeason");
 		$farmerRegSeasonForm = $baseForm->getForm();
 		$farmerRegSeasonForm->setLayout(DEFAULT_LAYOUT);
@@ -12,6 +16,7 @@ class FarmerEditSeasonForm{
 		$inputNic = new HTableObject(INPUT);
 		$farmerNic = new Input("farmerRegNic", "text");
 		$farmerNic->setID("farmer-nic");
+		$farmerNic->setDefaultValue($farmerBl->getNic());
 		$inputNic->addInput($farmerNic);
 
 		$selectSeason = new HTableObject(SELECT);
@@ -65,20 +70,19 @@ class FarmerEditSeasonForm{
 		$selectCenterName = new HTableObject(SELECT);
 		$farmerCentername = new Select("farmerCenter", "select");
 		$farmerCentername->setID("farmer-centername");
+		
+		$arr2 = array();
+		$arr2[0]['value'] = -1;
+		$arr2[0]['option'] = 'Select a Center';
+		
+		$farmerCentername->setOptions($arr2);
 		$selectCenterName->addSelect($farmerCentername);
 
 		$inputHidden = new HTableObject(INPUT);
 		$farmerHidden = new Input("postAction", "hidden");
 		$farmerHidden ->setID("postAction");
-		$farmerHidden->setDefaultValue("saveform");
+		$farmerHidden->setDefaultValue("editform");
 		$inputHidden ->addInput($farmerHidden);
-
-
-		$addFarmer = new HTableObject(LINK);
-		$farmerAdd = new Link();
-		$farmerAdd->setLINK("Add New Farmer");
-		$farmerAdd->setHREF("?page=com_farmer&getAction=addFarmer");
-		$addFarmer->addLink($farmerAdd);
 
 		$submit = new HTableObject(INPUT);
 		$submitBtn = new Input("","submit","Submit");
@@ -91,7 +95,7 @@ class FarmerEditSeasonForm{
 		array('label'=>'Area','object'=>$selectAreaname),
 		array('label'=>'Center','object'=>$selectCenterName),
 		array('label'=>'','object'=>$inputHidden),
-		array('label'=>$addFarmer,'object'=>$submit)
+		array('label'=>'','object'=>$submit)
 		);
 
 		$farmerRegSeasonForm->addFields($fields);

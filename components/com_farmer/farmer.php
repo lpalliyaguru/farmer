@@ -13,7 +13,7 @@ require_once 'components/com_farmer/RegForm_Farmer.php';
 require_once 'components/com_farmer/UpdateForm_Farmer.php';
 require_once 'components/com_farmer/GetFarmer.php';
 require_once 'components/com_farmer/FarmerRegForSeasonForm.php';
-
+require_once 'components/com_farmer/FarmerEditSeasonForm.php';
 
 if(getParam("postAction")){
 	$action=getParam("postAction");
@@ -85,8 +85,8 @@ if(getParam("postAction")){
 
 	}else if($_GET['getAction'] == "editFarmer"){
 		$farmers = new GetFarmer();
-		print  $farmers->getFarmers();
-			
+		print $farmers->getFarmers();	
+					
 	}else if($_GET['getAction'] == "editForm"){
 		$nic = $_GET['nic'];
 		
@@ -108,23 +108,28 @@ if(getParam("postAction")){
 		print $farmerAdd->getBaseForm();		
 		
 	}else if($_GET['getAction'] == "editFarmerforSeason"){
+		$id = $_GET['id'];
+		
 		$farmerAdd = new FarmerEditSeasonForm();
-		print $farmerAdd->getEditForm();		
+		print $farmerAdd->getEditForm($id);		
 		
 	}else if($_GET['getAction'] == "getFarmersforSeason"){
+		$farmers = new GetFarmer();
+		print $farmers->getFarmersforSeason();		
+	}else if($_GET['getAction'] == "deleteFarmerforSeason"){
+		$id = $_GET['id'];
 		
-		
+		$farmerBl = new FarmerBelongs();
+		if($farmerBl->deleteFarmerBelongById($id)){
+			print "<p class='class-alert'><span></span>Farmer removed successfully!</p>";
+			
+		}else{
+			print "<p class='class-error'><span></span>There was an error while deleting farmer data.Please try again.</p>";
+		}
 	}
-}
-
-else{
-	echo '<div id="submitAreamsg" class="ui-state-highlight ui-corner-all">
-			<span class="ui-icon ui-icon-info"
-				style="float: left; margin-right: .3em; margin-top: 1px"></span>
-			Data submitted successfully.
-		</div>';
 	
 }
+
 
 
 ?>

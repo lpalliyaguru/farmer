@@ -67,7 +67,40 @@ class FarmerBelongs{
 	
 	public function deleteFarmerBelong($nic,$season,$center){
 		$this->db->resetResult();
-		$this->db->delete("fm_farmerBelongs","nic='$nic' AND seasonId='$season' AND centerId='$center'");
+		if($this->db->delete("fm_farmerBelongs","nic='$nic' AND seasonId='$season' AND centerId='$center'")){
+			return true;
+		}else return false;
+				
+	}
+	
+	public function deleteFarmerBelongById($id){
+		$this->db->resetResult();
+		if($this->db->delete("fm_farmerBelongs","id='$id'")){
+			return true;
+		}else return false;		
+	}
+	
+	public function getAll(){
+		
+		$this->db->resetResult();
+		$this->db->select("fm_farmerBelongs","*");
+		$res = $this->db->getResult();
+		
+		$array = array();
+				
+		if($res){
+			$i = 0;
+			foreach ($res as $r){
+				$farmerbl = new FarmerBelongs();
+				$farmerbl->setId($r['id']);
+				$farmerbl->setNic($r['nic']);
+				$farmerbl->setSeason($r['seasonId']);  
+				$farmerbl->setCenter($r['centerId']);
+				
+				array_push($array, $farmerbl);				
+			}			
+			return $array;
+		}else return false;  
 		
 		
 	}
