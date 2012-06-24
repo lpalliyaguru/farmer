@@ -75,6 +75,19 @@ if(getParam("postAction")){
 			print "<p class='class-error'><span></span>There was an error adding farmer data for season.Please try again.</p>";
 		}
 				
+	}if($action == "editform"){
+		$id = getParam("belongId");
+		$farmerBl = new FarmerBelongs();
+		$farmerBl->setId($id);
+		$farmerBl->setNic(getParam("farmerRegNic"));
+		$farmerBl->setSeason(getParam("farmerRegSeason"));
+		$farmerBl->setCenter(getParam("farmerCenter"));
+		
+		if($farmerBl->updateFarmerBelong($farmerBl)){
+			print "<p class='class-alert'><span></span>Farmer editted for Season successfully!</p>";
+		}else{
+			print "<p class='class-error'><span></span>There was an error editing farmer data for season.Please try again.</p>";
+		}		
 	}
 	
 	
@@ -86,8 +99,8 @@ if(getParam("postAction")){
 
 	}else if($_GET['getAction'] == "editFarmer"){
 		$farmers = new GetFarmer();
-		print  $farmers->getFarmers();
-			
+		print $farmers->getFarmers();	
+					
 	}else if($_GET['getAction'] == "editForm"){
 		$nic = $_GET['nic'];
 		
@@ -109,23 +122,28 @@ if(getParam("postAction")){
 		print $farmerAdd->getBaseForm();		
 		
 	}else if($_GET['getAction'] == "editFarmerforSeason"){
+		$id = $_GET['id'];
+		
 		$farmerAdd = new FarmerEditSeasonForm();
-		print $farmerAdd->getEditForm();		
+		print $farmerAdd->getEditForm($id);		
 		
 	}else if($_GET['getAction'] == "getFarmersforSeason"){
+		$farmers = new GetFarmer();
+		print $farmers->getFarmersforSeason();		
+	}else if($_GET['getAction'] == "deleteFarmerforSeason"){
+		$id = $_GET['id'];
 		
-		
+		$farmerBl = new FarmerBelongs();
+		if($farmerBl->deleteFarmerBelongById($id)){
+			print "<p class='class-alert'><span></span>Farmer removed successfully!</p>";
+			
+		}else{
+			print "<p class='class-error'><span></span>There was an error while deleting farmer data.Please try again.</p>";
+		}
 	}
-}
-
-else{
-	echo '<div id="submitAreamsg" class="ui-state-highlight ui-corner-all">
-			<span class="ui-icon ui-icon-info"
-				style="float: left; margin-right: .3em; margin-top: 1px"></span>
-			Data submitted successfully.
-		</div>';
 	
 }
+
 
 
 ?>

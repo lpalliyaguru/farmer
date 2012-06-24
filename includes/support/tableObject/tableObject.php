@@ -1,5 +1,11 @@
 <?php
 
+
+
+?>
+
+<?php
+
 class image{
 	
 	/*
@@ -177,9 +183,13 @@ class Input{
 	/* default of input */
 	
 	private $default;
+	
+	/* extra optiond of input */
+	
+	private $extra;
 	/*
 	 * Constructor sets the name,input type,default value,class and id 
-	 */
+	 */	
 	
 	public function Input($name,$inputType,$default="",$class="",$id=""){
 		$this->name=$name;
@@ -205,7 +215,10 @@ class Input{
 		}
 	public function setDefaultValue($val){
 			$this->default=$val;
-		}		
+		}
+	public function setExtra($ex){
+			$this->extra=$ex;		
+	}			
 		
 		/* setting getters */
 
@@ -230,6 +243,9 @@ class Input{
 	public function getCLASS(){
 			return $this->name;
 		}
+	public function getExtra(){
+			return $this->extra;
+	}	
 }
 
 /*
@@ -410,3 +426,4 @@ class Radio{
 
 
 ?>
+

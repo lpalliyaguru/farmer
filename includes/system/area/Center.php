@@ -66,7 +66,6 @@ class Center{
 		}else return false;
 		
 	}
-	
 
 	public function j_getCentersByArea($id){
                $center = $this->getCentersByArea($id);
@@ -122,6 +121,9 @@ class Center{
 		
 	}
 	*/
+
+	
+
 	
 	public function saveCenter(Center $c){
 		$a=new Area();
@@ -142,9 +144,7 @@ class Center{
 		$this->db->resetResult();
 		if($this->db->delete("fm_center","centerId='".$id."'")){
 			return true;
-		}else return false;
-		
-		
+		}else return false;			
 	}
 
 	public function getId()

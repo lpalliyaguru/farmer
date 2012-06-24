@@ -76,6 +76,8 @@ hImport("support.store.Store");
 $log=new Logger();
 $mainframe=new MainFrame();
 $store=new Store();
+
+
 $logAuth=new HAuthenticator();
 if(getParam("login_attempt")){
 

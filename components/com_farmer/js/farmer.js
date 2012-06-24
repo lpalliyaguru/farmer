@@ -1,4 +1,6 @@
 $('document').ready(function(){
+	var nics = new Array();
+	
 	$('#farmer-bank').change(function(){
 		var bank = $('#farmer-bank').val();
 		
@@ -39,6 +41,26 @@ $('document').ready(function(){
 		});
 		
 	});
+	
+	$.post("ajax_index.php",{"object" : "system.farmer.Farmer->j_getFarmers","params" : [null]},function(d){
+		 var arr = d['body'];
+		 
+		 for(var i=0;i<arr.length;i++){
+			nics[0,'label']=arr[0]['nic'];			 
+		 }		
+		 
+		
+	});
+		
+	$('#farmer-nic').autocomplete({
+			source : nics,
+			select :function(event,ui){
+				$('#farmer-nic').val(ui.item.label);
+				return false;
+		
+	}
+	});
+	
 	
 	
 });
@@ -121,14 +143,32 @@ function saveFarmerforSeasonDetails(){
 	if(season == -1){
 		$('#err-farmer-season').remove();
 		$('#farmer-season').parent().append("<span id='err-farmer-season'>* required</span>");
+		returnValue =  false;
 	}else $('#err-farmer-season').remove();
 	
 	if(center == -1){
 		$('#err-farmer-centername').remove();
 		$('#farmer-centername').parent().append("<span id='err-farmer-centername'>* required</span>");
+		returnValue =  false;
 	}else $('#err-farmer-centername').remove();
 	
 	return returnValue;	
+	
+}
+function saveFarmerForm(){
+	
+	if($('#farmerReg')){		
+		$('#farmerReg').submit();		
+	}
+	if($('#farmerUpdate')){
+		$('#farmerUpdate').submit();
+	}
+	if($('#farmerRegForSeason')){
+		$('#farmerRegForSeason').submit();
+	}
+	if($('#farmerEditSeason')){
+		$('#farmerEditSeason').submit();		
+	}	
 	
 }
 

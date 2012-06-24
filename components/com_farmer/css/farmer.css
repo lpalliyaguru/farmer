@@ -19,7 +19,7 @@ form#farmerReg table {
 #farmerReg table tr{
 	height: 30px;padding:4px;margin: 3px;
 }
-#farmerReg table input[type='text']{
+#farmerReg table input{
 	height: 20px;padding: 4px;margin: 2px;
 }
 #farmerReg table td select{
@@ -33,6 +33,7 @@ form#farmerReg table {
 #farmer_names td{
 	font-size : 13px;
 	height: 30px;
+	text-align: center;
 }
 #farmer_names a{
 	text-decoration: none;
@@ -48,21 +49,22 @@ form#farmerUpdate table{
 }
 
 .class-farmer_names-editBut{
-	width: 100px;
+	width: 80px;
 	height: 20px;
 	background-color: #ccc;
 	text-align: center;
 	padding-top: 3px;
 	border: 1px solid #000;
-	 
+	
 }
 .class-farmer_names-delBut{
-	width: 100px;
+	width: 80px;
 	height: 20px;
 	background-color: #ccc;
 	text-align: center;
 	padding-top: 3px; 
 	border: 1px solid #000;
+	
 }
 
 form#farmerRegForSeason{
@@ -83,10 +85,29 @@ form#farmerRegForSeason table td{
 	height : 30px;
 	font-size: 13px;
 }
-
+form#farmerRegForSeason table input{
+	height: 20px;padding: 4px
+}
 form#farmerRegForSeason table tr{
 	height: 30px;padding:4px;margin: 3px;
 }
 form#farmerRegForSeason table select{
 	height: 25px;padding: 4px
+}
+table#farmer_names-seasons{
+	position : relative;
+	left : 100px;
+	width : 500px;
+	
+}
+table#farmer_names-seasons th{
+	font-weight: bold;
+	font-size: 14px;
+}
+table#farmer_names-seasons td{
+	height : 20px;
+	text-align: center;
+}
+table#farmer_names-seasons a{
+	text-decoration: none;
 }

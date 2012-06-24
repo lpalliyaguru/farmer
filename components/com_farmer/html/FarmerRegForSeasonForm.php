@@ -15,6 +15,7 @@ class FarmerRegForSeasonForm{
 		$inputNic = new HTableObject(INPUT);
 		$farmerNic = new Input("farmerRegNic", "text");
 		$farmerNic->setID("farmer-nic");
+		$farmerNic->setExtra("autocomplete='off'");
 		$inputNic->addInput($farmerNic);
 
 		$selectSeason = new HTableObject(SELECT);
@@ -29,8 +30,8 @@ class FarmerRegForSeasonForm{
 		$arr[0]['option'] = "Select a Season";
 
 		if($seasons){
+			$i = 1;
 			foreach ($seasons as $s){
-				$i = 1;
 				$arr[$i]['value'] = $s['id'];
 				$arr[$i]['option'] = $s['name'];
 

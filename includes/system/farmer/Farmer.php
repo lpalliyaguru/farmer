@@ -1,6 +1,7 @@
 <?php
 hImport('core.db.HDatabase');
 hImport('core.Object');
+
 class Farmer {
 	private $entityId;
 	private $nic;
@@ -75,8 +76,7 @@ class Farmer {
 			$farmer->setNationality($res[0]['nationality']);
 			$farmer->setAddress($res[0]['address']);
 			$farmer->setTp($res[0]['tpNo']);
-			$farmer->setTp($res[0]['tpNo']);
-			$farmer->setAreaId($res[0]['areaId']);
+			//$farmer->setAreaId($res[0]['areaId']);
 			//$farmer->setCenter($res[0]['centerId']);
 			$farmer->setAcherage($res[0]['acherage']);
 			$farmer->setCategory($res[0]['prodCategory']);
@@ -212,7 +212,27 @@ class Farmer {
 		
 	}
 	
-
+	public function j_getFarmers(){
+		$this->db->resetResult();
+		$this->db->select("fm_farmer","*");
+		$res = $this->db->getResult();
+		
+		$array = array();
+		
+		if($res){
+			$i = 0;
+			foreach ($res as $r) {
+				$array[$i]['farmerId'] = $r['farmerId'];
+				$array[$i]['name'] = $r['name'];
+				$array[$i]['surname'] = $r['surName'];
+				$array[$i]['nic'] = $r['nic'];
+				$i++;
+			}
+			
+			return $array;
+		}return false;
+		
+	}
 	
 	
 	/*
