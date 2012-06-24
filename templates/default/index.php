@@ -4,6 +4,7 @@
 ?>
 <link rel="stylesheet" type="text/css" href="templates/default/css/menu_new.css"/>
 <script type="text/javascript" src="templates/default/js/scripts.js"></script> 
+
 <script type="text/javascript" >
 $(document).ready(function(){
 		$('#default-header-profile').click(function(){
@@ -66,6 +67,7 @@ function changeBackground(name){
 	
 	$acces=new AcccesType();
 	$accessType=$acces->getAcccessTypeByName($_SESSION['SESS_USERTYPE']);
+	
 	$menu=new Menu($accessType->getId());
 	$topmenu=$menu->getTopMenuItems();
 	$m=$menu->genrerateMenu($topmenu);
@@ -146,6 +148,7 @@ $renderer->loadToolBar();
 		}
 		
 	}else{
+		
 		
 		//render the front page
 	}

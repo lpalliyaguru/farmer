@@ -55,6 +55,23 @@ class Bank{
 	 	}else return false;
 	 	
 	 }
+	 
+	 public function getBanks(){
+	 	$this->db->resetResult();
+	 	$this->db->select("fm_bank","bankCode,bankName");
+	 	$res = $this->db->getResult();
+	 	if($res){
+	 		return  $res;
+	 		
+	 	}else{
+	 		
+	 		return "";
+	 		
+	 	}
+	 	
+	 	
+	 }
+	 
 
 	public function getCode()
 	{

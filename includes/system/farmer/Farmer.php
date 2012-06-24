@@ -42,7 +42,7 @@ class Farmer {
 					$farmer->setGender($temp['gender']);
 					$farmer->setNationality($temp['nationality']);
 					$farmer->setAddress($temp['address']);
-					$farmer->setTp($$temp['tpNo']);
+					$farmer->setTp($temp['tpNo']);
 					$farmer->setAreaId($temp['areaId']);
 					$farmer->setAcherage($temp['acherage']);
 					$farmer->setCategory($temp['prodCategory']);
@@ -71,7 +71,7 @@ class Farmer {
 			$farmer->setName($res[0]['name']);
 			$farmer->setSurname($res[0]['surName']);
 			$farmer->setGender($res[0]['gender']);
-			//$farmer->setSeasonId($res[0]['seasonId']);
+			//$farmer->setSeasonId($re0s[0]['seasonId']);
 			$farmer->setNationality($res[0]['nationality']);
 			$farmer->setAddress($res[0]['address']);
 			$farmer->setTp($res[0]['tpNo']);
@@ -108,7 +108,6 @@ class Farmer {
 			$farmer->setNationality($res[0]['nationality']);
 			$farmer->setAddress($res[0]['address']);
 			$farmer->setTp($res[0]['tpNo']);
-			$farmer->setTp($res[0]['tpNo']);
 			$farmer->setAreaId($res[0]['areaId']);
 			$farmer->setCenter($res[0]['centerId']);
 			$farmer->setAcherage($res[0]['acherage']);
@@ -128,12 +127,12 @@ class Farmer {
 		$this->db->resetResult();
 		$insert=array($farmer->getEntityId(),$farmer->getName(),$farmer->getSurname(),//$farmer->getSeasonId(),
 					$farmer->getGender(),$farmer->getNic(),$farmer->getNationality(),$farmer->getAddress(),
-					$farmer->getTp(),$farmer->getAreaId(),//$farmer->getCenter(),
+					$farmer->getTp(),//$farmer->getAreaId(),//$farmer->getCenter(),
 					$farmer->getAcherage(),$farmer->getCategory(),
 					$farmer->getBankCode(),$farmer->getAccountNo(),$farmer->getAcctHolder(),$farmer->getAddedBy()
 					
 					);
-		$rows="farmerId,name,surName,gender,nic,nationality,address,tpNo,areaId,acherage,prodCategory,bankCode,acctNo,acctHolderName,addedBy";
+		$rows="farmerId,name,surName,gender,nic,nationality,address,tpNo,acherage,prodCategory,bankCode,acctNo,acctHolderName,addedBy";
 		if($this->db->insert("fm_farmer", $insert,$rows)){
 			return true;
 			
@@ -175,7 +174,7 @@ class Farmer {
 		$this->db->resetResult();
 		$this->db->select("fm_farmer","*","nic='$nic'");
 		$res=$this->db->getResult();
-		print_r($res);
+		
 		if($res){
 			return true;
 			
@@ -198,7 +197,7 @@ class Farmer {
 	
 	public function updateFarmer(Farmer $farmer){
 		
-		if($this->deleteFarmer($farmer->getNic(), $farmer->getSeasonId(), $farmer->getCenter())){
+		if($this->deleteFarmer($farmer->getNic())){
 			
 			if($this->saveFarmer($farmer)){
 				return true;
@@ -213,6 +212,7 @@ class Farmer {
 		
 	}
 	
+
 	
 	
 	/*
@@ -274,8 +274,7 @@ class Farmer {
 	public function getNationality()
 	{
 	    return $this->nationality;
-	}
-	
+	}	
 
 	public function setNationality($nationality)
 	{
@@ -311,7 +310,7 @@ class Farmer {
 	{
 	    $this->areaId = $areaId;
 	}
-/*
+
 	public function getCenter()
 	{
 	    return $this->center;
@@ -321,7 +320,7 @@ class Farmer {
 	{
 	    $this->center = $center;
 	}
-*/
+
 	public function getAcherage()
 	{
 	    return $this->acherage;
@@ -381,7 +380,7 @@ class Farmer {
 	{
 	    $this->addedBy = $addedBy;
 	}
-/*
+
 	public function getSeasonId()
 	{
 	    return $this->seasonId;
@@ -391,7 +390,7 @@ class Farmer {
 	{
 	    $this->seasonId = $seasonId;
 	}
-	*/
+	
 
 }
 

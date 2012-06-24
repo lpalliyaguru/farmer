@@ -31,9 +31,7 @@ class FarmerBelongs{
 				return $fb;
 			}else return false;
 			
-		}else return false;
-		
-	
+		}else return false;	
 		
 	}
 	

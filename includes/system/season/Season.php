@@ -11,7 +11,28 @@ class Season{
 		$this->db->connect();
 		
 	}
-	
+
+	public function getAll(){
+		
+		$this->db->resetResult();
+		$this->db->select("fm_season","*");
+		$res=$this->db->getResult();
+		
+		$seasons=array();
+		
+		if($res){
+			foreach ($res as $temp){
+				$s=new Season();
+				$s->setId($temp['id']);
+				$s->setName($temp['name']);
+				$s->setDescription($temp['description']);
+				array_push($seasons,$s);
+				unset($s);
+			}
+			
+			return $seasons;
+		}else return false;
+	}
 	public function getSeasonById($id){
 		
 		$this->db->resetResult();
@@ -42,6 +63,17 @@ class Season{
 		
 	}
 
+	public function getSeasons(){
+		$this->db->resetResult();
+		$this->db->select('fm_season','*'); 
+		$seasons = $this->db->getResult();
+		
+		if($seasons){
+			return $seasons;			
+		}else return false;
+		
+	}
+	
 	public function getName()
 	{
 	    return $this->name;

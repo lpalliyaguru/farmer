@@ -48,8 +48,10 @@ class HFormBuilder{
 			switch ($this->layout){
 				case DEFAULT_LAYOUT:
 				/* render as default layout */
+					
 					$form="<form action='".$this->action."' method='".$this->method."' 
-					id='".$this->id."' class='".$this->class."' onsubmit='".$this->onsubmit."'>";
+					id='".$this->id."' class='".$this->class."' onsubmit='return ".$this->onsubmit."'>";
+					$form.="<h3>".$this->getTitle()."</h3>";
 					/* getting the table  */
 					$tblBulider=new HTableBuilder();
 					$table=$tblBulider->getTable();

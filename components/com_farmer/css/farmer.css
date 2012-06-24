@@ -1,0 +1,92 @@
+form#farmerReg{
+	position: relative;float: right;
+	width: 550px;background:#fff ;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-box-shadow: 0px 0px 20px #646464;
+	-webkit-box-shadow: 0px 0px 20px #646464;
+	border: 2px solid #ccc;
+	padding: 30px;height:600px;	font-size: 14px
+}
+
+form#farmerReg table {	
+	left: 0px;
+	top:5px;
+	padding-left: 50px;
+	
+}
+
+#farmerReg table tr{
+	height: 30px;padding:4px;margin: 3px;
+}
+#farmerReg table input[type='text']{
+	height: 20px;padding: 4px;margin: 2px;
+}
+#farmerReg table td select{
+	padding: 5px
+}
+#farmer_names{
+	position : relative;
+	left : 100px;
+	width : 500px;
+}
+#farmer_names td{
+	font-size : 13px;
+	height: 30px;
+}
+#farmer_names a{
+	text-decoration: none;
+	
+}
+form#farmerUpdate{
+	position: relative;
+	left : 100px;
+}
+form#farmerUpdate table{
+	position : relative;
+	width : 600px;	
+}
+
+.class-farmer_names-editBut{
+	width: 100px;
+	height: 20px;
+	background-color: #ccc;
+	text-align: center;
+	padding-top: 3px;
+	border: 1px solid #000;
+	 
+}
+.class-farmer_names-delBut{
+	width: 100px;
+	height: 20px;
+	background-color: #ccc;
+	text-align: center;
+	padding-top: 3px; 
+	border: 1px solid #000;
+}
+
+form#farmerRegForSeason{
+	position: relative;float: right;
+	width: 550px;background:#fff ;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-box-shadow: 0px 0px 20px #646464;
+	-webkit-box-shadow: 0px 0px 20px #646464;
+	border: 2px solid #ccc;
+	padding: 30px;height:400px;	font-size: 14px
+}
+
+form#farmerRegForSeason table{
+	width : 700px;
+}
+form#farmerRegForSeason table td{
+	height : 30px;
+	font-size: 13px;
+}
+
+form#farmerRegForSeason table tr{
+	height: 30px;padding:4px;margin: 3px;
+}
+form#farmerRegForSeason table select{
+	height: 25px;padding: 4px
+}

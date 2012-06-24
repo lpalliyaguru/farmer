@@ -67,6 +67,41 @@ class Center{
 		
 	}
 	
+
+	public function j_getCentersByArea($id){
+               $center = $this->getCentersByArea($id);
+       
+               $array = array();
+               if($center){
+                       $i = 0;
+                       foreach ($center as $v) {
+                               $array[$i]['centerId'] = $v->getId();
+                               $array[$i]['centerName'] = $v->getName();
+                               $i++;
+                       }
+                       return $array;
+               
+               }else return false;                
+       }
+       
+	public function j_getCentersByAreaForAC(){
+               $center = $this->getAll();
+       
+               $array = array();
+               if($center){
+                       $i = 0;
+                       foreach ($center as $v) {
+                               $array[$i]['value'] = $v->getId();
+                               $array[$i]['label'] = $v->getName();
+                               $i++;
+                       }
+                       return $array;
+               
+               }else return false;                
+       }
+	
+	/*
+	
 	public function j_getCentersByArea($id){
 	
 		$centers=$this->getCentersByArea($id);
@@ -86,6 +121,7 @@ class Center{
 		
 		
 	}
+	*/
 	
 	public function saveCenter(Center $c){
 		$a=new Area();

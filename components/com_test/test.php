@@ -6,9 +6,21 @@ $.post("ajax_index.php",{"object":"system.area.BankBranch->j_getBrancehsByBank",
 
 	  });
 
-*/
 
+*/
+$.get("ajax_index.php?object=system.area.BankBranch->j_getBrancehsByBank&params[]=sfsdfs",function(d){
+	arr=d['body'];
+	console.log(arr);
+
+});
 
 </script>
-<img id="barcode" src="images/a.png" >
-<button onclick="alert(getBarcodeFromImage('barcode'))">Scan</button>
+<?php 
+
+hImport("system.grade.Grade");
+
+$g=new Grade();
+
+$grade=$g->getGrade("232", "232", "123")->getIn_allowance();
+
+?>

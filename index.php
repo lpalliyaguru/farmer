@@ -68,14 +68,14 @@ hImport("core.Logger");
 hImport("core.Frame");
 hImport("core.renderer.Renderer");
 hImport("support.login.HAuthenticator");
+hImport("support.store.Store");
 /*
  * instantiating global objects 
  * 
  */
 $log=new Logger();
 $mainframe=new MainFrame();
-$user=new HUser($_SESSION['SESS_MEMBER_ID']);
-
+$store=new Store();
 $logAuth=new HAuthenticator();
 if(getParam("login_attempt")){
 
@@ -87,6 +87,8 @@ if(auth()){
 		/*
 		 * getting the renderer to render the template 
 		 */	
+$user=new HUser($_SESSION['SESS_MEMBER_ID']);
+
 		$ren=new Renderer();
 		/*
 		 * gets the default template 

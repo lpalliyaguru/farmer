@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 13, 2012 at 06:20 PM
+-- Generation Time: Jun 24, 2012 at 01:18 PM
 -- Server version: 5.1.63
--- PHP Version: 5.3.6-13ubuntu3.7
+-- PHP Version: 5.3.6-13ubuntu3.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -30,16 +30,17 @@ CREATE TABLE IF NOT EXISTS `fm_area` (
   `areaId` varchar(20) NOT NULL,
   `areaName` varchar(100) DEFAULT NULL,
   `executiveId` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`areaId`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`areaId`),
+  KEY `areaId` (`areaId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fm_area`
 --
 
 INSERT INTO `fm_area` (`areaId`, `areaName`, `executiveId`) VALUES
-('dfdsf', 'dsfdsf', '23'),
-('new area', 'Area 3', '23'),('new area2', 'Area 4', '23');
+('area1', 'new area', '23'),
+('area3', 'area3 name', '23');
 
 -- --------------------------------------------------------
 
@@ -59,7 +60,6 @@ CREATE TABLE IF NOT EXISTS `fm_bank` (
 
 INSERT INTO `fm_bank` (`bankCode`, `bankName`) VALUES
 ('sfsdfs', 'sdfsss'),
-('dfd', 'dfdfd'),
 ('dss', 'sdfsfs'),
 ('dssdfd', 'dfd');
 
@@ -81,7 +81,8 @@ CREATE TABLE IF NOT EXISTS `fm_bankBranch` (
 --
 
 INSERT INTO `fm_bankBranch` (`branchCode`, `branchName`, `bankCode`) VALUES
-('2', 'b 3', 'dfd');
+('222', 'branch 3', 'sfsdfs'),
+('1111', 'branch1', 'sfsdfs');
 
 -- --------------------------------------------------------
 
@@ -102,7 +103,8 @@ CREATE TABLE IF NOT EXISTS `fm_center` (
 --
 
 INSERT INTO `fm_center` (`centerId`, `areaId`, `centerName`, `supervisorId`) VALUES
-('dfs', 'dfdsf', 'center3', '34');
+('233', 'area1', 'center 2', '34'),
+('112', 'area1', 'center1', '34');
 
 -- --------------------------------------------------------
 
@@ -223,7 +225,8 @@ INSERT INTO `fm_farmer` (`farmerId`, `name`, `surName`, `seasonId`, `gender`, `n
 (12356, 'harshana', 'weerasinghe', '12', 'male', '882569855', 'sinhalese', 'kaburupitiya,matara', 22222, '0001', '01', '16', 'Small', '2344-02', 'harshana prabath', 'Medium', 'Medium'),
 (100, 'lasantha PGM', 'samaraweera', '12', 'male', '12345678', 'christian', 'kathnoruwa', 456, '0001', '01', '23', 'Small', '2344-15', '232323', 'sarath', 'admin'),
 (459, 'jayantha', 'bandara', '12', 'male', '223344444', 'tamil', 'gagamuwa, kathnoruwa', 0, '0001', '01', '33', 'Large', '2231-16', '4445454', 'jayantha bandara', 'admin'),
-(100, 'Sarath', 'samaraweera', '34', 'Sarath', '1233', 'christian', 'kathnoruwa', 456, '0001', '45', '23', 'Small', '2344-15', '232323', 'sarath', 'admin');
+(100, 'Sarath', 'samaraweera', '34', 'Sarath', '1233', 'christian', 'kathnoruwa', 456, '0001', '45', '23', 'Small', '2344-15', '232323', 'sarath', 'admin'),
+(0, 'sfds', 'dsf', '', '1', 'sdfs', 'sdf', 'sdfs', 0, '', '', 'sdfs', '-1', 'sfsdfs', 'sdfs', 'sdfsfs', 'admin');
 
 -- --------------------------------------------------------
 
@@ -237,15 +240,15 @@ CREATE TABLE IF NOT EXISTS `fm_farmerBelongs` (
   `seasonId` varchar(10) NOT NULL,
   `centerId` varchar(10) NOT NULL,
   PRIMARY KEY (`id`,`nic`,`seasonId`,`centerId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `fm_farmerBelongs`
 --
 
 INSERT INTO `fm_farmerBelongs` (`id`, `nic`, `seasonId`, `centerId`) VALUES
-(1, '12345678', '12', '01'),
-(2, '23', '3434', '343');
+(4, '882569855', '1', '112'),
+(5, '882569855', '2', '233');
 
 -- --------------------------------------------------------
 
@@ -272,16 +275,20 @@ CREATE TABLE IF NOT EXISTS `fm_farmerItem` (
   `itemCode` varchar(20) NOT NULL,
   `farmerBelongId` varchar(20) NOT NULL,
   `quantity` decimal(8,2) NOT NULL,
-  `date` varchar(40) NOT NULL,
-  PRIMARY KEY (`itemCode`,`farmerBelongId`,`date`)
+  `date` date NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `amount` decimal(12,2) NOT NULL,
+  `receipt` int(10) NOT NULL,
+  PRIMARY KEY (`itemCode`,`farmerBelongId`,`date`,`receipt`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fm_farmerItem`
 --
 
-INSERT INTO `fm_farmerItem` (`itemCode`, `farmerBelongId`, `quantity`, `date`) VALUES
-('122', '2', '23.00', '2012-12-23');
+INSERT INTO `fm_farmerItem` (`itemCode`, `farmerBelongId`, `quantity`, `date`, `description`, `amount`, `receipt`) VALUES
+('2333', '4', '23.00', '2012-06-18', 'this is new', '5068.28', 232),
+('1222', '4', '33.00', '2012-06-18', 'this is new desc', '3366.00', 232);
 
 -- --------------------------------------------------------
 
@@ -295,6 +302,8 @@ CREATE TABLE IF NOT EXISTS `fm_grade` (
   `categoryCode` varchar(20) NOT NULL,
   `description` varchar(40) NOT NULL,
   `unitPrice` decimal(8,2) NOT NULL,
+  `in_percentage` decimal(5,2) NOT NULL,
+  `in_allowance` decimal(5,2) NOT NULL,
   PRIMARY KEY (`gradeCode`,`areaId`,`categoryCode`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -302,28 +311,29 @@ CREATE TABLE IF NOT EXISTS `fm_grade` (
 -- Dumping data for table `fm_grade`
 --
 
-INSERT INTO `fm_grade` (`gradeCode`, `areaId`, `categoryCode`, `description`, `unitPrice`) VALUES
-('grade1', '1234', 'Small', '', '180.00'),
-('grade2', '1234', 'Small', '', '170.00'),
-('grade3', '1234', 'Small', '', '150.50'),
-('grade4', '1234', 'Small', '', '137.00'),
-('grade5', '1234', 'Small', '', '130.00'),
-('grade6', '1234', 'Small', '', '120.00'),
-('crs', '1234', 'Small', '', '100.00'),
-('grade1', '0001', 'Small', '', '200.00'),
-('grade2', '0001', 'Small', '', '180.00'),
-('grade3', '0001', 'Small', '', '170.00'),
-('grade4', '0001', 'Small', '', '160.00'),
-('grade5', '0001', 'Small', '', '150.00'),
-('grade6', '0001', 'Small', '', '140.00'),
-('crs', '0001', 'Small', '', '120.00'),
-('grade1', '0001', 'Medium', '', '300.00'),
-('grade2', '0001', 'Medium', '', '280.00'),
-('grade3', '0001', 'Medium', '', '270.00'),
-('grade4', '0001', 'Medium', '', '250.00'),
-('grade5', '0001', 'Medium', '', '240.00'),
-('grade6', '0001', 'Medium', '', '220.00'),
-('crs', '0001', 'Medium', '', '200.00');
+INSERT INTO `fm_grade` (`gradeCode`, `areaId`, `categoryCode`, `description`, `unitPrice`, `in_percentage`, `in_allowance`) VALUES
+('grade1', '1234', 'Small', '', '180.00', '0.00', '0.00'),
+('grade2', '1234', 'Small', '', '170.00', '0.00', '0.00'),
+('grade3', '1234', 'Small', '', '150.50', '0.00', '0.00'),
+('grade4', '1234', 'Small', '', '137.00', '0.00', '0.00'),
+('grade5', '1234', 'Small', '', '130.00', '0.00', '0.00'),
+('grade6', '1234', 'Small', '', '120.00', '0.00', '0.00'),
+('crs', '1234', 'Small', '', '100.00', '0.00', '0.00'),
+('grade1', '0001', 'Small', '', '200.00', '0.00', '0.00'),
+('grade2', '0001', 'Small', '', '180.00', '0.00', '0.00'),
+('grade3', '0001', 'Small', '', '170.00', '0.00', '0.00'),
+('grade4', '0001', 'Small', '', '160.00', '0.00', '0.00'),
+('grade5', '0001', 'Small', '', '150.00', '0.00', '0.00'),
+('grade6', '0001', 'Small', '', '140.00', '0.00', '0.00'),
+('crs', '0001', 'Small', '', '120.00', '0.00', '0.00'),
+('grade1', '0001', 'Medium', '', '300.00', '0.00', '0.00'),
+('grade2', '0001', 'Medium', '', '280.00', '0.00', '0.00'),
+('grade3', '0001', 'Medium', '', '270.00', '0.00', '0.00'),
+('grade4', '0001', 'Medium', '', '250.00', '0.00', '0.00'),
+('grade5', '0001', 'Medium', '', '240.00', '0.00', '0.00'),
+('grade6', '0001', 'Medium', '', '220.00', '0.00', '0.00'),
+('crs', '0001', 'Medium', '', '200.00', '0.00', '0.00'),
+('123', '232', '232', 'updated3', '10.00', '30.00', '30.00');
 
 -- --------------------------------------------------------
 
@@ -404,7 +414,9 @@ CREATE TABLE IF NOT EXISTS `fm_item` (
 --
 
 INSERT INTO `fm_item` (`itemCode`, `itemName`, `costPrice`, `sellingPrice`, `unit`, `remarks`) VALUES
-('2333', 'Item 2', '230.00', '220.00', 'kg', 'wewewew');
+('1222', 'Item 1', '100.00', '102.00', 'kg', ''),
+('1111', 'item 3', '34.00', '35.50', 'kg', ''),
+('1223', 'item 3', '200.00', '210.00', 'kg', '');
 
 -- --------------------------------------------------------
 
@@ -419,7 +431,7 @@ CREATE TABLE IF NOT EXISTS `fm_menu` (
   `parent` int(2) NOT NULL,
   `accesstype` int(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `fm_menu`
@@ -440,10 +452,16 @@ INSERT INTO `fm_menu` (`id`, `name`, `link`, `parent`, `accesstype`) VALUES
 (20, 'Add user', 'index.php?page=com_staff&getAction=adduser', 21, 1),
 (21, 'Users', 'index.php?page=com_staff&getAction=view', 19, 1),
 (22, 'Add executive', 'index.php?page=com_staff&getAction=viewExec', 19, 3),
-(23, 'Manage', 'index.php?page=com_manage', 0, 3),
+(23, 'Manage', '#', 0, 3),
 (24, 'Item', 'index.php?page=com_item&getAction=view', 23, 3),
-(25, 'Add Item', '?page=com_item&getAction=add', 24, 3),
-(26, 'Issue Item', 'index.php?page=com_item&getAction=issueitem', 24, 3);
+(25, 'Add Item', 'index.php?page=com_item&getAction=add', 24, 3),
+(26, 'Issue Item', 'index.php?page=com_item&getAction=issueitem', 24, 3),
+(27, 'Farmer', 'index.php?page=com_farmer&getAction=editFarmer', 23, 3),
+(28, 'Add Farmer', 'index.php?page=com_farmer&getAction=addFarmer', 27, 3),
+(29, 'Edit Farmer', 'index.php?page=com_farmer&getAction=editFarmer', 27, 3),
+(30, 'Add farmer for Season', 'index.php?page=com_farmer&getAction=addFarmerforSeason', 27, 3),
+(31, 'View item issues', 'index.php?page=com_item&getAction=viewitemissues', 24, 3),
+(32, 'Crop', 'index.php?page=com_gradeCrop&getAction=view', 23, 3);
 
 -- --------------------------------------------------------
 
@@ -477,14 +495,15 @@ CREATE TABLE IF NOT EXISTS `fm_season` (
   `name` varchar(100) NOT NULL,
   `description` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `fm_season`
 --
 
 INSERT INTO `fm_season` (`id`, `name`, `description`) VALUES
-(1, 'yala 2012', 'yala season');
+(1, 'yala 2012', 'yala season'),
+(2, 'yalaOff', 'uala aoof');
 
 -- --------------------------------------------------------
 
@@ -570,8 +589,7 @@ CREATE TABLE IF NOT EXISTS `fm_user` (
 INSERT INTO `fm_user` (`userId`, `userType`, `password`, `fname`, `lname`, `officeCode`, `avatar`) VALUES
 ('admin', 'superadmin', '81dc9bdb52d04dc20036dbd8313ed055', 'janith', 'kalhara3', '', 'admin.jpg'),
 ('sali', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'dhanushka', 'saliya', '', 'sali.gif'),
-('dfds', 'superadmin', 'd9729feb74992cc3482b350163a1a010', 'sdfs', 'sdfs', '', 'dfds.'),
-('new ', 'admin', 'adbf5a778175ee757c34d0eba4e932bc', 'asd', 'asd', '', 'new .jpg');
+('dfds', 'superadmin', 'd9729feb74992cc3482b350163a1a010', 'sdfs', 'sdfs', '', 'dfds.');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

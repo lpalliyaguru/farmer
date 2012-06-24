@@ -86,6 +86,30 @@ class Item{
 	/*
 	 * Deleting the item
 	 */
+	
+	/*
+	 * getting all items code wise for ajax call
+	 * 
+	 */
+	public function j_getAllItems(){
+		
+		$items=$this->getAll();
+		$j_items=array();
+		if($items){
+			$i=0;
+			foreach ($items as $item){
+				$j_items[$i]['label']=$item->getItemCode();
+				$j_items[$i]['value']=$item->getSellingPrice();
+				$i++;
+			}
+			return $j_items;
+			
+		}else{
+			return false;
+		}
+		
+	}
+	
 	public function deleteItem($code){
 		
 		if($this->db->delete("fm_item","itemCode='$code'")){

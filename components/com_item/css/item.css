@@ -28,9 +28,14 @@ table#id-itemissue-bottom input{
 	width:100px	;float: right;position: relative;
 }
 
+/* issue view */
 
-
-
+table#id-issueview-filter{
+	width:100%
+}
+table#id-issueview-filter td input[type='text']{
+	width:120px
+}
 
 
 
