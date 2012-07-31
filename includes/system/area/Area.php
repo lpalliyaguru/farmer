@@ -29,6 +29,28 @@ class Area{
 			return false;
 		}
 	}
+	
+	public function j_getAll(){
+		
+		$areas=$this->getAll();
+		$j_areas=array();
+		if($areas){
+			$i=0;
+			foreach ($areas as $area){
+				$j_areas[$i]['value']=$area->getId();
+				$j_areas[$i]['label']=$area->getName();
+				$i++;
+			}
+			return $j_areas;
+			
+		}else{
+			return false;
+		}
+		
+		
+		
+		
+	}
 	public function getAreaById($id){
 		$this->db->resetResult();
 		$this->db->select("fm_area","*","areaId='".$id."'");

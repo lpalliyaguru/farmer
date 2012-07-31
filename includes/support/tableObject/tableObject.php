@@ -1,10 +1,4 @@
-<?php
-
-
-
-?>
-
-<?php
+<?
 
 class image{
 	

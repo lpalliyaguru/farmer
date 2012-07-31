@@ -74,8 +74,8 @@ class Center{
                if($center){
                        $i = 0;
                        foreach ($center as $v) {
-                               $array[$i]['centerId'] = $v->getId();
-                               $array[$i]['centerName'] = $v->getName();
+                               $array[$i]['value'] = $v->getId();
+                               $array[$i]['label'] = $v->getName();
                                $i++;
                        }
                        return $array;

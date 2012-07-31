@@ -1,11 +1,12 @@
 
 $(document).ready(function(){
-	/*this is date picker*/
+	/* this is date picker */
 	$('#id-itemissue-1-date').datepicker({dateFormat: 'yy-mm-dd'});
-	//$('.class-itemissue-cell').keyup(function(e){
+	// $('.class-itemissue-cell').keyup(function(e){
 
-	//});
-	/* upper table movements
+	// });
+	/*
+	 * upper table movements
 	 */
 	
 	
@@ -80,7 +81,7 @@ $(document).ready(function(){
 function goThere(e,id){
 	numOfRows=($("#id-table1-itemissue-lower tr").length)-1;
 	
-	//var id=$(this).attr('id');
+	// var id=$(this).attr('id');
 	var key=e.keyCode;
 	splt=id.split('-');
 	row=splt[2];
@@ -185,7 +186,7 @@ function confirmDelete(){
 }
 
 /*
- * item issue table scriptings 
+ * item issue table scriptings
  * 
  */
 
@@ -207,12 +208,12 @@ function addRowtoTable(id){
 	if(numOfRows<9){
 		$('#row-count').val(numOfRows);
 		$('#'+id).append(str);
-		//for(i=0;i<6;i++){
-			//$("#id-itemissue-"+(numOfRows-1)+"-"+i).bind('keyup',function(e){});
+		// for(i=0;i<6;i++){
+			// $("#id-itemissue-"+(numOfRows-1)+"-"+i).bind('keyup',function(e){});
 			$("#id-itemissue-"+(numOfRows-1)+"-0").autocomplete({
 				source:getAllItemCodes(),
 				select:function(event,ui){
-					//$(this).val(ui.item.label);
+					// $(this).val(ui.item.label);
 					id=$(this).attr('id');
      				
      				splt=id.split('-');
@@ -232,7 +233,7 @@ function addRowtoTable(id){
 				}
 			});
 			
-		//} 
+		// }
 	}else{
 		alert("Maximum number of rows have been added.");
 	}
@@ -244,7 +245,7 @@ function addRowtoTable(id){
 
 function validateItemIssueForm(){
 	flag=true;
-	//checking top table
+	// checking top table
 	$('#id-table1-itemissue-upper input').each(function(){
 		
 		if($(this).val()==""){
@@ -254,13 +255,13 @@ function validateItemIssueForm(){
 			flag=true;
 		}
 	});
-	//checking for all tr s.if first value is filled next all fields
+	// checking for all tr s.if first value is filled next all fields
 	var numRows=$('#id-table1-itemissue-lower tr').size()-1;
-	//checking tr s
+	// checking tr s
 	var numCols=6;
 	for(var i=0;i<numRows;i++){
 		if($("#id-itemissue-"+i+"-0").val()!=''){
-			///checking 
+			// /checking
 			
 			for(var j=3;j<numCols;j++){
 				
@@ -322,7 +323,7 @@ function calculateValue(id,q){
 }
 
 function searchItemIssue(){
-	//obtaining search keys
+	// obtaining search keys
 	
 	var farmerId=$('#id-hidden-issueview-nic').val();
 	var center=$('#id-hidden-issueview-center').val();
@@ -338,12 +339,12 @@ function searchItemIssue(){
 		data:{'object':"system.item.FarmerItem->j_getAllIssues",'params':[farmerId,center,season,date]},
 		async:false,
 		success:function(d){
-			//result=jQuery.parseJSON(d); 
+			// result=jQuery.parseJSON(d);
 		 	if(d.status=='true'){
 		 		
 		 		if(d.body!=false){
 		 			result=d.body;
-		 			console.log(result)
+		 			
 		 			renderView(result,farmerId,center,season,date,receipt);
 		 		}else{
 		 			result=false;
@@ -351,7 +352,6 @@ function searchItemIssue(){
 		 		}
 		 		
 		 	}else{
-		 		console.log(d.message);
 		 	}
 			}
 	
@@ -370,7 +370,7 @@ function getAllItemCodes(){
 		data:{'object':"system.item.Item->j_getAllItems",'params':null},
 		async:false,
 		success:function(d){
-			//result=jQuery.parseJSON(d); 
+			// result=jQuery.parseJSON(d);
 			
 		 	if(d.status=='true'){
 		 		result=d.body;
