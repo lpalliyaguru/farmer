@@ -7,18 +7,21 @@ class Item_renderer{
 
 		$item=new Item();
 		$items=$item->getAll();
-		print "<h3>View All Items</h3>";
+		print "<h3 class='well'>View All Items</h3>";
 		if($items){
-			print "<table border='1'>";
-			print "<tr><th align='center'>Item Code </th><th align='center'>Item Name</th><th align='center'>Cost Price </th><th align='center'>Selling Price</th><th align='center'>Unit</th><th align='center'>Remarks</th></tr>";
+			print "<table class='table'>";
+			print "<tr><th>Item Code </th><th>Item Name</th><th>Cost Price </th><th >Selling Price</th><th >Unit</th><th >Remarks</th><th colspan='2' ></th></tr>";
+			$counter=1;
 			foreach ($items as $i){
 				print "<tr>";
+				//print "<td>".$counter."</td>";
 				print "<td>".$i->getItemCode()."</td><td>".$i->getItemName()."</td>
 						<td>".$i->getCostPrice()."</td><td>".$i->getSellingPrice()."</td><td>".$i->getUnit()."</td><td>".$i->getRemarks()."</td>";						
-				print "<td><a href='?page=com_item&getAction=edit&id=".$i->getItemCode()."'>Edit<a></td>";
-				print "<td><a href='?page=com_item&getAction=del&id=".$i->getItemCode()."' onclick='return confirmDelete()'>Delete<a></td>";
+				print "<td><a class='button' href='?page=com_item&getAction=edit&id=".$i->getItemCode()."'><i class='icon-pencil'></i>Edit<a></td>";
+				print "<td><a class='button' href='?page=com_item&getAction=del&id=".$i->getItemCode()."' onclick='return confirmDelete()'><i class='icon-trash'></i>Delete<a></td>";
 
 				print "</tr>";
+				$counter++;
 			}
 			print "</table>";
 
@@ -30,10 +33,10 @@ class Item_renderer{
 	}
 	function addItems(){
 		?>
-<h3>Add Items details</h3>
+<h3 class='well'>Add Items details</h3>
 <form action="?page=com_item" method="post"
 	onsubmit="return validateitemform()" id="form-item">
-	<table border="1">
+	<table class='table'>
 		<tr>
 			<td>Item Code</td>
 			<td><input type="text" id="id-item-itemcode"
@@ -65,9 +68,10 @@ class Item_renderer{
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="Save Item"> <input
-				type="reset" value="Reset"> <input type="hidden" name="postAction"
-				value="saveitem">
+			<td colspan="2">
+			<input class='button primary' type="submit" value="Save Item"> 
+			<input class='button' type="reset" value="Reset"> 
+			<input type="hidden" name="postAction"	value="saveitem">
 			</td>
 		</tr>
 	</table>
@@ -85,10 +89,10 @@ class Item_renderer{
 		$item=$i->getItemByCode($id);
 
 		?>
-<h3>Add Items details</h3>
+<h3 class='well'><i><?php print $item->getItemName();?></i> : Edit details </h3>
 <form action="?page=com_item" method="post"
 	onsubmit="return validateitemform()" id="form-updateitem">
-	<table border="1">
+	<table class="table">
 		<tr>
 			<td>Item Code</td>
 			<td><input type="text" id="id-item-itemcode"
@@ -124,10 +128,11 @@ class Item_renderer{
 						</textarea></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="Update Item"> <input
-				type="reset" value="Reset"> <input type="hidden" name="update-item"
-				value="<?php print $item->getItemCode()?>"> <input type="hidden"
-				name="postAction" value="updateitem">
+			<td colspan="2">
+			<input class='button primary' type="submit" value="Update Item"> 
+			<input class='button' type="reset" value="Reset">
+			<input type="hidden" name="update-item" value="<?php print $item->getItemCode()?>">
+			<input type="hidden" name="postAction" value="updateitem">
 			</td>
 		</tr>
 	</table>
@@ -319,11 +324,11 @@ class Item_renderer{
 		</script>
 
 
-<h3>Item issuing window</h3>
+<h3 class='well'>Item issuing window</h3>
 <div>
 	<form action="?page=com_item" method="post"
 		onsubmit="return validateItemIssueForm()" id="form-itemIssue">
-		<table border='1' style='' id='id-table1-itemissue-upper'>
+		<table class='table small' style='' id='id-table1-itemissue-upper'>
 			<tr>
 				<!-- 
 						<td>Area ID</td>
@@ -380,7 +385,7 @@ class Item_renderer{
 
 		</table>
 		<hr>
-		<table border='1' style='' id='id-table1-itemissue-lower'
+		<table class='table small' style='' id='id-table1-itemissue-lower'
 			cellpadding="0" cellspacing="0">
 
 			<tr>
@@ -408,7 +413,7 @@ class Item_renderer{
 			}
 	?>
 		</table>
-		<table id='id-itemissue-bottom'>
+		<table class='table small' id='id-itemissue-bottom'>
 			<tr>
 				<td colspan="4">&nbsp;</td>
 				<td><span>Total</span></td>
@@ -495,8 +500,8 @@ class Item_renderer{
 			});
 		
 		</script>
-<h4>View Item Issues</h4>
-<table border='1' cellpadding="5" cellspacing="0"
+<h3 class='well'>View Item Issues</h3>
+<table class='table' cellpadding="5" cellspacing="0"
 	id='id-issueview-filter'>
 	<tr>
 		<td>Farmer NIC</td>
@@ -533,7 +538,7 @@ class Item_renderer{
 	
 	</tr>
 	<tr>
-	<td colspan='4'><input type="button" value="search" onclick="searchItemIssue();"></td>
+	<td colspan='4'><button class ='button 'onclick="searchItemIssue();"><i class='icon-search'></i>search </button></td>
 	</tr>
 
 </table>

@@ -3,6 +3,7 @@
 	setTitle("Home");
 ?>
 <link rel="stylesheet" type="text/css" href="templates/default/css/menu_new.css"/>
+<link rel="stylesheet" type="text/css" href="templates/default/css/icons.css"/>
 <script type="text/javascript" src="templates/default/js/scripts.js"></script> 
 
 <script type="text/javascript" >

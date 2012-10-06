@@ -7,8 +7,9 @@ class HTML_renderer{
 		$user=new HUser();
 		$prevs=$user->getUserpreviledges();
 		?>
+		<h3 class='well'>Add user to system : </h3>
 	<form action="?page=com_staff" method="post" enctype="multipart/form-data"	onsubmit="return validateStaffform()" id="form-user">
-		<table border="1">
+		<table class='table'>
 			<tr>
 				<td>Username</td>
 				<td><input type="text" id="id-user-uname" name="name-user-uname" class='class-user'></td>
@@ -56,9 +57,10 @@ class HTML_renderer{
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Save User"> 
-					<input	type="reset" value="Reset"> 
-					<input type="hidden" name="postAction"	value="saveuser">
+				<td colspan="2">
+				<input class='button primary' type="submit" value="Save User"> 
+				<input class='button ' type="reset" value="Reset"> 
+				<input type="hidden" name="postAction"	value="saveuser">
 				</td>
 			</tr>
 		</table>
@@ -110,9 +112,9 @@ class HTML_renderer{
 		$prevs=$u->getUserpreviledges();
 		
 			?>
-	<h3>Update user data</h3>
+	<h3 class='well'>Update user data</h3>
 	<form action="?page=com_staff" method="post" enctype="multipart/form-data"	onsubmit="return validateStaffform()" id="form-user">
-		<table border="1">
+		<table class='table'>
 			<tr>
 				<td>Username</td>
 				<td><input type="text" id="id-user-uname" name="name-user-uname"  disabled="disabled" value='<?php print $user->getUsername()?>'></td>
@@ -163,8 +165,8 @@ class HTML_renderer{
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="Update User"> 
-					<input	type="reset" value="Reset"> 
+					<input class='button primary' type="submit" value="Update User"> 
+					<input class='button' type="reset" value="Reset"> 
 					<input type="hidden" name="update-user"	value="<?php print $user->getUsername()?>">
 					<input type="hidden" name="postAction"	value="updateuser">
 				</td>

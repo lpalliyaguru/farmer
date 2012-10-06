@@ -5,9 +5,9 @@ function addBank(){
 	
 
 	?>
-	<h3>Add Bank details </h3>
+	<h3 class='well'>Add Bank details </h3>
 	<form action="?page=com_bank" method="post" onsubmit="return validateBankform()" id="form-bank">
-	<table border="1">
+	<table class='table'>
 		<tr>
 			<td>Bank Code</td>
 			<td><input type="text" id="id-bank-id" name="name-bank-id"></td>
@@ -20,8 +20,8 @@ function addBank(){
 		
 		<tr>
 			<td colspan="2">
-				<input type="submit" value="Save Bank">
-				<input type="reset" value="Reset" >
+				<input class='button primary'type="submit" value="Save Bank">
+				<input class='button ' type="reset" value="Reset" >
 				<input type="hidden" name="postAction" value="save" >
 			</td>
 		</tr>
@@ -37,16 +37,19 @@ function addBank(){
 		if($b->getAll()){
 			$banks=$b->getAll();
 			
-			print "<h3>Banks registered in the system </h3>";
-			print "<table border='1'>";
-			print "<tr><th>Bank Code</th><th>Bank Name</th><th></th><th></th></tr>";
+			print "<h3 class='well' >Banks registered in the system </h3>";
+			print "<table class='table'>";
+			print "<tr><th>ID</th><th>Bank Code</th><th>Bank Name</th><th></th><th></th></tr>";
+			$counter=1;
 			foreach ($banks as  $temp){
 				print "<tr>";
+				print "<td>".$counter."</td>";
 				print "<td>".$temp->getCode()."</td>";
 				print "<td>".$temp->getName()."</td>";
-				print "<td><a href='index.php?page=com_bank&getAction=edit&id=".$temp->getCode()."' >Edit</a></td>";
-				print "<td><a href='index.php?page=com_bank&getAction=del&id=".$temp->getCode()."' onclick='return confirmBankDelete()'>Delete</a></td>";
+				print "<td><a class='button' href='index.php?page=com_bank&getAction=edit&id=".$temp->getCode()."' ><i class='icon-pencil'></i>Edit</a></td>";
+				print "<td><a class='button' href='index.php?page=com_bank&getAction=del&id=".$temp->getCode()."' onclick='return confirmBankDelete()'><i class='icon-trash'></i>Delete</a></td>";
 				print "</tr>";
+				$counter++;
 			}
 			print "</table>";
 			
@@ -65,11 +68,13 @@ function viewBankBranch(){
 	if($b->getAll()){
 		$branchs=$b->getAll();
 		
-		print "<h3>Banks  branches registered in the system </h3>";
-		print "<table border='1'>";
-		print "<tr><th>Branch Code</th><th>Branch Name</th><th>Related Bank </th></tr>";
+		print "<h3 class='well'>Banks  branches registered in the system </h3>";
+		print "<table  class='table'>";
+		print "<tr><th>ID</th><th>Branch Code</th><th>Branch Name</th><th>Related Bank </th><th colspan='2'> </th></tr>";
+		$counter=1;
 		foreach ($branchs as  $temp){
 			print "<tr>";
+			print "<td>".$counter."</td>";
 			print "<td>".$temp->getBranchCode()."</td>";
 			print "<td>".$temp->getBranchName()."</td>";
 			if($bnk=$bank->getBankByCode($temp->getBankCode())){
@@ -77,11 +82,12 @@ function viewBankBranch(){
 			}else{
 				print "<td></td>";
 			}
-			print "<td><a href='index.php?page=com_bank&getAction=editBranch&id=".$temp->getBranchCode()."' >Edit</a></td>";
-				print "<td><a href='index.php?page=com_bank&getAction=delBranch&id=".$temp->getBranchCode()."' onclick='return confirmDelete()'>Delete</a></td>";
+			print "<td><a  class='button' href='index.php?page=com_bank&getAction=editBranch&id=".$temp->getBranchCode()."' ><i class='icon-pencil'></i>Edit</a></td>";
+			print "<td><a  class='button' href='index.php?page=com_bank&getAction=delBranch&id=".$temp->getBranchCode()."' onclick='return confirmDelete()'><i class='icon-trash'></i>Delete</a></td>";
 			
 			//print "<td><a hr'".$bnk->getName()."</td>";
 			print "</tr>";
+			$counter++;
 		}
 		print "</table>";
 		
@@ -96,9 +102,9 @@ function viewBankBranch(){
 		$bank=new Bank();
 		$banks=$bank->getAll();
 			?>
-		<h3>Add Bank branch details </h3>
+		<h3 class='well'>Add Bank branch details </h3>
 		<form action="?page=com_bank" method="post" onsubmit="return validateBankBranchform()" id="form-bankbranch">
-		<table border="1">
+		<table class='table'>
 			<tr>
 				<td>Branch Code</td>
 				<td><input type="text" id="id-bankbranch-id" name="name-bankbranch-id"></td>
@@ -126,8 +132,8 @@ function viewBankBranch(){
 			
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="Save Bank Branch">
-					<input type="reset" value="Reset" >
+					<input class='button primary' type="submit" value="Save Bank Branch">
+					<input class='button' type="reset" value="Reset" >
 					<input type="hidden" name="postAction" value="saveBranch" >
 				</td>
 			</tr>
@@ -142,9 +148,9 @@ function viewBankBranch(){
 		$bank=$b->getBankByCode($id);
 		
 		?>
-	<h3>Add Bank details </h3>
+	<h3 class='well'>Add Bank details </h3>
 	<form action="?page=com_bank" method="post" onsubmit="return validateBankform()" id="form-bank">
-	<table border="1">
+	<table class='table'>
 		<tr>
 			<td>Bank Code</td>
 			<td><input type="text" id="id-bank-id" name="name-bank-id" disabled="disabled" value="<?php print $bank->getCode()?>"></td>
@@ -157,8 +163,8 @@ function viewBankBranch(){
 		
 		<tr>
 			<td colspan="2">
-				<input type="submit" value="Save Bank">
-				<input type="reset" value="Reset" >
+				<input class='button primary' type="submit" value="Save Bank">
+				<input class='button' type="reset" value="Reset" >
 				<input type="hidden" name="update-bank-form" value="<?php print $bank->getCode()?>" >
 				<input type="hidden" name="postAction" value="update" >
 			</td>
@@ -217,9 +223,9 @@ function viewBankBranch(){
 		$bank=new Bank();
 		$banks=$bank->getAll();
 			?>
-		<h3>Add Bank branch details </h3>
+		<h3 class='well'>Edit Bank branch details </h3>
 		<form action="?page=com_bank" method="post" onsubmit="return validateBankBranchform()" id="form-bankbranch">
-		<table border="1">
+		<table class='table'>
 			<tr>
 				<td>Branch Code</td>
 				<td><input type="text" id="id-bankbranch-id" name="name-bankbranch-id" disabled="disabled" value="<?php print $branch->getBranchCode()?>"></td>
@@ -252,8 +258,8 @@ function viewBankBranch(){
 			
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="Update Bank Branch">
-					<input type="reset" value="Reset" >
+					<input class='button primary' type="submit" value="Update Bank Branch">
+					<input class='button ' type="reset" value="Reset" >
 					<input type="hidden" name="update-bankbranch" value="<?php print $branch->getBranchCode()?>" >
 					<input type="hidden" name="postAction" value="updateBranch" >
 				</td>

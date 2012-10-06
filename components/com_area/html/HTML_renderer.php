@@ -8,10 +8,10 @@ class HTML_renderer{
 		$execs=$exc->getExecPersons();
 
 		?>
-
+<h3 class='well'>Register an area :</h3>
 <form action="?page=com_area" method="post"
 	onsubmit="return validateAreaform()" id="form-area">
-	<table border="1">
+	<table class='table'>
 		<tr>
 			<td>Area Id</td>
 			<td><input type="text" id="id-area-id" name="name-area-id"></td>
@@ -37,9 +37,10 @@ class HTML_renderer{
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="Save Area"> <input
-				type="reset" value="Reset"> <input type="hidden" name="postAction"
-				value="save">
+			<td colspan="2">
+			<input class='button primary'type="submit" value="Save Area">
+			<input class='button' type="reset" value="Reset">
+			<input type="hidden" name="postAction" value="save">
 			</td>
 		</tr>
 	</table>
@@ -61,7 +62,7 @@ class HTML_renderer{
 
 <form action="?page=com_area" method="post"
 	onsubmit="return validateAreaform()" id="form-area">
-	<table border="1">
+	<table class='table'>
 		<tr>
 			<td>Area Id</td>
 			<td><input type="text" id="id-area-id" disabled="disabled"
@@ -94,9 +95,10 @@ class HTML_renderer{
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="Save Area"> <input
-				type="reset" value="Reset"> <input type="hidden"
-				name="update-area-id" value="<?php print $area->getId()?>"> <input
+			<td colspan="2">
+			<input class='button primary' type="submit" value="Save Area"> 
+			<input class='button ' type="reset" value="Reset">
+			<input type="hidden" name="update-area-id" value="<?php print $area->getId()?>"> <input
 				type="hidden" name="postAction" value="update">
 			</td>
 		</tr>
@@ -107,32 +109,35 @@ class HTML_renderer{
 
 	}
 
-	
+
 	function viewAreas(){
 		$a=new Area();
 		$areas=$a->getAll();
 		if($areas){
 			$e=new ExcecutivePerson();
-			print "<h3>Areas registered in the system </h3>";
-			print "<table border='1'>";
-			print "<tr><th>Area Id</th><th>Area Name</th><th>Executive</th><th clospan='3'></th></tr>";
+			print "<h3 class='well'>Areas registered in the system </h3>";
+			print "<table  class='table '>";
+			print "<tr><th>Id</th><th>Area Id</th><th>Area Name</th><th>Executive</th><th>Actions</th><th clospan='2'></th></tr>";
+			$i=1;
 			foreach ($areas as $temp){
 				print "<tr>";
+				print "<td>".$i."</td>";
 				print "<td>".$temp->getId()."</td>";
 				print "<td>".$temp->getName()."</td>";
 				$ex=$e->getExecPersonById($temp->getExecutive());
 				print "<td>".$ex->getName()."</td>";
-				print "<td><a href='index.php?page=com_area&getAction=edit&id=".$temp->getId()."' >Edit</a></td>";
-				print "<td><a href='index.php?page=com_area&getAction=del&id=".$temp->getId()."' onclick='return confirmAreaDelete()'>Delete</a></td>";
+				print "<td><a class ='button primary' href='index.php?page=com_area&getAction=edit&id=".$temp->getId()."' ><i class='icon-pencil'></i>Edit</a></td>";
+				print "<td><a class ='button' href='index.php?page=com_area&getAction=del&id=".$temp->getId()."' onclick='return confirmAreaDelete()'><i class='icon-trash'></i>Delete</a></td>";
 				print "</tr>";
+				$i++;
 			}
 			print "</table>";
 		}else{
-			
+				
 			print "<p class='class-alert'><span></span>No areas registered in the system.!</p>";
 		}
-		
-		
+
+
 	}
 
 }

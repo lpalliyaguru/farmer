@@ -13,7 +13,8 @@ class HTML_renderer{
 
 <form action="?page=com_center" method="post"
 	onsubmit="return validateCenterform()" id="form-center">
-	<table border="1">
+	<h3 class='well'>Register a center in the system </h3>
+	<table class='table'>
 		<tr>
 			<td>Center Id</td>
 			<td><input type="text" id="id-center-id" name="name-center-id"></td>
@@ -55,9 +56,10 @@ class HTML_renderer{
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="Save Center"> <input
-				type="reset" value="Reset"> <input type="hidden" name="postAction"
-				value="save">
+			<td colspan="2">
+			<input class='button primary'  type="submit" value="Save Center">
+			<input class='button' type="reset" value="Reset"> 
+			<input type="hidden" name="postAction" 	value="save">
 			</td>
 		</tr>
 	</table>
@@ -72,11 +74,13 @@ class HTML_renderer{
 		if($centers){
 			$a=new Area();
 			$e=new SupervisorPerson();
-			print "<h3>Centers registered in the system </h3>";
-			print "<table border='1'>";
-			print "<tr><td>Center Id</td><td>Center Name</td><td>Related Area</td><td>Supervisor</td></tr>";
+			print "<h3 class='well'>Centers registered in the system </h3>";
+			print "<table class='table '>";
+			print "<tr><th>ID</th><th>Center Id</th><th>Center Name</th><th>Related Area</th><th>Supervisor</th><th>Actions</th><th></th></tr>";
+			$counter=1;
 			foreach ($centers as  $temp){
 				print "<tr>";
+				print "<td>".$counter."</td>";
 				print "<td>".$temp->getId()."</td>";
 				print "<td>".$temp->getName()."</td>";
 				if($area=$a->getAreaById($temp->getAreaId())){
@@ -88,9 +92,10 @@ class HTML_renderer{
 
 				$sup=$e->getSupPersonById($temp->getSupervisor());
 				print "<td>".$sup->getName()."</td>";
-				print "<td><a href='index.php?page=com_center&getAction=edit&id=".$temp->getId()."' >Edit</a></td>";
-				print "<td><a href='index.php?page=com_center&getAction=del&id=".$temp->getId()."' onclick='return confirmCenterDelete()'>Delete</a></td>";
+				print "<td><a class ='button ' href='index.php?page=com_center&getAction=edit&id=".$temp->getId()."' ><i class='icon-pencil'></i>Edit</a></td>";
+				print "<td><a  class ='button 'href='index.php?page=com_center&getAction=del&id=".$temp->getId()."' onclick='return confirmCenterDelete()'><i class='icon-trash'></i>Delete</a></td>";
 				print "</tr>";
+				$counter++;
 			}
 			print "</table>";
 		}else {
@@ -122,17 +127,17 @@ class HTML_renderer{
 		$area=new Area();
 		$areas=$area->getAll();
 		?>
-
+<h5 class='well'> Edit the center :<b><?php print $center->getName()?> </b></h5>
 <form action="?page=com_center" method="post"
 	onsubmit="return validateCenterform()" id="form-center">
-	<table border="1">
+	<table class='table'>
 		<tr>
 			<td>Center Id</td>
 			<td><input type="text" id="id-center-id" name="name-center-id" disabled="	disabled" value="<?php print $center->getId()?>"></td>
 		</tr>
 		<tr>
 			<td>Center Name</td>
-			<td><input type="text" id="id-center-name" name="name-center-name" value="<?php print $center->getId()?>"></td>
+			<td><input type="text" id="id-center-name" name="name-center-name" value="<?php print $center->getName()?>"></td>
 		</tr>
 		<tr>
 			<td>Related Area</td>
@@ -180,8 +185,8 @@ class HTML_renderer{
 		</tr>
 		<tr>
 			<td colspan="2">
-			<input type="submit" value="Save Center">
-			<input type="reset" value="Reset"> 
+			<input class ='button primary' type="submit" value="Save Center">
+			<input class ='button 'type="reset" value="Reset"> 
 			<input type="hidden" name="update-center-form"	value="<?php print $center->getId()?>">
 			<input type="hidden" name="postAction"	value="update">
 			</td>
